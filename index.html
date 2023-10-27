@@ -24,42 +24,122 @@
 
         <div class="container">
           <aside>
-            <h4> Categorias </h4>
             <div class="card">
-              
-              <label>
-                <input type="checkbox" name="JA">
-                Junta Academica
-              </label><br>
-              <label>
-                <input type="checkbox" name="SA">
-                Senado Academico
-              </label><br>
-              <label>
-                <input type="checkbox" name="cat3" >
-                Categoria 3
-              </label><br>
+              <h4>Categorias</h4>
+              <div class="check">
+                <label>
+                  <input type="checkbox" name="JA" />
+                  Junta Academica </label
+                ><br />
+                <label>
+                  <input type="checkbox" name="SA" />
+                  Senado Academico </label
+                ><br />
+                <label>
+                  <input type="checkbox" name="cat3" />
+                  Categoria 3 </label
+                ><br />
+              </div>
             </div>
 
-            <h4> Sub-Categorias </h4>
             <div class="card">
-              <label>
-                <input type="checkbox" name="subcategory1" value="JA">
-                Certificaciones
-              </label><br>
-              <label>
-                <input type="checkbox" name="subcategory1" value="Subcategory 1">
-                Enmendaciones
-              </label><br>
-              <label>
-                <input type="checkbox" name="subcategory1" value="Subcategory 1">
-                Solicitudes
-              </label><br>
+              <h4>Sub-Categorias</h4>
+              <div class="check">
+                <label>
+                  <input type="checkbox" name="subcategory1" value="JA" />
+                  Certificaciones </label
+                ><br />
+                <label>
+                  <input
+                    type="checkbox"
+                    name="subcategory1"
+                    value="Subcategory 1"
+                  />
+                  Enmendaciones </label
+                ><br />
+                <label>
+                  <input
+                    type="checkbox"
+                    name="subcategory1"
+                    value="Subcategory 1"
+                  />
+                  Solicitudes </label
+                ><br />
+              </div>
             </div>
-
           </aside>
 
-          <div class="busqueda">busqueda</div>
+          <div class="busqueda">
+            <div class="search-bar">
+              <input
+                type="text"
+                placeholder="Buscar por palabra clave, año, categoria, subcategoria..."
+              />
+              <button type="submit">Buscar</button>
+            </div>
+
+            <table>
+              <h1>Resultados:</h1>
+              <label
+                >ordenar por:
+                <select type="select" />
+              </label>
+
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Fecha</th>
+                  <th>Categoria</th>
+                  <th>Estado/Historial</th>
+                  <th>Descargar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Result 1</td>
+                  <td>October 1, 2023</td>
+                  <td>JA</td>
+                  <td>Enmendada</td>
+                  <td><a href="#">Download</a></td>
+                </tr>
+                <tr>
+                  <td>Result 2</td>
+                  <td>September 15, 2023</td>
+                  <td>JA</td>
+                  <td>Enmendada</td>
+                  <td><a href="#">Download</a></td>
+                </tr>
+                <tr>
+                  <td>Result 3</td>
+                  <td>August 27, 2023</td>
+                  <td>JA</td>
+                  <td>Enmendada</td>
+                  <td><a href="#">Download</a></td>
+                </tr>
+                <tr>
+                  <td>Result 3</td>
+                  <td>August 27, 2023</td>
+                  <td>JA</td>
+                  <td>Enmendada</td>
+                  <td><a href="#">Download</a></td>
+                </tr>
+                <tr>
+                  <td>Result 3</td>
+                  <td>August 27, 2023</td>
+                  <td>JA</td>
+                  <td>Enmendada</td>
+                  <td><a href="#">Download</a></td>
+                </tr>
+                <tr>
+                  <td>Result 3</td>
+                  <td>August 27, 2023</td>
+                  <td>JA</td>
+                  <td>Enmendada</td>
+                  <td><a href="#">Download</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
       <footer>
