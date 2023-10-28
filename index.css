@@ -35,70 +35,62 @@ header div {
 .mensaje {
   text-align: center;
   color: #b39122;
+  font-size: larger;
   font-weight: bold;
   font-style: italic;
-  margin-top: 30px;
+  margin-bottom: 40px;
 }
 
 section {
   background-color: #dad4d4;
   justify-content: center;
   margin: auto auto;
-  margin-top: 50px;
-  margin-bottom: 100px;
-  padding: 10px;
   width: 85%;
   border-radius: 10px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  padding-top: 20px;
+  min-height: 600px;
+  max-height: 550px;
+  box-shadow: 0px 0px 30px #161515b7;
 }
 
 .container {
   display: grid;
   grid-template-columns: 25% 75%;
-  column-gap: 10px;
 }
 
-.container > aside {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  width: 100%;
+.filtros {
+  display: grid;
+  grid-template-rows: 50% 50%;
+  row-gap: 25px;
+  padding: 25px;
+}
+
+.busqueda {
+  display: grid;
+  grid-template-rows: 10% 20% 33%;
+  padding-top: 20px;
+  justify-items: center;
 }
 
 .card {
-  width: 85%;
-  height: 200px;
   background-color: rgb(243, 241, 241);
+  box-shadow: 0px 0px 20px rgb(209, 209, 209);
   border-radius: 10px;
-  margin: 0 auto;
-  margin-bottom: 8%;
-  padding-top: 6px;
+  width: 80%;
+  justify-self: center;
+  text-align: center;
+  padding: 10px;
 }
 
 .check > label {
   display: flex;
   justify-content: left;
-  margin-left: 20%;
 }
 
 .check > label > input[type="checkbox"] {
   margin-right: 6px;
-}
-.busqueda {
-  background-color: rgb(243, 241, 241);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 10px;
-  width: 85%;
-  height: 535px;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-  margin-top: 60px;
-}
-
-.search-bar {
 }
 
 .search-bar input[type="text"] {
@@ -122,10 +114,17 @@ section {
   background-color: #b0922e;
 }
 
+.busqueda h1 {
+  margin-top: 40px;
+  width: 80%;
+  text-align: start;
+}
+
 table {
   width: 80%;
   table-layout: fixed;
   border-collapse: collapse;
+  box-shadow: 0px 0px 5px #645f5f;
 }
 
 th,
@@ -149,11 +148,13 @@ tbody tr:nth-child(odd) {
 
 footer {
   background-color: #161515;
+  border-top: 5px solid #c19f2c;
+  color: white;
   position: bottom;
   left: 0;
   bottom: 0;
   width: 100%;
-  color: white;
+  margin: auto auto;
   text-align: center;
-  border-top: 5px solid #c19f2c;
+  padding: 50px;
 }
