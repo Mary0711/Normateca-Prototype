@@ -66,3 +66,17 @@ body {
   border-radius: 5px;
   border: 1px solid #1d1d1d;
 }
+
+section {
+  background-color: #dad4d4;
+  justify-content: center;
+  margin: auto auto;
+  width: 85%;
+  border-radius: 10px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  padding-top: 20px;
+  min-height: 600px;
+  max-height: 550px;
+  box-shadow: 0px 0px 30px #161515b7;
+}
