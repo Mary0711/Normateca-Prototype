@@ -1,6 +1,6 @@
 function changeVisibility(tab, lastTab) {
-  lastTab.style.visibility = "hidden";
-  tab.style.visibility = "visible";
+  lastTab.style.display = "none";
+  tab.style.display = "block";
 }
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -8,7 +8,6 @@ body {
   font-size: 16px;
   overflow-x: hidden;
   display: grid;
-  grid-template-rows: 30% 70%;
 }
 
 header {
@@ -22,6 +21,7 @@ header {
   max-height: 90px;
   color: rgb(232, 232, 232);
   border-bottom: 5px solid #c19f2c;
+  margin-bottom: 60px;
 }
 
 header img {
@@ -54,10 +54,9 @@ section {
 }
 
 .principales {
-  background-color: rgb(233, 235, 233);
   border-radius: 10px;
-  padding-left: 30px;
-  padding-top: 8px;
+  padding-left: 20px;
+  padding-top: 3px;
 }
 
 .aside {
@@ -65,7 +64,7 @@ section {
   display: grid;
   grid-template-rows: 20% 80%;
   border-radius: 10px;
-  box-shadow: 0px 0px 15px #1d1d1d87;
+  box-shadow: 0px 0px 15px #1d1d1d56;
 }
 
 .aside h3 {
@@ -89,14 +88,90 @@ section {
 }
 
 .tabs input[type="radio"]:checked + label {
-  background-color: #ddd;
+  background-color: #dfb734b7;
+}
+
+.tabs input[type="radio"]:hover + label {
+  background-color: #e7bd3563;
 }
 
 .tab-content {
   padding: 20px;
+  background-color: #f4f3f3;
   border: 1px solid #ccc;
+  box-shadow: 0px 10px 13px 0px #1d1d1d56;
+
+  margin-right: 30px;
 }
 
+.subir {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 50% 50%;
+  column-gap: 20px;
+  row-gap: 20px;
+}
+
+.pdf {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  align-items: center;
+  column-gap: 15px;
+  row-gap: 8px;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  justify-content: center;
+  margin: 15px;
+}
+
+.archivo > form {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  align-items: center;
+  column-gap: 15px;
+  row-gap: 8px;
+}
+
+.archivo label {
+  text-align: end;
+}
+
+.archivo input {
+  padding: 5px;
+  width: 255px;
+}
+
+.archivo2 > form {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  align-items: center;
+  column-gap: 15px;
+  row-gap: 8px;
+}
+
+.archivo2 label {
+  text-align: end;
+}
+
+.archivo2 input {
+  padding: 5px;
+  width: 180px;
+}
+
+.archivo2 select {
+  padding: 5px;
+  width: 150px;
+}
+
+.backline {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  background-color: lightcoral;
+}
 footer {
   background-color: #161515;
   border-top: 5px solid #c19f2c;

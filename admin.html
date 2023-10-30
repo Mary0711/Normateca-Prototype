@@ -24,19 +24,71 @@
           <label for="editarBtn">Editar Archivo</label>
           <input type="radio" name="tab" id="crearBtn" />
           <label for="crearBtn">Crear Categorias</label>
-          <div class="tab-content"></div>
         </div>
 
-        <div id="subir">
-          <p>subir</p>
-        </div>
-        <div id="editar" style="visibility: hidden">
-          <p>editar</p>
-        </div>
-        <div id="crear" style="visibility: hidden">
-          <p>crear</p>
+        <div class="tab-content">
+          <div id="subir" class="subir">
+            <div class="pdf">
+              <label for="file"> Subir Archivo: </label
+              ><input type="file" id="file" multiple />
+            </div>
+
+            <div class="archivo">
+              <form>
+                <label for="filename"> Nombre: </label
+                ><input
+                  type="text"
+                  id="filename"
+                  placeholder="nombre del archivo"
+                />
+
+                <label for="fecha"> Fecha: </label
+                ><input type="date" id="fecha" />
+
+                <label for="decripcion"> Descripcion: </label
+                ><textarea
+                  type="text"
+                  id="descripcion"
+                  rows="5"
+                  maxlength="150"
+                  placeholder="decripcion del archivo. Breve oracion del tema."
+                ></textarea>
+              </form>
+            </div>
+            <div class="archivo2">
+              <form>
+                <label for="filename"> Categoria: </label>
+                <select id="categorias" name="categorias">
+                  <option value="JA">Junta Academica</option>
+                  <option value="SA">Senado Academico</option>
+                  <option value="cat1">Categoria 1</option>
+                  <option value="cat2">Categoria 2</option>
+                </select>
+
+                <label for="filename"> Sub-Categorias: </label>
+                <select id="subcategorias" name="subcategorias">
+                  <option value="JA">Certificado</option>
+                  <option value="SA">Solicitud</option>
+                  <option value="cat1">Aprobado</option>
+                  <option value="cat2">Sub-Categoria 2</option>
+                </select>
+                <label for="firma"> Firmado por: </label
+                ><input type="text" id="firma" />
+              </form>
+            </div>
+            <div class="backline">
+              <p>añadir backline</p>
+            </div>
+          </div>
+          <div id="editar" style="display: none">
+            <p>editar</p>
+          </div>
+          <div id="crear" style="display: none">
+            <p>crear</p>
+          </div>
         </div>
       </div>
+
       <div class="aside">
         <h3>Nombre de Usuario</h3>
         <h3>Archivos Subidos</h3>
