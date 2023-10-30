@@ -18,13 +18,23 @@
     <section class="container">
       <div class="principales">
         <div class="tabs">
-          <input type="radio" name="tab" id="subir" checked />
-          <label for="subir">Subir Archivo</label>
-          <input type="radio" name="tab" id="editar" />
-          <label for="editar">Editar Archivo</label>
-          <input type="radio" name="tab" id="crear" />
-          <label for="crear">Crear Categorias</label>
+          <input type="radio" name="tab" id="subirBtn" checked />
+          <label for="subirBtn">Subir Archivo</label>
+          <input type="radio" name="tab" id="editarBtn" />
+          <label for="editarBtn">Editar Archivo</label>
+          <input type="radio" name="tab" id="crearBtn" />
+          <label for="crearBtn">Crear Categorias</label>
           <div class="tab-content"></div>
+        </div>
+
+        <div id="subir">
+          <p>subir</p>
+        </div>
+        <div id="editar" style="visibility: hidden">
+          <p>editar</p>
+        </div>
+        <div id="crear" style="visibility: hidden">
+          <p>crear</p>
         </div>
       </div>
       <div class="aside">
@@ -36,5 +46,7 @@
     <footer>
       <h4>Visita nuestro sitio web:<a href="#"> upra.edu</a></h4>
     </footer>
+
+    <script src="main.js"></script>
   </body>
 </html>
