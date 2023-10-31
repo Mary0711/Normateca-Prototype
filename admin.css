@@ -296,7 +296,6 @@ tbody tr:nth-child(odd) {
 .crear {
   display: grid;
   grid-template-columns: repeat(2, auto);
-  column-gap: 10px;
 }
 
 .crearForm > form {
@@ -329,7 +328,6 @@ tbody tr:nth-child(odd) {
 
 .lista {
   display: grid;
-
   align-items: center;
 }
 
