@@ -60,11 +60,13 @@ section {
 }
 
 .aside {
-  background-color: rgb(233, 235, 233);
+  background-color: #e8e8e8;
   display: grid;
   grid-template-rows: 20% 80%;
   border-radius: 10px;
   box-shadow: 0px 0px 15px #1d1d1d56;
+  height: 675px;
+  align-self: center;
 }
 
 .aside h3 {
@@ -82,7 +84,7 @@ section {
 
 .tabs label {
   padding: 10px 20px;
-  background-color: #f1f1f1;
+  background-color: #e8e8e8;
   border: 1px solid #ccc;
   cursor: pointer;
 }
@@ -97,7 +99,7 @@ section {
 
 .tab-content {
   padding: 20px;
-  background-color: #f4f3f3;
+  background-color: #e8e8e8;
   border: 1px solid #ccc;
   box-shadow: 0px 10px 13px 0px #1d1d1d56;
 
