@@ -26,15 +26,15 @@
               <h4>Categorias</h4>
               <div class="check">
                 <label>
-                  <input type="checkbox" name="JA" />
+                  <input type="checkbox" name="JA" id="JA" />
                   Junta Academica </label
                 ><br />
                 <label>
-                  <input type="checkbox" name="SA" />
+                  <input type="checkbox" name="SA" id="SA" />
                   Senado Academico </label
                 ><br />
                 <label>
-                  <input type="checkbox" name="cat3" />
+                  <input type="checkbox" name="cat3" id="C3" />
                   Categoria 3 </label
                 ><br />
               </div>
@@ -72,8 +72,9 @@
               <input
                 type="text"
                 placeholder="Buscar por palabra clave, año, categoria, subcategoria..."
+                id="search"
               />
-              <button type="submit">Buscar</button>
+              <button type="submit" id="submit">Buscar</button>
             </div>
             <h1>Resultados de la busqueda:</h1>
 
@@ -83,54 +84,12 @@
                   <th>Nombre</th>
                   <th>Fecha</th>
                   <th>Categoria</th>
-                  <th>Estado/Historial</th>
+                  <th>Sub-Categoria</th>
+                  <th>Enlazado a</th>
                   <th>Descargar</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>Result 1</td>
-                  <td>October 1, 2023</td>
-                  <td>JA</td>
-                  <td>Enmendada</td>
-                  <td><a href="#">Download</a></td>
-                </tr>
-                <tr>
-                  <td>Result 2</td>
-                  <td>September 15, 2023</td>
-                  <td>JA</td>
-                  <td>Enmendada</td>
-                  <td><a href="#">Download</a></td>
-                </tr>
-                <tr>
-                  <td>Result 3</td>
-                  <td>August 27, 2023</td>
-                  <td>JA</td>
-                  <td>Enmendada</td>
-                  <td><a href="#">Download</a></td>
-                </tr>
-                <tr>
-                  <td>Result 3</td>
-                  <td>August 27, 2023</td>
-                  <td>JA</td>
-                  <td>Enmendada</td>
-                  <td><a href="#">Download</a></td>
-                </tr>
-                <tr>
-                  <td>Result 3</td>
-                  <td>August 27, 2023</td>
-                  <td>JA</td>
-                  <td>Enmendada</td>
-                  <td><a href="#">Download</a></td>
-                </tr>
-                <tr>
-                  <td>Result 3</td>
-                  <td>August 27, 2023</td>
-                  <td>JA</td>
-                  <td>Enmendada</td>
-                  <td><a href="#">Download</a></td>
-                </tr>
-              </tbody>
+              <tbody id="tableBody"></tbody>
             </table>
           </div>
         </div>
@@ -138,6 +97,7 @@
       <footer>
         <h4>Visita nuestro sitio web:<a href="#"> upra.edu</a></h4>
       </footer>
+      <script src="data.js"></script>
     </body>
   </html>
 </html>
