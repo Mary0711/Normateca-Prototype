@@ -120,6 +120,12 @@ section {
   text-align: start;
 }
 
+ul {
+  list-style: square;
+  font-size: 18px;
+  text-align: left;
+}
+
 table {
   width: 80%;
   table-layout: fixed;
