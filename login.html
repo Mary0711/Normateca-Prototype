@@ -21,14 +21,21 @@
     </header>
 
     <section class="login">
+      
       <form class="loginForm">
-        <h1>Log In</h1>
+        <h1>Login Form</h1>
         <br />
         <label for="email">Email: </label>
-        <input type="email" value="" name="email" placeholder="email" />
+        <input type="email" value="" name="email" id="email" placeholder="Enter your email" />
+        <br />
         <label for="ssn">Password: </label>
-        <input type="text" value="" name="ssn" placeholder="SSN" />
-        <input class="btn" type="submit" value="Entrar" />
+        <input type="text" value="" name="ssn" id="ssn" placeholder="Enter your Password" />
+        <br />
+        <div>
+          <input type="checkbox" name="Remenber" id="Remenber">
+          <label for="Remenber">Remember me</label>
+        </div>
+        <input class="btn" type="submit" value="Login" />
       </form>
     </section>
   </body>

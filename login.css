@@ -35,35 +35,45 @@ header div {
 body {
   display: grid;
   grid-template-rows: 30% 70%;
-  row-gap: 50px;
+  row-gap: 20px;
 }
 
 .login {
+  padding-top: 50px;
   justify-self: center;
+  text-align: center;
+}
+.login h1 {
+  color: #c1a136;
+  font-size: 2.5rem;
 }
 
 .loginForm {
   background-color: #dad4d4;
   width: 400px;
-  height: 250px;
   border-radius: 10px;
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(2, auto);
   align-items: center;
   column-gap: 5px;
   padding: 15px;
+  padding-bottom: 20px;
 }
 
 .loginForm > label {
+  width: 350px;
   font-size: larger;
-  text-align: end;
+  text-align: start;
 }
 
 .loginForm > input {
   padding: 10px;
   border-radius: 5px;
   border: none;
+  border-radius: 10px;
+}
+.loginForm div{
+  text-align: start;
 }
 
 .btn {

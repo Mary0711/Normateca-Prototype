@@ -28,35 +28,31 @@
 
         <div class="tab-content">
           <div id="subir" class="subir">
-            <div class="pdf">
-              <label for="file"> Subir Archivo: </label
-              ><input type="file" id="file" multiple />
-            </div>
-
+            
             <div class="archivo">
               <form>
-                <label for="filename"> Nombre: </label
-                ><input
-                  type="text"
-                  id="filename"
-                  placeholder="nombre del archivo"
-                />
+                <div class="full-size pdf">
+                <label for="file"> Subir Archivo: </label
+                  ><input type="file" id="file" multiple />
+                </div>
+                <div class="side-by-side">
+                  <label for="filename"> Nombre: </label>
+                  <input type="text" id="filename" placeholder="nombre del archivo"/>
 
-                <label for="fecha"> Fecha: </label
-                ><input type="date" id="fecha" />
+                  <label for="fecha"> Fecha: </label
+                  ><input type="date" id="fecha" />
 
-                <label for="decripcion"> Descripcion: </label
-                ><textarea
-                  type="text"
-                  id="descripcion"
-                  rows="5"
-                  maxlength="150"
-                  placeholder="decripcion del archivo. Breve oracion del tema."
-                ></textarea>
-              </form>
-            </div>
-            <div class="archivo2">
-              <form>
+                  <label for="decripcion"> Descripcion: </label
+                  ><textarea
+                    type="text"
+                    id="descripcion"
+                    rows="5"
+                    maxlength="150"
+                    placeholder="decripcion del archivo. Breve oracion del tema."
+                  ></textarea>
+                </div>
+                <div class="side-by-side">
+                  
                 <label for="filename"> Categoria: </label>
                 <select id="categorias" name="categorias">
                   <option value="">Select</option>
@@ -76,8 +72,14 @@
                 </select>
                 <label for="firma"> Firmado por: </label
                 ><input type="text" id="firma" />
-              </form>
-              <input type="submit" value="Guardar" />
+              </div>
+
+              <div class="full-size guarda">
+                <input type="submit" value="Guardar" />
+              </div>
+
+            </form>
+              
             </div>
             <div class="backline">
               <h3>Añadir enlace a otro archivo</h3>
@@ -86,6 +88,7 @@
                 <input type="text" placeholder="Buscar por nombre" />
                 <button type="submit">Buscar</button>
               </div>
+              <div class="sTable">
               <table>
                 <thead>
                   <tr>
@@ -133,6 +136,7 @@
                   </tr>
                 </tbody>
               </table>
+              </div>
 
               <div class="razon">
                 <form>
