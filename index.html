@@ -44,22 +44,29 @@
               <h4>Sub-Categorias</h4>
               <div class="check">
                 <label>
-                  <input type="checkbox" name="subcategory1" value="JA" />
+                  <input
+                    type="checkbox"
+                    id="Certificacion"
+                    name="Certificacion"
+                    value="CER"
+                  />
                   Certificaciones </label
                 ><br />
                 <label>
                   <input
                     type="checkbox"
-                    name="subcategory1"
-                    value="Subcategory 1"
+                    id="Enmendacion"
+                    name="Enmendacion"
+                    value="ENM"
                   />
                   Enmendaciones </label
                 ><br />
                 <label>
                   <input
                     type="checkbox"
-                    name="subcategory1"
-                    value="Subcategory 1"
+                    id="Solicitud"
+                    name="Solicitud"
+                    value="SOL"
                   />
                   Solicitudes </label
                 ><br />
@@ -76,35 +83,18 @@
               />
               <button type="submit" id="submit">Buscar</button>
             </div>
-            <h1>Subido Recientemente:</h1>
-            <div class="recientes">
-              <ul>
-                <li>
-                  titulo(link), Categoria, Enlace <br />Descripcion del archivo.
-                </li>
-                <br />
-                <li>
-                  titulo(link), Categoria, Enlace <br />Descripcion del archivo.
-                </li>
-                <br />
-                <li>
-                  titulo(link), Categoria, Enlace <br />Descripcion del archivo.
-                </li>
-                <br />
-                <li>
-                  titulo(link), Categoria, Enlace <br />Descripcion del archivo.
-                </li>
-                <br />
-                <li>
-                  titulo(link), Categoria, Enlace <br />Descripcion del archivo.
-                </li>
-                <br />
-              </ul>
+
+            <h1 id="recentTitle">Subido Recientemente:</h1>
+
+            <div id="recents" class="recientes">
+              <ul id="recentList"></ul>
             </div>
 
-            <h1>Resultados de la busqueda:</h1>
+            <h1 id="searchTitle" style="display: none">
+              Resultados de la busqueda:
+            </h1>
 
-            <table>
+            <table id="searchTable" style="display: none">
               <thead>
                 <tr>
                   <th>Nombre</th>

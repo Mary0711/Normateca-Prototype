@@ -1,60 +1,89 @@
 const data = {
-  1: {
-    name: "file1",
-    fecha: "2020-10-26",
-    categoria: "JA",
-    subCategoria: "NA",
-    Backlink: {},
-    path: "NA",
+  allFiles: {
+    1: {
+      name: "aprovacion de presupuesto 2022-2023",
+      fecha: "2022-08-17",
+      categoria: "JA",
+      subCategoria: "CER",
+      Backlink: {},
+      info: "No info",
+      path: "NA",
+    },
+    2: {
+      name: "comites permanentes Junta Administrativa",
+      fecha: "2022-08-25",
+      categoria: "JA",
+      subCategoria: "CER",
+      Backlink: {},
+      info: "No info",
+      path: "NA",
+    },
+    3: {
+      name: "prioridades academicas y administrativas 2022-2023",
+      fecha: "2022-08-19",
+      categoria: "JA",
+      subCategoria: "CER",
+      Backlink: {},
+      info: "No info",
+      path: "NA",
+    },
+    4: {
+      name: "Calendario Junta Administrativa",
+      fecha: "2022-10-20",
+      categoria: "JA",
+      subCategoria: "CER",
+      Backlink: {},
+      info: "No info",
+      path: "NA",
+    },
+    5: {
+      name: "Calendario Junta Administrativa",
+      fecha: "2022-10-20",
+      categoria: "JA",
+      subCategoria: "CER",
+      Backlink: {},
+      info: "No info",
+      path: "NA",
+    },
+    6: {
+      name: "Calendario Junta Administrativa",
+      fecha: "2022-10-20",
+      categoria: "JA",
+      subCategoria: "CER",
+      Backlink: {},
+      info: "No info",
+      path: "NA",
+    },
+    7: {
+      name: "Calendario Junta Administrativa",
+      fecha: "2022-10-20",
+      categoria: "JA",
+      subCategoria: "CER",
+      Backlink: {},
+      info: "No info",
+      path: "NA",
+    },
+    8: {
+      name: "file8",
+      fecha: "2019-10-05",
+      categoria: "C3",
+      subCategoria: "ENM",
+      Backlink: {},
+      info: "No info",
+      path: "NA",
+    },
+    9: {
+      name: "file9",
+      fecha: "2020-08-20",
+      categoria: "SA",
+      subCategoria: "SOL",
+      Backlink: {},
+      info: "No info",
+      path: "NA",
+    },
   },
-  2: {
-    name: "file2",
-    fecha: "2020-10-26",
-    categoria: "SA",
-    subCategoria: "NA",
-    Backlink: {},
-    path: "NA",
-  },
-  3: {
-    name: "file3",
-    fecha: "2020-10-26",
-    categoria: "C3",
-    subCategoria: "NA",
-    Backlink: {},
-    path: "NA",
-  },
-  4: {
-    name: "file4",
-    fecha: "2020-10-26",
-    categoria: "NA",
-    subCategoria: "NA",
-    Backlink: {},
-    path: "NA",
-  },
-  5: {
-    name: "file5",
-    fecha: "2020-10-26",
-    categoria: "NA",
-    subCategoria: "NA",
-    Backlink: {},
-    path: "NA",
-  },
-  6: {
-    name: "file6",
-    fecha: "2020-10-26",
-    categoria: "NA",
-    subCategoria: "NA",
-    Backlink: {},
-    path: "NA",
-  },
-  6: {
-    name: "pdf",
-    fecha: "2020-10-26",
-    categoria: "NA",
-    subCategoria: "NA",
-    Backlink: {},
-    path: "NA",
-  },
+
+  recent: [7, 4, 3],
 };
 
 sessionStorage.setItem("files", JSON.stringify(data));
@@ -71,7 +100,13 @@ function createRow(
     return null;
   }
 
-  if (inputName != "*" && !data.name.includes(inputName)) {
+  const idString = `${data.name}-${data.fecha}-${data.categoria}-${data.subCategoria}`;
+
+  if (inputName != "*" && !idString.includes(inputName)) {
+    return null;
+  }
+
+  if (subCategorias != "*" && !subCategorias.includes(data.subCategoria)) {
     return null;
   }
 
@@ -103,7 +138,14 @@ function createRow(
   table.appendChild(row);
 }
 
-function updateTable(table, cats, nameInput) {
+function createListItem(list, data) {
+  const li = document.createElement("li");
+
+  li.innerHTML = `${data.name}, ${data.categoria}, NA <br> ${data.info}`;
+  list.appendChild(li);
+}
+
+function updateTable(table, cats, subCats, nameInput) {
   while (table.firstChild) table.removeChild(table.firstChild);
 
   let name = nameInput.value.trim();
@@ -111,8 +153,17 @@ function updateTable(table, cats, nameInput) {
   if (name == undefined || name == "") {
     name = "*";
   }
-  for (let i in data) {
-    createRow(data[i], table, cats, "*", name);
+
+  for (let i in data.allFiles) {
+    createRow(data.allFiles[i], table, cats, subCats, name);
+  }
+}
+
+function updateRecent(list) {
+  while (list.firstChild) list.removeChild(list.firstChild);
+
+  for (let i of data.recent) {
+    createListItem(list, data.allFiles[i]);
   }
 }
 
@@ -123,14 +174,30 @@ document.addEventListener("DOMContentLoaded", () => {
       SenadoCheck: document.getElementById("SA"),
       Cat3Check: document.getElementById("C3"),
     },
-    search: {
-      input: document.getElementById("search"),
-      btn: document.getElementById("submit"),
+    subCategorias: {
+      Certificacion: document.getElementById("Certificacion"),
+      Enmendacion: document.getElementById("Enmendacion"),
+      Solicitud: document.getElementById("Solicitud"),
     },
+
     tableBody: document.getElementById("tableBody"),
+    list: document.getElementById("recentList"),
+    searchElements: {
+      search: {
+        input: document.getElementById("search"),
+        btn: document.getElementById("submit"),
+      },
+      title: document.getElementById("searchTitle"),
+      table: document.getElementById("searchTable"),
+    },
+    recentElements: {
+      title: document.getElementById("recentTitle"),
+      div: document.getElementById("recents"),
+    },
   };
 
   let cats = "*";
+  let subCats = "*";
 
   elements.categorias.JuntaCheck.addEventListener("click", () => {
     if (cats.includes("JA")) {
@@ -147,7 +214,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    updateTable(elements.tableBody, cats, elements.search.input);
+    updateTable(
+      elements.tableBody,
+      cats,
+      subCats,
+      elements.searchElements.search.input
+    );
   });
 
   elements.categorias.SenadoCheck.addEventListener("click", () => {
@@ -165,7 +237,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    updateTable(elements.tableBody, cats, elements.search.input);
+    updateTable(
+      elements.tableBody,
+      cats,
+      subCats,
+      elements.searchElements.search.input
+    );
   });
 
   elements.categorias.Cat3Check.addEventListener("click", () => {
@@ -183,12 +260,96 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    updateTable(elements.tableBody, cats, elements.search.input);
+    updateTable(
+      elements.tableBody,
+      cats,
+      subCats,
+      elements.searchElements.search.input
+    );
   });
 
-  elements.search.btn.addEventListener("click", () => {
-    updateTable(elements.tableBody, cats, elements.search.input);
+  elements.subCategorias.Certificacion.addEventListener("click", () => {
+    if (subCats.includes("CER")) {
+      subCats = subCats.filter((sub) => sub != "CER");
+
+      if (subCats.length == 0) {
+        subCats = "*";
+      }
+    } else {
+      if (subCats == "*") {
+        subCats = ["CER"];
+      } else {
+        subCats.push("CER");
+      }
+    }
+
+    updateTable(
+      elements.tableBody,
+      cats,
+      subCats,
+      elements.searchElements.search.input
+    );
   });
 
-  updateTable(elements.tableBody, cats, elements.search.input);
+  elements.subCategorias.Enmendacion.addEventListener("click", () => {
+    if (subCats.includes("ENM")) {
+      subCats = subCats.filter((sub) => sub != "ENM");
+
+      if (subCats.length == 0) {
+        subCats = "*";
+      }
+    } else {
+      if (subCats == "*") {
+        subCats = ["ENM"];
+      } else {
+        subCats.push("ENM");
+      }
+    }
+
+    updateTable(
+      elements.tableBody,
+      cats,
+      subCats,
+      elements.searchElements.search.input
+    );
+  });
+
+  elements.subCategorias.Solicitud.addEventListener("click", () => {
+    if (subCats.includes("SOL")) {
+      subCats = subCats.filter((sub) => sub != "SOL");
+
+      if (subCats.length == 0) {
+        subCats = "*";
+      }
+    } else {
+      if (subCats == "*") {
+        subCats = ["SOL"];
+      } else {
+        subCats.push("SOL");
+      }
+    }
+
+    updateTable(
+      elements.tableBody,
+      cats,
+      subCats,
+      elements.searchElements.search.input
+    );
+  });
+
+  elements.searchElements.search.btn.addEventListener("click", () => {
+    const input = elements.searchElements.search.input;
+
+    elements.searchElements.table.style.display = "block";
+    elements.searchElements.title.style.display = "block";
+
+    elements.recentElements.title.style.display = "none";
+    elements.recentElements.div.style.display = "none";
+
+    updateTable(elements.tableBody, cats, subCats, input);
+  });
+
+  //updateTable(elements.tableBody, cats, subCats, elements.search.input);
+
+  updateRecent(elements.list);
 });

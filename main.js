@@ -22,17 +22,20 @@ document.addEventListener("DOMContentLoaded", () => {
     changeVisibility(elements.tabs.subir, elements.lastTab);
 
     elements.lastTab = elements.tabs.subir;
+    localStorage.setItem("lastTab", "subir");
   });
 
   elements.buttons.editar.addEventListener("click", () => {
     changeVisibility(elements.tabs.editar, elements.lastTab);
 
     elements.lastTab = elements.tabs.editar;
+    localStorage.setItem("lastTab", "editar");
   });
 
   elements.buttons.crear.addEventListener("click", () => {
     changeVisibility(elements.tabs.crear, elements.lastTab);
 
     elements.lastTab = elements.tabs.crear;
+    localStorage.setItem("lastTab", "crear");
   });
 });
