@@ -335,16 +335,16 @@
 <?php
 include 'db_info.php';
 
-$other_data_2 = isset($_POST['fecha']) ? $_POST['fecha'] : '';
-$other_data_3 = isset($_POST['descripcion']) ? $_POST['descripcion'] : '';
-$other_data_4 = isset($_POST['Numero_certificacion']) ? $_POST['Numero_certificacion'] : '';
-$other_data_5 = isset($_POST['estado']) ? $_POST['estado'] : '';
-$other_data_6 = isset($_POST['categorias']) ? $_POST['categorias'] : '';
-$other_data_7 = isset($_POST['lenguaje']) ? $_POST['lenguaje'] : '';
-$other_data_8 = isset($_POST['añofiscal']) ? $_POST['añofiscal'] : '';
-$other_data_9 = isset($_POST['subcategorias']) ? $_POST['subcategorias'] : '';
-$other_data_10 = isset($_POST['firma']) ? $_POST['firma'] : '';
-$other_data_1 = isset($_POST['filename']) ? $_POST['filename'] : '';
+$data2 = isset($_POST['fecha']) ? $_POST['fecha'] : '';
+$data3 = isset($_POST['descripcion']) ? $_POST['descripcion'] : '';
+$data4 = isset($_POST['Numero_certificacion']) ? $_POST['Numero_certificacion'] : '';
+$data5 = isset($_POST['estado']) ? $_POST['estado'] : '';
+$data6 = isset($_POST['categorias']) ? $_POST['categorias'] : '';
+$data7 = isset($_POST['lenguaje']) ? $_POST['lenguaje'] : '';
+$data8 = isset($_POST['añofiscal']) ? $_POST['añofiscal'] : '';
+$data9 = isset($_POST['subcategorias']) ? $_POST['subcategorias'] : '';
+$data10 = isset($_POST['firma']) ? $_POST['firma'] : '';
+$data1 = isset($_POST['filename']) ? $_POST['filename'] : '';
 
 // Rest of your PHP code, including the file upload and database insertion
 
@@ -364,7 +364,7 @@ if (isset($_POST['submit'])) {
     
     // Create and execute the SQL query
     $sql = "INSERT INTO documentos ( Document_title, Category_abbr, Subcategory_abbr, Numero_certificacion, Año_Fiscal,Document_lenguaje,Admin_id,Document_path, Upload_Date,Document_state,firma) 
-        VALUES ('$pdf', '$other_data_1', '$other_data_2','$other_data_3','$other_data_4','$other_data_5','$Admin_id','$other_data_7','$other_data_8','$other_data_9','$other_data_10')";
+        VALUES ('$pdf', '$data1', '$data2','$data3','$data4','$data5','$Admin_id','$data7','$data8','$data9','$data10')";
 
     $query = mysqli_query($dbc, $sql);
 }
