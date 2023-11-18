@@ -2,27 +2,34 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  font-family: "Helvetica Neue", sans-serif;
   background-color: #645f5f;
   background-repeat: no-repeat;
-  font-size: 16px;
+  font-size: 14px;
+  background-color: #ffffff;
+}
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 header {
-  background-image: linear-gradient(
-    to right,
-    black 9%,
-    #1d1d1d 50%,
-    #1d1d1d 100%
-  );
+  background-color: #ffffff;
   display: flex;
   max-height: 90px;
-  color: rgb(232, 232, 232);
-  border-bottom: 5px solid #c19f2c;
+  color: #333333;
+  border-top: 12px solid #967216;
+  padding: 20px;
+  padding-left: 30px;
+  box-shadow: 0 7px 9.5px -9.5px grey;
 }
 
 header img {
-  width: 11%;
+  width: 13%;
+  margin-right: 13px;
+}
+
+header h3 > i {
+  color: #967200;
 }
 
 header div {
@@ -39,51 +46,57 @@ body {
 }
 
 .login {
-  padding-top: 50px;
   justify-self: center;
+  align-self: center;
   text-align: center;
+  margin-top: 40px;
 }
 .login h1 {
-  color: #c1a136;
-  font-size: 2.5rem;
+  color: #333333;
+  font-size: 28px;
 }
 
 .loginForm {
-  background-color: #dad4d4;
-  width: 400px;
-  border-radius: 10px;
-  display: grid;
+  padding: 5px;
+  width: 450px;
+  height: 240px;
   justify-content: center;
   align-items: center;
-  column-gap: 5px;
-  padding: 15px;
-  padding-bottom: 20px;
+  box-shadow: 0px 0px 10px 2px rgba(204, 204, 204, 0.546);
+  border-radius: 10px;
 }
 
 .loginForm > label {
-  width: 350px;
-  font-size: larger;
-  text-align: start;
+  display: inline-block;
+  width: 80px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  text-align: end;
 }
 
 .loginForm > input {
-  padding: 10px;
+  padding: 6px;
   border-radius: 5px;
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
+  box-shadow: inset 0px 0px 10px 2px rgba(232, 232, 232, 0.76);
+  margin-bottom: 10px;
 }
-.loginForm div{
-  text-align: start;
+
+#remblbl {
+  font-size: 14px;
 }
 
 .btn {
   padding: 8px 16px;
-  background-color: #c1a136;
+  background-color: #967200;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  display: block;
+  margin: 15px;
+  font-size: 14px;
 }
 
 .btn:hover {

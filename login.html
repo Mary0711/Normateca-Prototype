@@ -13,7 +13,7 @@
   </head>
   <body>
     <header>
-      <img src="/images/logo.png" />
+      <img src="/images/arecibo.png" />
       <div>
         <h1>Normateca</h1>
         <h3><i> Universidad de Puerto Rico en Arecibo </i></h3>
@@ -21,21 +21,33 @@
     </header>
 
     <section class="login">
-      
       <form class="loginForm">
-        <h1>Login Form</h1>
-        <br />
+        <h1>Log In</h1>
+
         <label for="email">Email: </label>
-        <input type="email" value="" name="email" id="email" placeholder="Enter your email" />
+        <input
+          type="email"
+          value=""
+          name="email"
+          id="email"
+          placeholder="Enter your email"
+        />
         <br />
         <label for="ssn">Password: </label>
-        <input type="text" value="" name="ssn" id="ssn" placeholder="Enter your Password" />
+        <input
+          type="text"
+          value=""
+          name="ssn"
+          id="ssn"
+          placeholder="Enter your Password"
+        />
         <br />
         <div>
-          <input type="checkbox" name="Remenber" id="Remenber">
-          <label for="Remenber">Remember me</label>
+          <input type="checkbox" name="Remember" id="Remember" />
+          <label for="Remember" id="remblbl">Remember me</label>
         </div>
-        <input class="btn" type="submit" value="Login" />
+
+        <button class="btn" type="submit">Submit</button>
       </form>
     </section>
   </body>
