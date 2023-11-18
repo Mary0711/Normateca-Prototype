@@ -335,22 +335,24 @@
 <?php
 include 'db_info.php';
 
-$data2 = isset($_POST['fecha']) ? $_POST['fecha'] : '';
-$data3 = isset($_POST['descripcion']) ? $_POST['descripcion'] : '';
-$data4 = isset($_POST['Numero_certificacion']) ? $_POST['Numero_certificacion'] : '';
-$data5 = isset($_POST['estado']) ? $_POST['estado'] : '';
-$data6 = isset($_POST['categorias']) ? $_POST['categorias'] : '';
-$data7 = isset($_POST['lenguaje']) ? $_POST['lenguaje'] : '';
-$data8 = isset($_POST['añofiscal']) ? $_POST['añofiscal'] : '';
-$data9 = isset($_POST['subcategorias']) ? $_POST['subcategorias'] : '';
-$data10 = isset($_POST['firma']) ? $_POST['firma'] : '';
-$data1 = isset($_POST['filename']) ? $_POST['filename'] : '';
 
 // Rest of your PHP code, including the file upload and database insertion
 
 
 if (isset($_POST['submit'])) {
-  $Admin_id = 1;
+  
+    $data2 = isset($_POST['fecha']) ? $_POST['fecha'] : '';
+    $data3 = isset($_POST['descripcion']) ? $_POST['descripcion'] : '';
+    $data4 = isset($_POST['Numero_certificacion']) ? $_POST['Numero_certificacion'] : '';
+    $data5 = isset($_POST['estado']) ? $_POST['estado'] : '';
+    $data6 = isset($_POST['categorias']) ? $_POST['categorias'] : '';
+    $data7 = isset($_POST['lenguaje']) ? $_POST['lenguaje'] : '';
+    $data8 = isset($_POST['añofiscal']) ? $_POST['añofiscal'] : '';
+    $data9 = isset($_POST['subcategorias']) ? $_POST['subcategorias'] : '';
+    $data10 = isset($_POST['firma']) ? $_POST['firma'] : '';
+    $data1 = isset($_POST['filename']) ? $_POST['filename'] : '';
+
+    $Admin_id = 1;
     $pdf = $_FILES['pdf']['name'];
     $pdf_type = $_FILES['pdf']['type'];
     $pdf_size = $_FILES['pdf']['size'];
