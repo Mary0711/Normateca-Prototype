@@ -1,119 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Normateca</title>
-      <link rel="stylesheet" href="index.css" />
-    </head>
-    <body>
-      <header>
-        <img src="/images/logo.png" />
-        <div>
-          <h1>Normateca</h1>
-          <h3><i> Universidad de Puerto Rico en Arecibo </i></h3>
-        </div>
-      </header>
+  <head>
+    <meta charset="utf-8" />
+    <title>Normateca - Certificaciones</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+
+  <body>
+    <header>
+      <img src="/images/arecibo.png" />
+      <div>
+        <h1>Normateca</h1>
+        <h3><i> Universidad de Puerto Rico en Arecibo </i></h3>
+      </div>
+    </header>
+    <div class="titulo">
+      <h2>Busqueda de Certificaciones</h2>
+    </div>
+
+    <main>
       <section>
-        <p class="mensaje">
-          Archivo maestro de normas, reglamentos, politicas y certificaciones
-          del Senado Academico y Junta Academica en UPRA.
-        </p>
-        <div class="container">
-          <div class="filtros">
-            <div class="card">
-              <h4>Categorias</h4>
-              <div class="check">
-                <label>
-                  <input type="checkbox" name="JA" id="JA" />
-                  Junta Academica </label
-                ><br />
-                <label>
-                  <input type="checkbox" name="SA" id="SA" />
-                  Senado Academico </label
-                ><br />
-                <label>
-                  <input type="checkbox" name="cat3" id="C3" />
-                  Categoria 3 </label
-                ><br />
-              </div>
-            </div>
-
-            <div class="card">
-              <h4>Sub-Categorias</h4>
-              <div class="check">
-                <label>
-                  <input
-                    type="checkbox"
-                    id="Certificacion"
-                    name="Certificacion"
-                    value="CER"
-                  />
-                  Certificaciones </label
-                ><br />
-                <label>
-                  <input
-                    type="checkbox"
-                    id="Enmendacion"
-                    name="Enmendacion"
-                    value="ENM"
-                  />
-                  Enmendaciones </label
-                ><br />
-                <label>
-                  <input
-                    type="checkbox"
-                    id="Solicitud"
-                    name="Solicitud"
-                    value="SOL"
-                  />
-                  Solicitudes </label
-                ><br />
-              </div>
-            </div>
+        <div class="firstBox">
+          <div>
+            <h2>Parametros de Busqueda</h2>
+            <form class="search">
+              <input type="text" placeholder="Buscar documento..." />
+              <button type="submit">Enviar</button>
+            </form>
           </div>
-
-          <div class="busqueda">
-            <div class="search-bar">
-              <input
-                type="text"
-                placeholder="Buscar por palabra clave, año, categoria, subcategoria..."
-                id="search"
-              />
-              <button type="submit" id="submit">Buscar</button>
+        </div>
+        <div class="lastBox">
+          <div>
+            <h2>Certificaciones Recientes</h2>
+            <div class="recents">
+              <div>
+                <h3>Junta Administrativa</h3>
+                <ul>
+                  <li>No hay Subidas</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Senado Academico</h3>
+                <ul>
+                  <li>No hay Subidas</li>
+                </ul>
+              </div>
+              <div>
+                <h3>Oficina de Planificacion</h3>
+                <ul>
+                  <li>No hay Subidas</li>
+                </ul>
+              </div>
             </div>
-
-            <h1 id="recentTitle">Subido Recientemente:</h1>
-
-            <div id="recents" class="recientes">
-              <ul id="recentList"></ul>
-            </div>
-
-            <h1 id="searchTitle" style="display: none">
-              Resultados de la busqueda:
-            </h1>
-
-            <table id="searchTable" style="display: none">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Fecha</th>
-                  <th>Categoria</th>
-                  <th>Sub-Categoria</th>
-                  <th>Enlazado a</th>
-                  <th>Descargar</th>
-                </tr>
-              </thead>
-              <tbody id="tableBody"></tbody>
-            </table>
           </div>
         </div>
       </section>
-      <footer>
-        <h4>Visita nuestro sitio web:<a href="#"> upra.edu</a></h4>
-      </footer>
-      <script src="data.js"></script>
-    </body>
-  </html>
+    </main>
+  </body>
 </html>
