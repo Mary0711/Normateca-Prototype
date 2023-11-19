@@ -1,0 +1,31 @@
+/* Arreglar direccion del texto Normateca*/
+#titulo{
+  font-family: 'Josefin Sans';
+  font-size: 75px;
+  margin-right: 50px; 
+  background-color:rgb(240, 189, 58);
+}
+.texto{
+    font-size: 35px;
+}
+.fondodescripcion{
+
+    width: 500px;
+    height: 500px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    border-width: 3px;
+    border-color: black;
+    padding: 10px;
+    text-align: center;
+}
+body{
+    background-color: hsla(0,0%,100%,.05);
+}
+/* Falta:
+links cuerpos
+links redes sociales
+link a archivo de abreviaciones
+contenido
+footer*/
