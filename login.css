@@ -27,6 +27,16 @@ header img {
   margin-right: 13px;
 }
 
+#upra {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+
+  /* width: 200%;
+  margin-right: 13px; */
+}
+
 header h3 > i {
   color: #967200;
 }
@@ -102,3 +112,24 @@ body {
 .btn:hover {
   background-color: #b0922e;
 }
+
+.column {
+  float: left;
+  width: 50%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* css */
+.foo {
+  background: green;
+  display: inline-flexbox;
+  height: 20px;
+  width: 100px;
+  text-align: center;
+}  
