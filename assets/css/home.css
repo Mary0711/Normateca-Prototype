@@ -25,7 +25,6 @@ body {
 
   footer {
     background-color: #967216;
-    
     max-height: 130px;
     color: white;
     border-bottom: 12px solid #967216;
@@ -37,12 +36,8 @@ body {
   footer p{
     display: flex;
     align-content: center;
-   
-   
   }
 
-
-  
   header img {
     width: 95%;
     margin-right: 0px;
@@ -54,9 +49,6 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: 70%;
-  
-    /* width: 200%;
-    margin-right: 13px; */
   }
   
   header h3 > i {
@@ -140,16 +132,15 @@ body {
     width: 50%;
   }
   
-  /* Clear floats after the columns */
+  
   .row:after {
     content: "";
     display: table;
     clear: both;
   }
   
-  /* css */
+  
   .foo {
-    
     text-decoration: none;
     padding: 8px 16px;
     background-color: #967200;
@@ -165,25 +156,9 @@ body {
     width: 250px; /* or specify a fixed width */
     height: 50px; /* or specify a fixed height */
     box-sizing: border-box;
-    /* padding: 8px 16px;
-    background-color: #967200;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 15px;
-    font-size: 14px;
-    display: flex;
-    align-content: center;
-    justify-content: space-around; */
-}
-/* body > div.flex div.content-section a{
-  display: flex;
   
-  
-  align-items: center;
 }
-   */
+
 
   .flex-container {
     display: flex;
@@ -209,12 +184,6 @@ body {
 padding-left: 1em;
 }
 
-
-
-/* .imgn {
-  height: px;
-} */
-
 .desc div {
 padding-bottom: 0%;
 }
@@ -224,7 +193,6 @@ padding-bottom: 0%;
   margin-right: 14%; /* Margin on the right side */
   
 }
-
 
 .flex .content-section {
   padding-top: 5%;
@@ -239,11 +207,10 @@ padding-right: 10%;
 }
 
 .styled-line {
-  border: solid ; /* Remove default border */
-  height: 2%; /* Set the height/thickness of the line */
+  border: solid ; 
+  height: 2%; 
   color: #967200;
-  background-color: #967200; /* Change color as needed */
-  /* Additional styling if required */
+  background-color: #967200; 
 }
 
 .imgheader {
