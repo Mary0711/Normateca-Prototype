@@ -19,7 +19,7 @@
     </div>
 
     <main>
-      <section class="container">
+      <section>
         <div class="firstBox">
           <div>
             <h2>Parámetros de Búsqueda</h2>
@@ -37,25 +37,29 @@
               <label>Categoria</label>
               <div class="filters">
                 <input type="checkbox" name="Junta Academica" />
-                <label>Junta Academica</label><br />
+                <label>JA - Junta Academica</label><br />
                 <input type="checkbox" name="Junta Academica" />
-                <label>Senado Academico</label><br />
+                <label>SA - Senado Academico</label><br />
                 <input type="checkbox" name="Junta Academica" />
-                <label>Leyes y Reglamentos</label><br />
+                <label>LR - Leyes y Reglamentos</label><br />
                 <input type="checkbox" name="Junta Academica" />
-                <label>Cartas Circulares</label><br />
+                <label>CC - Cartas Circulares</label><br />
               </div>
 
               <label>Sub-Categoria</label>
               <div class="filters">
                 <input type="checkbox" name="Junta Academica" />
-                <label>Solicitudes</label><br />
+                <label>SOL - Solicitudes</label><br />
                 <input type="checkbox" name="Junta Academica" />
-                <label>Sub cat</label><br />
+                <label>ACU - Acuerdos</label><br />
                 <input type="checkbox" name="Junta Academica" />
-                <label>Sub cat</label><br />
+                <label>APR - Aprobaciones</label><br />
                 <input type="checkbox" name="Junta Academica" />
-                <label>Sub cat</label><br />
+                <label>CA - Calendario Academico</label><br />
+                <input type="checkbox" name="Junta Academica" />
+                <label>CON - Consideraciones</label><br />
+                <input type="checkbox" name="Junta Academica" />
+                <label>POL - Politicas</label><br />
               </div>
 
               <label>Relacion</label>
@@ -87,24 +91,89 @@
         <div class="lastBox">
           <div>
             <h2>Certificaciones Recientes</h2>
+            <hr />
             <div class="recents">
-              <div>
+              <div class="JA">
                 <h3>Junta Administrativa</h3>
-                <ul>
-                  <li>No hay Subidas</li>
-                </ul>
+                <li>numero-año, fecha</li>
+                <li>numero-año, fecha</li>
+                <li>numero-año, fecha</li>
+                <li>numero-año, fecha</li>
               </div>
-              <div>
+              <div class="SA">
                 <h3>Senado Academico</h3>
-                <ul>
-                  <li>No hay Subidas</li>
-                </ul>
+                <li>numero-año, fecha</li>
+                <li>numero-año, fecha</li>
+                <li>numero-año, fecha</li>
+                <li>numero-año, fecha</li>
               </div>
-              <div>
-                <h3>Oficina de Planificacion</h3>
-                <ul>
-                  <li>No hay Subidas</li>
-                </ul>
+            </div>
+          </div>
+
+          <div class="results">
+            <label for="records">Records:</label>
+            <select id="records" name="records">
+              <option value="option1">10</option>
+              <option value="option2">25</option>
+              <option value="option3">50</option>
+              <option value="option4">100</option>
+            </select>
+
+            <table>
+              <thead>
+                <th>Categoria</th>
+                <th>Numero</th>
+                <th>Año Academico</th>
+                <th>Titulo</th>
+                <th>Subcategoria</th>
+                <th>Relaciones</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>JA</td>
+                  <td>1</td>
+                  <td>2023</td>
+                  <td>El misterio de pepito pelon</td>
+                  <td>solicitud</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>JA</td>
+                  <td>1</td>
+                  <td>2023</td>
+                  <td>El misterio de pepito pelon</td>
+                  <td>solicitud</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>JA</td>
+                  <td>1</td>
+                  <td>2023</td>
+                  <td>El misterio de pepito pelon</td>
+                  <td>solicitud</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>JA</td>
+                  <td>1</td>
+                  <td>2023</td>
+                  <td>El misterio de pepito pelon</td>
+                  <td>solicitud</td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="table-aditional">
+              <p>Mostrando 1 a 10 de 126 récords</p>
+              <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#">1</a>
+                <a class="active" href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#">6</a>
+                <a href="#">&raquo;</a>
               </div>
             </div>
           </div>
