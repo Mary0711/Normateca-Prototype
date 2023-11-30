@@ -52,10 +52,11 @@ header div {
 .titulo {
   text-align: center;
   font-size: 16px;
-  background-color: #ffffff;
+
   line-height: 90px;
   margin-top: -20px;
-  box-shadow: inset 0 7px 9.5px -9.5px grey;
+  /*  box-shadow: inset 0 7px 9.5px -9.5px grey;
+  background-color: #ffffff;*/
 }
 
 main {
@@ -65,15 +66,20 @@ main {
 
 section {
   justify-self: center;
-  width: 90%;
+  width: 95%;
   border-radius: 8px;
   text-align: center;
   min-height: 400px;
-
+  /*
   display: grid;
   grid-template-columns: 30% 70%;
   justify-content: center;
-  column-gap: 10px;
+  column-gap: 10px;*/
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
   padding: 10px;
 }
 
@@ -82,35 +88,92 @@ section p {
 }
 
 .firstBox {
-  display: grid;
-  grid-template-rows: repeat(2, auto);
+  background-color: #ffffff;
+  box-shadow: 0 0px 10px 2px rgb(205, 205, 205);
+  flex-basis: 30%;
+}
+
+.lastBox {
+  flex-basis: 70%;
 }
 
 .firstBox,
 .lastBox {
-  background-color: rgb(243, 241, 241);
   border-radius: 5px;
   height: min-content;
   padding: 10px;
 }
 
 .search {
-  width: 100%;
+  margin-left: 45px;
 }
 
-.search input {
-  width: 50%;
-  padding: 4px;
-  border-radius: 5px;
-  border: none;
+label {
+  font-weight: bold;
 }
 
-.search button {
-  padding: 5px;
+.search > label {
+  display: block;
+  width: 110px;
+  font-size: 14px;
+  text-align: start;
+}
+
+.search > input {
+  display: block;
+  margin-top: 5px;
+  padding: 6px;
   border-radius: 5px;
   border: none;
-  background-color: #c19f2c;
+  margin-bottom: 20px;
+  width: 230px;
+  background-color: #eff4fd;
+}
+
+.firstBox button {
+  padding: 8px 16px;
+  background-color: #967200;
   color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  margin: 10px;
+}
+
+.filters {
+  margin-top: 5px;
+  text-align: left;
+  margin-left: 25px;
+  margin-bottom: 10px;
+}
+
+.filters label {
+  font-weight: normal;
+}
+
+input[type="checkbox"] {
+  margin-bottom: 6px;
+}
+
+.dates > label {
+  display: inline-block;
+  width: 45px;
+  font-size: 14px;
+  text-align: start;
+  margin-left: -45px;
+  font-weight: normal;
+}
+
+.dates > input {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 6px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 20px;
+  width: 120px;
+  background-color: #eff4fd;
 }
 
 .recents {
@@ -120,4 +183,7 @@ section p {
 
 .recents > div {
   border-bottom: 1px solid black;
+}
+
+@media (max-width: 760px) {
 }
