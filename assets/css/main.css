@@ -211,6 +211,7 @@ input[type="checkbox"] {
 
 .results {
   text-align: start;
+  overflow-x: auto;
 }
 
 .results table {
@@ -296,10 +297,35 @@ input[type="checkbox"] {
   margin-top: 20px;
 }
 
+@media (max-width: 900px) {
+  header {
+    height: 65px;
+    padding: 15px;
+  }
+  header img {
+    width: 18%;
+  }
+
+  header div {
+    line-height: 10px;
+  }
+  .recents li {
+    margin-left: 40px;
+  }
+
+  .lastBox {
+    width: 200px;
+  }
+}
+
 @media (max-width: 760px) {
   section {
     flex-direction: column-reverse;
+  }
+
+  section .firstBox {
     width: 65%;
+    margin: 0 auto;
   }
 
   .search {
@@ -322,23 +348,39 @@ input[type="checkbox"] {
   }
 
   .recents li {
-    margin-left: 35px;
+    margin-left: 95px;
+  }
+
+  .lastBox {
+    width: 610px;
   }
 }
 
 @media (max-width: 580px) {
+  header {
+    height: 60px;
+  }
+
+  header div {
+    margin-top: 0px;
+    line-height: 10px;
+  }
+
+  section .firstBox {
+    width: 65%;
+    margin: 0 auto;
+  }
+
   .recents {
     display: flex;
     flex-direction: column;
   }
 
   .recents li {
-    margin-left: 75px;
+    margin-left: 35%;
   }
-}
 
-@media (max-width: 900px) {
-  .recents li {
-    margin-left: 20px;
+  .lastBox {
+    width: 450px;
   }
 }
