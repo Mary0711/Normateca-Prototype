@@ -1,399 +1,396 @@
+<?php
+include_once("db_info.php");
+$categorias = "SELECT * FROM categories";
+$subcategorias = "SELECT * FROM subcategories";
+?>
+
 <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Normateca</title>
-      <link rel="stylesheet" href="admin.css" />
-    </head>
-    <body>
-      <header>
-        <img src="/images/logo.png" />
-        <div>
-          <h1>Administrador Normateca</h1>
-          <h3><i> Universidad de Puerto Rico en Arecibo </i></h3>
-        </div>
-      </header>
+<html lang="en">
 
-      <section class="container">
-        <div class="principales">
-          <div class="tabs">
-            <input type="radio" name="tab" id="subirBtn" checked />
-            <label for="subirBtn">Subir Archivo</label>
-            <input type="radio" name="tab" id="editarBtn" />
-            <label for="editarBtn">Editar Archivo</label>
-            <input type="radio" name="tab" id="crearBtn" />
-            <label for="crearBtn">Crear Categorias</label>
-          </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Normateca</title>
+  <link rel="stylesheet" href="admin.css" />
+</head>
 
-          <div class="tab-content">
-            <div id="subir" class="subir">
-              
-              <div class="archivo">
-                <form method="POST" action="admin.php" enctype="multipart/form-data">
-                  <div class="full-size pdf">
-                  <label for="pdf"> Subir Archivo: </label
-                    ><input type="file" id="pdf" name="pdf" value="" required />
-                  </div>
-                  <div class="side-by-side">
-                    <label for="filename"> Nombre: </label>
-                    <input type="text" name="filename" id="filename" placeholder="nombre del archivo" />
+<body>
+  <header>
+    <img src="images/logo.png" />
+    <div>
+      <h1>Administrador Normateca</h1>
+      <h3><i> Universidad de Puerto Rico en Arecibo </i></h3>
+    </div>
+  </header>
 
-                    <label for="fecha"> Fecha: </label
-                    ><input type="date" id="fecha" />
+  <main>
+    <section>
+      <div class="buttons">
+        <button type="button" name="tab" id="subirBtn" class="active">Subir Archivo</button>
+        <button type="button" name="tab" id="editarBtn">Editar Archivo</button>
+        <button type="button" name="tab" id="crearBtn">Crear Categorias</button>
+      </div>
 
-                    <label for="decripcion"> Descripcion: </label
-                    ><textarea
-                      type="text"
-                      id="descripcion"
-                      rows="5"
-                      maxlength="150"
-                      placeholder="decripcion del archivo. Breve oracion del tema."
-                    ></textarea>
+      <div class="tabs">
+        <div id="subir" class="subir">
+          <form method="POST" action="admin.php" enctype="multipart/form-data">
+            <div class="file">
+              <label for="pdf"> Subir Archivo: </label><input type="file" id="pdf" name="pdf" value="" required />
+            </div>
+            <div class="box">
+              <div class="innerBox">
+                <label for="filename"> Nombre: </label>
+                <input type="text" name="filename" id="filename" placeholder="nombre del archivo" />
 
-                    <label for="Numero_certificacion"> Numero_certificacion: </label>
-                    <input type="text" id="Numero_certificacion" placeholder="Numero_certificacion"/>
-                    
-                  <label for="estado"> Estado del Documento: </label>
-                  <select id="estado" name="estado">
-                    <option value="">Select</option>
-                    <option value="activo">Activo</option>
-                    <option value="inactivo">Inactivo</option>
-                  </select>
+                <label for="fecha"> Fecha: </label><input type="date" id="fecha" />
 
-  <?php
-                  include 'db_info.php';
-                  $query = "SELECT * FROM categories";
-                  $result = mysqli_query($dbc, $query);
-                                    
-                    echo '<label for="filename">Categoria del Documento:</label>';
-                    echo '<select id="categorias" name="categorias">';
+                <label for="decripcion"> Descripcion: </label>
+                <textarea type="text" id="descripcion" rows="5" maxlength="150" placeholder="decripcion del archivo. Breve oracion del tema."></textarea>
 
-                    echo '<option value="">Select</option>';
+                <label for="Numero_certificacion"> Numero_certificacion: </label>
+                <input type="text" id="Numero_certificacion" placeholder="Numero_certificacion" />
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                      $optionValue = $row['Category_abbreviation'] ; // option value es la opcion de valor q quiero mandar a insertar 
-                      $imp = $row['Category_name'];  // imp es el valor q quiero ensenar 
-                    
-                      echo '<option value="' . $optionValue . '">' . $imp .'</option>';
-                    }
+                <label for="estado"> Estado del Documento: </label>
+                <select id="estado" name="estado">
+                  <option value="">Select</option>
+                  <option value="activo">Activo</option>
+                  <option value="inactivo">Inactivo</option>
+                </select>
 
-                    echo '</select>';
-                    ?>
-
-                  </div>
-                  
-                  <div class="side-by-side">
-                    
-                    
-                
-
-                  <label for="filename"> Lenguaje de Documento: </label>
-                  <select id="lenguaje" name="lenguaje">
-                    <option value="">Select</option>
-                    <option value="esp">Español</option>
-                    <option value="eng">Ingles</option>
-                    
-                  </select>
-                
-                  <label for="filename"> Año Fiscal : </label>
-                  <select id="añofiscal" name="añofiscal">
-                    <option value="">Select</option>
-                    <option value="2022-2023">2022-2023</option>
-                    <option value="2023-2024">2023-2024</option>
-                    <option value="2024-2025">2024-2025</option>
-                    <option value="2025-2026">2025-2026</option>
-                  </select>
-
-              
+                <label for="categorias">Categoria del Documento:</label>
+                <select id="categorias" name="categorias">
+                  <option disabled selected>Categorias</option>
                   <?php
-                  include 'db_info.php';
-                  $query = "SELECT * FROM subcategories";
-                  $result = mysqli_query($dbc, $query);
-                                    
-                    echo '<label for="filename">Subcategoria del Documento:</label>';
-                    echo '<select id="subcategorias" name="subcategorias">';
+                  $result = mysqli_query($dbc, $categorias);
 
-                    // Default option
-                    echo '<option value="">Select</option>';
-                    while ($row = mysqli_fetch_assoc($result)) {
-                      $optionValue = $row['subcategory_abbreviation'] ; // valor q envio a q se inserte 
-                      $imp = $row['Subcategory_name'];                  // valor que quiero ensenar al usuario
-                      
-                      echo '<option value="'.$optionValue.'">' . $imp .'</option>';
-                    }
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $optionValue = $row['Category_abbreviation']; // option value es la opcion de valor q quiero mandar a insertar 
+                    $imp = $row['Category_name'];  // imp es el valor q quiero ensenar 
 
-                    echo '</select>';
-                    ?>
+                    echo '<option value="' . $optionValue . '">' . $imp . '</option>';
+                  }
+                  ?>
+                </select>
 
 
+              </div>
+
+              <div class="innerBox">
+                <label for="filename"> Lenguaje de Documento: </label>
+                <select id="lenguaje" name="lenguaje">
+                  <option value="">Select</option>
+                  <option value="esp">Español</option>
+                  <option value="eng">Ingles</option>
+
+                </select>
+
+                <label for="filename"> Año Fiscal : </label>
+                <select id="añofiscal" name="añofiscal">
+                  <option value="">Select</option>
+                  <option value="2022-2023">2022-2023</option>
+                  <option value="2023-2024">2023-2024</option>
+                  <option value="2024-2025">2024-2025</option>
+                  <option value="2025-2026">2025-2026</option>
+                </select>
+                <label for="subcategorias">Subcategoria del Documento:</label>
+                <select id="subcategorias" name="subcategorias">
+                  <option selected disabled>Select</option>
+                  <?php
+                  $result = mysqli_query($dbc, $subcategorias);
+                  while ($row = mysqli_fetch_assoc($result)) {
+                    $optionValue = $row['subcategory_abbreviation']; // valor q envio a q se inserte 
+                    $imp = $row['Subcategory_name'];                  // valor que quiero ensenar al usuario
+
+                    echo '<option value="' . $optionValue . '">' . $imp . '</option>';
+                  }
+                  ?>
+                </select>
 
 
-                  <label for="firma"> Firmado por: </label
-                  ><input type="text" id="firma" />
-                </div>
 
-                <div class="full-size guarda">
-                <input type="submit" name="submit" value="Guardar" />
-                </div>
+                <label for="firma"> Firmado por: </label><input type="text" id="firma" />
+              </div>
+            </div>
 
+            <input type="submit" name="submit" value="Guardar" />
+          </form>
+          <div class="backline">
+            <h3>Añadir enlace a otro archivo</h3>
+
+            <div class="search-bar">
+              <input type="text" placeholder="Buscar por nombre" />
+              <button type="submit">Buscar</button>
+            </div>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Fecha</th>
+                  <th>Enlazar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                print '<tr><td colspan="3" style="text-align:center">Archivos no disponibles</td></tr>';
+                ?>
+              </tbody>
+            </table>
+
+            <!--<div class="razon">
+              <form>
+                <label>¿Por que es enlazado?:</label>
+                <input typw="text" name="razon" placeholder="enmendado por/a, derrogado por/a ..." />
               </form>
-                
-              </div>
-              <div class="backline">
-                <h3>Añadir enlace a otro archivo</h3>
-
-                <div class="search-bar">
-                  <input type="text" placeholder="Buscar por nombre" />
-                  <button type="submit">Buscar</button>
-                </div>
-                <div class="sTable">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Nombre</th>
-                      <th>Fecha</th>
-                      <th>Enlazar</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Result 1</td>
-                      <td>October 1, 2023</td>
-
-                      <td><button>Seleccionar</button></td>
-                    </tr>
-                    <tr>
-                      <td>Result 2</td>
-                      <td>September 15, 2023</td>
-
-                      <td><button>Seleccionar</button></td>
-                    </tr>
-                    <tr>
-                      <td>Result 3</td>
-                      <td>August 27, 2023</td>
-
-                      <td><button>Seleccionar</button></td>
-                    </tr>
-                    <tr>
-                      <td>Result 3</td>
-                      <td>August 27, 2023</td>
-
-                      <td><button>Seleccionar</button></td>
-                    </tr>
-                    <tr>
-                      <td>Result 3</td>
-                      <td>August 27, 2023</td>
-
-                      <td><button>Seleccionar</button></td>
-                    </tr>
-                    <tr>
-                      <td>Result 3</td>
-                      <td>August 27, 2023</td>
-
-                      <td><button>Seleccionar</button></td>
-                    </tr>
-                  </tbody>
-                </table>
-                </div>
-
-                <div class="razon">
-                  <form>
-                    <label>¿Por que es enlazado?:</label>
-                    <input
-                      typw="text"
-                      name="razon"
-                      placeholder="enmendado por/a, derrogado por/a ..."
-                    />
-                  </form>
-                </div>
-              </div>
-            </div>
-            <div id="editar" class="editar" style="display: none">
-              
-              
-
-              <br />
-              <h3>Editar archivo</h3>
-              <div class="editInfo">
-                <div class="editarchivo">
-                  <form>
-                    <label for="e_filename"> Nombre: </label
-                    ><input
-                      type="text"
-                      id="e_filename"
-                      name= "ename"
-                      placeholder="nombre del archivo"
-                    />
-
-                    <label for="e_fecha"> Fecha: </label
-                    ><input type="date" id="e_fecha" />
-
-                    <label for="e_decripcion"> Descripcion: </label
-                    ><textarea
-                      type="text"
-                      id="e_descripcion"
-                      rows="5"
-                      maxlength="150"
-                      placeholder="decripcion del archivo. Breve oracion del tema."
-                    ></textarea>
-                  </form>
-                  
-                </div>
-
-                <div class="editarchivo2">
-                  <form>
-                    <label for="e_cat"> Categoria: </label>
-                    <select id="e_categorias" name="categorias">
-                      <option value="">Select</option>
-                      <option value="JA">Junta Academica</option>
-                      <option value="SA">Senado Academico</option>
-                      <option value="cat1">Categoria 1</option>
-                      <option value="cat2">Categoria 2</option>
-                    </select>
-
-                    <label for="e_sub"> Sub-Categorias: </label>
-                    <select id="e_subcategorias" name="subcategorias">
-                      <option value="">Select</option>
-                      <option value="JA">Certificado</option>
-                      <option value="SA">Solicitud</option>
-                      <option value="cat1">Aprobado</option>
-                      <option value="cat2">Sub-Categoria 2</option>
-                    </select>
-                    <label for="firma"> Firmado por: </label
-                    ><input type="text" id="e_firma" />
-                    <label>¿Por que es enlazado?:</label>
-                    <input
-                      typw="text"
-                      name="razon"
-                      placeholder="enmendado por/a, derrogado por/a ..."
-                    />
-                    <input class="botonedit" name = "submit" type="submit" value="Guardar" />
-                    
-                  </form>
-                  
-                </div>
-                <div class="search-bar">
-                  <input
-                    type="text"
-                    placeholder="Buscar archivo a editar por nombre, año, categoria, subcategoria..."
-                  />
-                  <button type="submit">Buscar</button>
-                </div>
-              </div>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Nombre</th>
-                    <th>Fecha</th>
-                    <th>Enlazar</th>
-                    <th>Editar</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Result 1</td>
-                    <td>October 1, 2023</td>
-                    <td><button>Enlazar</button></td>
-                    <td><button>Editar</button></td>
-                  </tr>
-                  <tr>
-                    <td>Result 2</td>
-                    <td>September 15, 2023</td>
-                    <td><button>Enlazar</button></td>
-
-                    <td><button>Editar</button></td>
-                  </tr>
-                  <tr>
-                    <td>Result 3</td>
-                    <td>August 27, 2023</td>
-                    <td><button>Enlazar</button></td>
-
-                    <td><button>Editar</button></td>
-                  </tr>
-                  <tr>
-                    <td>Result 3</td>
-                    <td>August 27, 2023</td>
-                    <td><button>Enlazar</button></td>
-
-                    <td><button>Editar</button></td>
-                  </tr>
-                  <tr>
-                    <td>Result 3</td>
-                    <td>August 27, 2023</td>
-                    <td><button>Enlazar</button></td>
-
-                    <td><button>Editar</button></td>
-                  </tr>
-                  <tr>
-                    <td>Result 3</td>
-                    <td>August 27, 2023</td>
-                    <td><button>Enlazar</button></td>
-
-                    <td><button>Editar</button></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div id="crear" class="crear" style="display: none">
-              <div class="crearForm">
-                <form>
-                  <label> Categoria a añadir: </label>
-                  <input type="text" />
-                  <label> Subcategoria a añadir: </label>
-                  <input type="text" />
-                </form>
-                <input type="submit" value="Añadir" />
-              </div>
-            </div>
+            </div>-->
           </div>
         </div>
 
-        <div class="aside">
-          <h3>Nombre de Usuario</h3>
-          <h3>Archivos Subidos</h3>
+        <div id="editar" class="editar" style="display: none">
+          <div class="backline">
+            <h3>Editar archivo</h3>
+
+            <div class="search-bar">
+              <input type="text" placeholder="Buscar por nombre" />
+              <button type="submit">Buscar</button>
+            </div>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Fecha</th>
+                  <th>Editar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                print '<tr><td colspan="3" style="text-align:center">Archivos no disponibles</td></tr>'
+                ?>
+              </tbody>
+            </table>
+
+            <!--<div class="razon">
+              <form>
+                <label>¿Por que es enlazado?:</label>
+                <input typw="text" name="razon" placeholder="enmendado por/a, derrogado por/a ..." />
+              </form>
+            </div>-->
+          </div>
+          <?php
+          if ($_SERVER['REQUEST_METHOD'] == "POST") {
+            include 'db_info.php';
+            print '
+          <form method="POST" action="admin.php">
+          <div class="box">
+            <div class="innerBox">
+              <label for="filename"> Nombre: </label>
+              <input type="text" name="filename" id="filename" placeholder="nombre del archivo" />
+
+              <label for="fecha"> Fecha: </label><input type="date" id="fecha" />
+
+              <label for="decripcion"> Descripcion: </label>
+              <textarea type="text" id="descripcion" rows="5" maxlength="150" placeholder="decripcion del archivo. Breve oracion del tema."></textarea>
+
+              <label for="Numero_certificacion"> Numero_certificacion: </label>
+              <input type="text" id="Numero_certificacion" placeholder="Numero_certificacion" />
+
+              <label for="estado"> Estado del Documento: </label>
+              <select id="estado" name="estado">
+                <option value="">Select</option>
+                <option value="activo">Activo</option>
+                <option value="inactivo">Inactivo</option>
+              </select>
+
+              <label for="categorias">Categoria del Documento:</label>
+              
+              <select id="categorias" name="categorias">
+                <option disabled selected>Categorias</option>';
+
+            $query = "SELECT * FROM categories";
+            $result = mysqli_query($dbc, $query);
+
+            while ($row = mysqli_fetch_assoc($result)) {
+              $optionValue = $row['Category_abbreviation']; // option value es la opcion de valor q quiero mandar a insertar 
+              $imp = $row['Category_name'];  // imp es el valor q quiero ensenar 
+
+              print '<option value="' . $optionValue . '">' . $imp . '</option>';
+            }
+
+            print '</select>
+
+
+            </div>
+
+            <div class="innerBox">
+              <label for="filename"> Lenguaje de Documento: </label>
+              <select id="lenguaje" name="lenguaje">
+                <option value="">Select</option>
+                <option value="esp">Español</option>
+                <option value="eng">Ingles</option>
+
+              </select>
+
+              <label for="filename"> Año Fiscal : </label>
+              <select id="añofiscal" name="añofiscal">
+                <option value="">Select</option>
+                <option value="2022-2023">2022-2023</option>
+                <option value="2023-2024">2023-2024</option>
+                <option value="2024-2025">2024-2025</option>
+                <option value="2025-2026">2025-2026</option>
+              </select>
+              <label for="subcategorias">Subcategoria del Documento:</label>
+              <select id="subcategorias" name="subcategorias">
+                <option selected disabled>Sub-Categorias</option>';
+
+
+            $query = "SELECT * FROM subcategories";
+            $result = mysqli_query($dbc, $query);
+
+            // Default option
+
+            while ($row = mysqli_fetch_assoc($result)) {
+              $optionValue = $row['subcategory_abbreviation']; // valor q envio a q se inserte 
+              $imp = $row['Subcategory_name'];                  // valor que quiero ensenar al usuario
+
+              print '<option value="' . $optionValue . '">' . $imp . '</option>';
+            }
+            print '</select>
+              
+
+
+
+              <label for="firma"> Firmado por: </label><input type="text" id="firma" />
+            </div>
+          </div>
+
+          <input type="submit" name="submit" value="Guardar" />
+        </form>';
+          }
+          ?>
         </div>
-      </section>
 
-      <footer>
-        <h4>Visita nuestro sitio web:<a href="#"> upra.edu</a></h4>
-      </footer>
+        <div id="crear" class="crear" style="display: none">
 
-      <!-- <script src="main.js"></script> -->
-    </body>
-  </html>
-  <?php
-  include 'db_info.php';
+          <h3>Categorias disponibles</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Categoria</th>
+                <th>Abreviacion</th>
+              </tr>
+            </thead>
+            <tbody id="categorias">
+              <?php
+              $result = mysqli_query($dbc, $categorias);
+              if ($result->num_rows > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                  $abbv = $row['Category_abbreviation'];
+                  $name = $row['Category_name'];
+                  echo '<tr><td>' . $name . '</td> <td>' . $abbv . '</td></tr>';
+                }
+              } else {
+                print '<tr><td colspan="2" style="text-align:center">Categorias no disponibles</td></tr>';
+              }
+              ?>
 
-  if (isset($_POST['submit'])) {
-    
-      $fecha = isset($_POST['fecha']) ? $_POST['fecha'] : '';
-      $descripcion = isset($_POST['descripcion']) ? $_POST['descripcion'] : '';
-      $num_cert = isset($_POST['Numero_certificacion']) ? $_POST['Numero_certificacion'] : '';
-      $estado = isset($_POST['estado']) ? $_POST['estado'] : '';
-      $categoryAbbreviation = isset($_POST['categorias']) ? $_POST['categorias'] : '';
-      $lenguaje = isset($_POST['lenguaje']) ? $_POST['lenguaje'] : '';
-      $añofiscal = isset($_POST['añofiscal']) ? $_POST['añofiscal'] : '';
-      $Subcategory_abbr = isset($_POST['subcategorias']) ? $_POST['subcategorias'] : '';
-      $firma = isset($_POST['firma']) ? $_POST['firma'] : '';
-      $filename = isset($_POST['filename']) ? $_POST['filename'] : '';
 
-      $Admin_id = 1;
-      $pdf = $_FILES['pdf']['name'];
-      $pdf_type = $_FILES['pdf']['type'];
-      $pdf_size = $_FILES['pdf']['size'];
-      $pdf_temp_loc = $_FILES['pdf']['tmp_name'];
-      $pdf_store = "uploads/" . $pdf;
+              <tr id="catForm" style="display:none">
+                <form action="#" method="get">
+                  <td><input type="text" name="name"></td>
+                  <td><input type="text" maxlength="2" name="abbv"></td>
+                </form>
+              </tr>
 
-      move_uploaded_file($pdf_temp_loc, $pdf_store);
+              <tr>
+                <td colspan="2" style="text-align: center;"><button id="categoriaBtn">Añadir categoria</button></td>
+              </tr>
+            </tbody>
+          </table>
 
-      $sql = "INSERT INTO documentos (Document_title, Category_abbr, Subcategory_abbr, Numero_certificacion, Año_Fiscal, Document_lenguaje, Admin_id, Document_path, Upload_Date, Document_state, firma) 
+          <h3>Sub-Categorias disponibles</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Sub-Categoria</th>
+                <th>Abreviacion</th>
+                <th>Categoria</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              $result = mysqli_query($dbc, $subcategorias);
+              if ($result->num_rows > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                  $name = $row['Subcategory_name'];
+                  $abbv = $row['subcategory_abbreviation'];
+                  $cat = $row['Category'];
+                  echo '<tr><td>' . $name . '</td><td>' . $abbv . '</td><td>' . $cat . '</td></tr>';
+                }
+              } else {
+                print '<tr><td colspan="2" style="text-align:center">Categorias no disponibles</td></tr>';
+              }
+              ?>
+
+              <tr id="subcatForm" style="display:none">
+                <form action="#" method="get">
+                  <td><input type="text" name="name"></td>
+                  <td><input type="text" maxlength="2" name="abbv"></td>
+                  <td><input type="text" maxlength="2" name="cat"></td>
+                </form>
+              </tr>
+
+              <tr>
+                <td colspan="3" style="text-align: center;"><button id="subcatBtn">Añadir Sub-Categoria</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <aside>
+      <h3>Nombre de Usuario</h3>
+      <h3>Archivos Subidos</h3>
+    </aside>
+  </main>
+
+  <footer>
+    <h4>Visita nuestro sitio web:<a href="#"> upra.edu</a></h4>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
+<?php
+include 'db_info.php';
+
+if (isset($_POST['submit'])) {
+
+  $fecha = isset($_POST['fecha']) ? $_POST['fecha'] : '';
+  $descripcion = isset($_POST['descripcion']) ? $_POST['descripcion'] : '';
+  $num_cert = isset($_POST['Numero_certificacion']) ? $_POST['Numero_certificacion'] : '';
+  $estado = isset($_POST['estado']) ? $_POST['estado'] : '';
+  $categoryAbbreviation = isset($_POST['categorias']) ? $_POST['categorias'] : '';
+  $lenguaje = isset($_POST['lenguaje']) ? $_POST['lenguaje'] : '';
+  $añofiscal = isset($_POST['añofiscal']) ? $_POST['añofiscal'] : '';
+  $Subcategory_abbr = isset($_POST['subcategorias']) ? $_POST['subcategorias'] : '';
+  $firma = isset($_POST['firma']) ? $_POST['firma'] : '';
+  $filename = isset($_POST['filename']) ? $_POST['filename'] : '';
+
+  $Admin_id = 1;
+  $pdf = $_FILES['pdf']['name'];
+  $pdf_type = $_FILES['pdf']['type'];
+  $pdf_size = $_FILES['pdf']['size'];
+  $pdf_temp_loc = $_FILES['pdf']['tmp_name'];
+  $pdf_store = "uploads/" . $pdf;
+
+  move_uploaded_file($pdf_temp_loc, $pdf_store);
+
+  $sql = "INSERT INTO documentos (Document_title, Category_abbr, Subcategory_abbr, Numero_certificacion, Año_Fiscal, Document_lenguaje, Admin_id, Document_path, Upload_Date, Document_state, firma) 
         VALUES ('$pdf', '$categoryAbbreviation', '$fecha', '$descripcion', '$num_cert', '$estado', '$Admin_id', '$lenguaje', '$añofiscal', '$Subcategory_abbr', '$firma')";
 
-      $query = mysqli_query($dbc, $sql);
-  }
-  ?> 
-
-
-
-
+  $query = mysqli_query($dbc, $sql);
+}
+?>
