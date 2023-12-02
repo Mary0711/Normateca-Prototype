@@ -27,6 +27,16 @@ header img {
   margin-right: 13px;
 }
 
+#upra {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+
+  /* width: 200%;
+  margin-right: 13px; */
+}
+
 header h3 > i {
   color: #967200;
 }
