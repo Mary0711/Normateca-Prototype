@@ -4,6 +4,7 @@ include_once("../models/backend/adminModel.php");
 function setData()
 {
     $model = new AdminModel("localhost", "normateca", "root", "");
+    $model->start_connection();
     $categorias = [];
     $cuerpos = [];
 
@@ -13,7 +14,7 @@ function setData()
             $values = array(
                 "cat_abbr" => $row['Category_abbreviation'],
                 "cat_name" => $row['Category_name'],
-                "cat_corp" => $row['cuerpo']
+                "cat_corp" => $row['cuerpo_abbr']
             );
 
             array_push($categorias, $values);

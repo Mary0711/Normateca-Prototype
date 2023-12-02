@@ -1,3 +1,8 @@
+<?php
+include_once("../controllers/backend/adminController.php");
+setData();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,13 +60,10 @@
                 <select id="categorias" name="categorias">
                   <option disabled selected>Categorias</option>
                   <?php
-                  $result = mysqli_query($dbc, $categorias);
-
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    $optionValue = $row['Category_abbreviation']; // option value es la opcion de valor q quiero mandar a insertar 
-                    $imp = $row['Category_name'];  // imp es el valor q quiero ensenar 
-
-                    echo '<option value="' . $optionValue . '">' . $imp . '</option>';
+                  if (count($_SESSION['cats']) > 0) {
+                    foreach ($_SESSION['cats'] as $cat) {
+                      echo '<option value="' . $cat['cat_abbr'] . '">' . $cat['cat_name'] . '</option>';
+                    }
                   }
                   ?>
                 </select>
@@ -86,16 +88,14 @@
                   <option value="2024-2025">2024-2025</option>
                   <option value="2025-2026">2025-2026</option>
                 </select>
-                <label for="subcategorias">Subcategoria del Documento:</label>
+                <label for="subcategorias">Cuerpo: </label>
                 <select id="subcategorias" name="subcategorias">
                   <option selected disabled>Select</option>
                   <?php
-                  $result = mysqli_query($dbc, $subcategorias);
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    $optionValue = $row['subcategory_abbreviation']; // valor q envio a q se inserte 
-                    $imp = $row['Subcategory_name'];                  // valor que quiero ensenar al usuario
-
-                    echo '<option value="' . $optionValue . '">' . $imp . '</option>';
+                  if (count($_SESSION['corps']) > 0) {
+                    foreach ($_SESSION['corps'] as $corp) {
+                      echo '<option value="' . $corp['corp_abbr'] . '">' . $corp['corp_name'] . '</option>';
+                    }
                   }
                   ?>
                 </select>
@@ -201,14 +201,10 @@
               <select id="categorias" name="categorias">
                 <option disabled selected>Categorias</option>';
 
-            $query = "SELECT * FROM categories";
-            $result = mysqli_query($dbc, $query);
-
-            while ($row = mysqli_fetch_assoc($result)) {
-              $optionValue = $row['Category_abbreviation']; // option value es la opcion de valor q quiero mandar a insertar 
-              $imp = $row['Category_name'];  // imp es el valor q quiero ensenar 
-
-              print '<option value="' . $optionValue . '">' . $imp . '</option>';
+            if (count($_SESSION['cats']) > 0) {
+              foreach ($_SESSION['cats'] as $cat) {
+                echo '<option value="' . $cat['cat_abbr'] . '">' . $cat['cat_name'] . '</option>';
+              }
             }
 
             print '</select>
@@ -238,16 +234,10 @@
                 <option selected disabled>Sub-Categorias</option>';
 
 
-            $query = "SELECT * FROM subcategories";
-            $result = mysqli_query($dbc, $query);
-
-            // Default option
-
-            while ($row = mysqli_fetch_assoc($result)) {
-              $optionValue = $row['subcategory_abbreviation']; // valor q envio a q se inserte 
-              $imp = $row['Subcategory_name'];                  // valor que quiero ensenar al usuario
-
-              print '<option value="' . $optionValue . '">' . $imp . '</option>';
+            if (count($_SESSION['corps']) > 0) {
+              foreach ($_SESSION['corps'] as $corp) {
+                echo '<option value="' . $corp['corp_abbr'] . '">' . $corp['corp_name'] . '</option>';
+              }
             }
             print '</select>
               
@@ -272,16 +262,14 @@
               <tr>
                 <th>Categoria</th>
                 <th>Abreviacion</th>
+                <th>Cuerpo</th>
               </tr>
             </thead>
             <tbody id="categorias">
               <?php
-              $result = mysqli_query($dbc, $categorias);
-              if ($result->num_rows > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                  $abbv = $row['Category_abbreviation'];
-                  $name = $row['Category_name'];
-                  echo '<tr><td>' . $name . '</td> <td>' . $abbv . '</td></tr>';
+              if (count($_SESSION['cats']) > 0) {
+                foreach ($_SESSION['cats'] as $cat) {
+                  echo '<tr><td>' . $cat['cat_name'] . '</td><td>' . $cat['cat_abbr'] . '</td><td>' . $cat['cat_corp'] . '</td></tr>';
                 }
               } else {
                 print '<tr><td colspan="2" style="text-align:center">Categorias no disponibles</td></tr>';
@@ -297,7 +285,7 @@
               </tr>
 
               <tr>
-                <td colspan="2" style="text-align: center;"><button id="categoriaBtn">Añadir categoria</button></td>
+                <td colspan="3" style="text-align: center;"><button id="categoriaBtn">Añadir categoria</button></td>
               </tr>
             </tbody>
           </table>
@@ -308,18 +296,13 @@
               <tr>
                 <th>Sub-Categoria</th>
                 <th>Abreviacion</th>
-                <th>Categoria</th>
               </tr>
             </thead>
             <tbody>
               <?php
-              $result = mysqli_query($dbc, $subcategorias);
-              if ($result->num_rows > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                  $name = $row['Subcategory_name'];
-                  $abbv = $row['subcategory_abbreviation'];
-                  $cat = $row['Category'];
-                  echo '<tr><td>' . $name . '</td><td>' . $abbv . '</td><td>' . $cat . '</td></tr>';
+              if (count($_SESSION['corps']) > 0) {
+                foreach ($_SESSION['corps'] as $corp) {
+                  echo '<tr><td>' . $corp['corp_name'] . '</td><td>' . $corp['corp_abbr'] . '</td></tr>';
                 }
               } else {
                 print '<tr><td colspan="2" style="text-align:center">Categorias no disponibles</td></tr>';
@@ -358,9 +341,8 @@
 
 </html>
 <?php
-include 'db_info.php';
 
-if (isset($_POST['submit'])) {
+/*if (isset($_POST['submit'])) {
 
   $fecha = isset($_POST['fecha']) ? $_POST['fecha'] : '';
   $descripcion = isset($_POST['descripcion']) ? $_POST['descripcion'] : '';
@@ -386,5 +368,5 @@ if (isset($_POST['submit'])) {
         VALUES ('$pdf', '$categoryAbbreviation', '$fecha', '$descripcion', '$num_cert', '$estado', '$Admin_id', '$lenguaje', '$añofiscal', '$Subcategory_abbr', '$firma')";
 
   $query = mysqli_query($dbc, $sql);
-}
+}*/
 ?>
