@@ -1,9 +1,3 @@
-<?php
-include_once("db_info.php");
-$categorias = "SELECT * FROM categories";
-$subcategorias = "SELECT * FROM subcategories";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,12 +5,12 @@ $subcategorias = "SELECT * FROM subcategories";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Normateca</title>
-  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="assets/css/admin.css" />
 </head>
 
 <body>
   <header>
-    <img src="images/logo.png" />
+    <img src="assets/images/logo.png" />
     <div>
       <h1>Administrador Normateca</h1>
       <h3><i> Universidad de Puerto Rico en Arecibo </i></h3>
