@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -29,79 +30,79 @@
               <input type="text" id="certification_number" name="certification_number" placeholder="Buscar documento..." />
               
           
-              <label for="Fiscal_year">Año Academico</label>
+              <label>Año Academico</label>
               <input type="text" id="Fiscal_year" name="Fiscal_year" placeholder="Buscar documento..." />
 
-              <label for="Keywordnames">Palabra Clave</label>
+              <label>Palabra Clave</label>
               <input type="text" id="Keywordnames" name="Keywordnames" placeholder="Buscar documento..." />
               
-              <label for="Document_title">Titulo</label>
+              <label>Titulo</label>
               <input type="text" id="Document_title" name="Document_title" placeholder="Buscar documento..." />
 
               <label>Cuerpo</label>
               <div class="filters">
                 <input type="checkbox" id="JA" name="JA" />
-                <label for="JA">JA - Junta Academica</label><br />
+                <label>JA - Junta Academica</label><br />
                 <input type="checkbox" id="SA" name="SA" />
-                <label for="SA">SA - Senado Academico</label><br />
+                <label>SA - Senado Academico</label><br />
                 <input type="checkbox" id="JG" name="JG" />
-                <label for="JG">JG - Junta de Gobierno</label><br />
+                <label>JG - Junta de Gobierno</label><br />
                 <input type="checkbox" id="FIN" name="FIN" />
-                <label for="FIN">FI - Finanzas</label><br />
+                <label>FI - Finanzas</label><br />
                 <input type="checkbox" id="OPEI" name="OPEI" />
-                <label for="OPEI">OPEI - Oficina de Planificaciones</label><br />
+                <label>OPEI - Oficina de Planificaciones</label><br />
               </div>
               
 
               <label>Categoria</label>
               <div class="filters">
                 <input type="checkbox" id="SOL"  name="SOL" />
-                <label for="SOL">SOL - Solicitudes</label><br />
+                <label>SOL - Solicitudes</label><br />
 
                 <input type="checkbox" id="ACU" name="ACU" />
-                <label for="ACU">ACU - Acuerdos</label><br />
+                <label>ACU - Acuerdos</label><br />
 
                 <input type="checkbox" id="APR" name="APR" />
-                <label for="APR">APR - Aprobaciones</label><br />
+                <label>APR - Aprobaciones</label><br />
 
                 <input type="checkbox" id="CA" name="CA" />
-                <label for="CA">CA - Calendario Academico</label><br />
+                <label>CA - Calendario Academico</label><br />
 
                 <input type="checkbox" id="CON" name="CON" />
-                <label for="CON">CON - Consideraciones</label><br />
+                <label>CON - Consideraciones</label><br />
 
                 <input type="checkbox" id="POL" name="POL" />
-                <label for="POL">POL - Politicas</label><br />
+                <label>POL - Politicas</label><br />
 
                 <input type="checkbox" id="CC" name="CC" />
-                <label for="CC">CC - Cartas Circulares</label><br />
+                <label>CC - Cartas Circulares</label><br />
               </div>
 
               <label>Relacion</label>
               <div class="filters">
-                <input type="checkbox" id="ENMP" name="Junta Academica" />
-                <label for="ENMP">Enmendado por</label><br />
-                <input type="checkbox" id="DERP" name="Junta Academica" />
-                <label for="DERP">Derrogado por</label><br />
-                <input type="checkbox" id="ENMA" name="Junta Academica" />
-                <label for="ENMA">Enmienda a</label><br />
-                <input type="checkbox" id="DERA" name="Junta Academica" />
-                <label for="DERA">Derroga a</label><br />
+                <input type="checkbox" id="enmendadopor" name="enmendadopor" />
+                <label>Enmendado por</label><br />
+                <input type="checkbox" id="derogadopor" name="derogadopor" />
+                <label>Derrogado por</label><br />
+                <input type="checkbox" id="enmiendaa" name="enmiendaa" />
+                <label>Enmienda a</label><br />
+                <input type="checkbox" id="derogaa" name="derogaa" />
+                <label>Derroga a</label><br />
               </div>
 
-              <label for="Date_created">Fecha</label>
-              <input type="date" id="Date_created" placeholder="Buscar documento..." />
+              <label>Fecha</label>
+              <input type="date" id="Date_created" name="Date_created" placeholder="Buscar documento..." />
 
               <label>Rango de Fecha</label>
               <div class="dates">
-                <label for="desde">Desde</label>
-                <input type="date" id="desde" placeholder="Buscar documento..." />
-                <br /><label for="hasta">Hasta</label>
-                <input type="date" id="hasta" placeholder="Buscar documento..." />
+                <label>Desde</label>
+                <input type="date" id="desde" name="desde" placeholder="Buscar documento..." />
+                <br /><label>Hasta</label>
+                <input type="date" id="hasta" name="hasta" placeholder="Buscar documento..." />
               </div>
+            </form>
             <button type="submit">Limpiar</button>
             <button type="submit">Buscar</button>
-          </form>
           </div>
         </div>
         <div class="lastBox">
@@ -162,7 +163,7 @@
                   <td>El misterio de pepito pelon</td>
                   <td>solicitud</td>
                   <td>-</td>
-                  <td>pdf</td>
+                  <td>PDF</td>
                 </tr>
                 <tr>
                   <td>JA</td>
@@ -171,7 +172,7 @@
                   <td>El misterio de pepito pelon</td>
                   <td>solicitud</td>
                   <td>-</td>
-                  <td>pdf</td>
+                  <td>PDF</td>
                 </tr>
                 <tr>
                   <td>JA</td>
@@ -180,7 +181,7 @@
                   <td>Elsdvgdfgbhghbdh misterio de pepito pelon</td>
                   <td>solicitud</td>
                   <td>-</td>
-                  <td>pdf</td>
+                  <td>PDF</td>
                 </tr>
               </tbody>
             </table>
@@ -203,3 +204,58 @@
     </main>
   </body>
 </html>
+
+<?php
+
+$certification_number = $_POST['certification_number'];
+$Fiscal_year = $_POST['Fiscal_year'];
+$Keywordnames = $_POST['Keywordnames'];
+$JA = $_POST['JA'];
+$SA = $_POST['SA'];
+$JG = $_POST['JG'];
+$FIN = $_POST['FIN'];
+$OPEI = $_POST['OPEI'];
+$SOL = $_POST['SOL'];
+$ACU = $_POST['ACU'];
+$APR = $_POST['APR'];
+$CA = $_POST['CA'];
+$CON = $_POST['CON'];
+$POL = $_POST['POL'];
+$CC = $_POST['CC'];
+
+$enmendadopor = $_POST['enmendadopor'];
+$derogadopor = $_POST['derogadopor'];
+$enmiendaa = $_POST['enmiendaa'];
+$derogaa = $_POST['derogaa'];
+
+$Date_created = $_POST['Date_created'];
+$desde = $_POST['desde'];
+$hasta = $_POST['hasta'];
+
+$query = "SELECT * FROM your_table WHERE 
+         certification_number LIKE '%$certificationNumber%' 
+         AND academic_year LIKE '%$academicYear%'
+         AND (keyword_column1 LIKE '%$keyword%' OR keyword_column2 LIKE '%$keyword%')
+         AND title LIKE '%$title%'";
+
+
+$result = mysqli_query($your_db_connection, $query);
+
+
+$output = '';
+while ($row = mysqli_fetch_assoc($result)) {
+    $output .= "<tr>";
+   
+    $output .= "<td>{$row['cuerpo']}</td>";
+    $output .= "<td>{$row['numero']}</td>";
+    $output .= "<td>{$row['ano_academico']}</td>";
+    $output .= "<td>{$row['titulo']}</td>";
+    $output .= "<td>{$row['categoria']}</td>";
+    $output .= "<td>{$row['relaciones']}</td>";
+    $output .= "<td>PDF</td>"; 
+    $output .= "</tr>";
+}
+
+
+echo $output;
+?>
