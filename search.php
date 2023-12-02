@@ -1,10 +1,15 @@
 
+<?php
+// Incluir el código del archivo_original.php
+include 'db_info.php';
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
     <title>Normateca - Certificaciones</title>
-    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="./assets/css/main.css" />
   </head>
 
   <body>
@@ -30,79 +35,78 @@
               <input type="text" id="certification_number" name="certification_number" placeholder="Buscar documento..." />
               
           
-              <label>Año Academico</label>
+              <label for="Fiscal_year" >Año Academico</label>
               <input type="text" id="Fiscal_year" name="Fiscal_year" placeholder="Buscar documento..." />
 
-              <label>Palabra Clave</label>
+              <label for="Keywordnames">Palabra Clave</label>
               <input type="text" id="Keywordnames" name="Keywordnames" placeholder="Buscar documento..." />
               
-              <label>Titulo</label>
+              <label for="Document_title">Titulo</label>
               <input type="text" id="Document_title" name="Document_title" placeholder="Buscar documento..." />
 
-              <label>Cuerpo</label>
-              <div class="filters">
-                <input type="checkbox" id="JA" name="JA" />
-                <label>JA - Junta Academica</label><br />
-                <input type="checkbox" id="SA" name="SA" />
-                <label>SA - Senado Academico</label><br />
-                <input type="checkbox" id="JG" name="JG" />
-                <label>JG - Junta de Gobierno</label><br />
-                <input type="checkbox" id="FIN" name="FIN" />
-                <label>FI - Finanzas</label><br />
-                <input type="checkbox" id="OPEI" name="OPEI" />
-                <label>OPEI - Oficina de Planificaciones</label><br />
-              </div>
-              
+              <label>Cuerpos</label>
+              <?php
+                $query = "SELECT * FROM `cuerpos`";
+                $result = $dbc->query($query);
+                if ($result) {
+                  // Obtener el primer registro del resultado
+                  echo "<div class=filters>";
+                  while ($row = $result->fetch_assoc()) {
+                    // Crear un formulario con un checkbox para cada fila
+                    echo '<input type="checkbox" id="' . $row['Cuerpo_abbr'] . '" name="' . $row['Cuerpo_name'] . '" />';
+                    echo '<label for="' . $row['Cuerpo_abbr'] . '">' . $row['Cuerpo_abbr'] . ' - ' . $row['Cuerpo_name'] . '</label><br />';
+                }
+                  echo "</div>";
+                } else {
+                  // Manejar el error de la consulta
+                  echo "Error en la consulta: " . $dbc->error;
+                }
+              ?>
 
-              <label>Categoria</label>
-              <div class="filters">
-                <input type="checkbox" id="SOL"  name="SOL" />
-                <label>SOL - Solicitudes</label><br />
-
-                <input type="checkbox" id="ACU" name="ACU" />
-                <label>ACU - Acuerdos</label><br />
-
-                <input type="checkbox" id="APR" name="APR" />
-                <label>APR - Aprobaciones</label><br />
-
-                <input type="checkbox" id="CA" name="CA" />
-                <label>CA - Calendario Academico</label><br />
-
-                <input type="checkbox" id="CON" name="CON" />
-                <label>CON - Consideraciones</label><br />
-
-                <input type="checkbox" id="POL" name="POL" />
-                <label>POL - Politicas</label><br />
-
-                <input type="checkbox" id="CC" name="CC" />
-                <label>CC - Cartas Circulares</label><br />
-              </div>
+              <label>Categorias</label>
+              <?php
+              $query = "SELECT * FROM `categories`";
+              $result = $dbc->query($query);
+              if ($result) {
+                // Obtener el primer registro del resultado
+                echo "<div class=filters>";
+                while ($row = $result->fetch_assoc()) {
+                  // Crear un formulario con un checkbox para cada fila
+                  echo '<input type="checkbox" id="' . $row['Category_abbr'] . '" name="' . $row['Category_name'] . '" />';
+                  echo '<label for="' . $row['Category_abbr'] . '">' . $row['Category_abbr'] . ' - ' . $row['Category_name'] . '</label><br />';
+              }
+                echo "</div>";
+              } else {
+                // Manejar el error de la consulta
+                echo "Error en la consulta: " . $dbc->error;
+              }
+            ?>
 
               <label>Relacion</label>
               <div class="filters">
                 <input type="checkbox" id="enmendadopor" name="enmendadopor" />
-                <label>Enmendado por</label><br />
+                <label for="enmendadopor">Enmendado por</label><br />
                 <input type="checkbox" id="derogadopor" name="derogadopor" />
-                <label>Derrogado por</label><br />
+                <label for="derogadopo">Derrogado por</label><br />
                 <input type="checkbox" id="enmiendaa" name="enmiendaa" />
-                <label>Enmienda a</label><br />
+                <label for="enmiendaa">Enmienda a</label><br />
                 <input type="checkbox" id="derogaa" name="derogaa" />
-                <label>Derroga a</label><br />
+                <label for="derogaa">Derroga a</label><br />
               </div>
 
-              <label>Fecha</label>
+              <label for="Date_created">Fecha</label>
               <input type="date" id="Date_created" name="Date_created" placeholder="Buscar documento..." />
 
               <label>Rango de Fecha</label>
               <div class="dates">
-                <label>Desde</label>
+                <label for="desde">Desde</label>
                 <input type="date" id="desde" name="desde" placeholder="Buscar documento..." />
-                <br /><label>Hasta</label>
+                <br /><label for="hasta" >Hasta</label>
                 <input type="date" id="hasta" name="hasta" placeholder="Buscar documento..." />
               </div>
-            </form>
-            <button type="submit">Limpiar</button>
-            <button type="submit">Buscar</button>
+              <button type="submit">Limpiar</button>
+              <button type="submit">Buscar</button>
+            </form >
           </div>
         </div>
         <div class="lastBox">
@@ -205,6 +209,7 @@
   </body>
 </html>
 
+
 <?php
 
 $certification_number = $_POST['certification_number'];
@@ -255,7 +260,5 @@ while ($row = mysqli_fetch_assoc($result)) {
     $output .= "<td>PDF</td>"; 
     $output .= "</tr>";
 }
-
-
 echo $output;
 ?>
