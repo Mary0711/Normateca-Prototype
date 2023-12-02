@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Normateca - Certificaciones</title>
-    <link rel="stylesheet" href="./assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
   </head>
 
   <body>
