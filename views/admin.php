@@ -11,12 +11,12 @@ $subcategorias = "SELECT * FROM subcategories";
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Normateca</title>
-  <link rel="stylesheet" href="admin.css" />
+  <link rel="stylesheet" href="../assets/css/admin.css" />
 </head>
 
 <body>
   <header>
-    <img src="images/logo.png" />
+    <img src="../assets/images/logo.png" />
     <div>
       <h1>Administrador Normateca</h1>
       <h3><i> Universidad de Puerto Rico en Arecibo </i></h3>
@@ -359,7 +359,7 @@ $subcategorias = "SELECT * FROM subcategories";
     <h4>Visita nuestro sitio web:<a href="#"> upra.edu</a></h4>
   </footer>
 
-  <script src="main.js"></script>
+  <script src="../assets/js/main.js"></script>
 </body>
 
 </html>
