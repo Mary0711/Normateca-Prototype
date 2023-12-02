@@ -1,6 +1,5 @@
 <?php
-include_once("../db_info.php");
-
+include_once("../db/db_info.php");
 class AdminModel extends DB
 {
     public function getCategorias()
