@@ -10,7 +10,7 @@
 
 <body>
   <header>
-    <img src="../assets/images/logo.png" />
+    <img src="../assets/images/uprlogo.png" />
     <div>
       <h1>Administrador Normateca</h1>
       <h3><i> Universidad de Puerto Rico en Arecibo </i></h3>
