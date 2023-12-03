@@ -2,17 +2,7 @@
 include_once("../db/db_info.php");
 class frontModel extends DB
 {
-    public function getCategorias()
-    {
-        $query = "SELECT * FROM categories";
-        return $this->run_query($query);
-    }
-
-    public function getCuerpos()
-    {
-        $query = "SELECT * FROM cuerpos";
-        return $this->run_query($query);
-    }
+   
 
     public function getdocumentos()
     {
@@ -32,15 +22,26 @@ class frontModel extends DB
         return $this->run_query($query);
     }
 
-    public function getderogaciones()
-    {
-        $query = "SELECT * FROM derroga";
-        return $this->run_query($query);
-    }
-
-    public function getenmiendas()
-    {
-        $query = "SELECT * FROM enmienda";
+    
+    public function searchDocs($certificationNumber, $fiscalYear, $keyword, $documentTitle) {
+        $query = "SELECT * FROM documentos WHERE 1=1"; // Starting with 1=1 to make adding conditions easier
+    
+        if ($certificationNumber !== '') {
+            $query .= " AND Certification_number LIKE '$certificationNumber'";
+        }
+    
+        if ($fiscalYear !== '') {
+            $query .= " AND Fiscal_year = '$fiscalYear'";
+        }
+    
+        if ($keyword !== '') {
+            $query .= " AND (Keyword_id LIKE '%$keyword%')";
+        }
+    
+        if ($documentTitle !== '') {
+            $query .= " AND Document_title = '$documentTitle'";
+        }
+    
         return $this->run_query($query);
     }
 
