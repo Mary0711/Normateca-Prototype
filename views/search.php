@@ -97,9 +97,6 @@ doc();
             </form>
           </div>
         </div>
-
-          <?php
-             echo '
              <div class="lastBox">
                <div>
                  <h2>Certificaciones Recientes</h2>
@@ -131,37 +128,34 @@ doc();
                    <option value="option4">100</option>
                  </select>
      
-                
-                 <table>
-                          <thead>
-                            <tr>
-                              <th>Cuerpo</th>
-                              <th>Numero</th>
-                              <th>Año Academico</th>
-                              <th>Titulo</th>
-                              <th>Categoria</th>
-                              <th>Relaciones</th>
-                              <th>Descargar</th>
-                            </tr>
-                          </thead>
-                          <tbody>;
-                  
-                  foreach ($documentos as $doc) {
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Cuerpo</th>
+                        <th>Numero</th>
+                        <th>Año Academico</th>
+                        <th>Titulo</th>
+                        <th>Categoria</th>
+                        <th>Relaciones</th>
+                        <th>Descargar</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    foreach ($_SESSION['documentos'] as $doc) {
                       echo '<tr>';
-                      echo "<td>$doc['cuerpo']</td>"; 
-                      echo "<td>{$doc['certi']}</td>";
-                      echo "<td>{$doc['fiscal']}</td>";
-                      echo "<td>{$doc['title']}</td>";
-                      echo "<td>{$doc['categoria']}</td>";
-                      echo "<td>{$doc['target_derroga']} . {$doc['target_enmienda']}</td>";
-                      echo '<td><a href=".pdf">PDF</a></td>'; // aqui se reemplazaria con el url del documento 
+                      echo '<td>'.$doc['cuerpo'].'</td>'; 
+                      echo '<td>'.$doc['certi'].'</td>';
+                      echo '<td>'.$doc['fiscal'].'</td>';
+                      echo '<td>'.$doc['title'].'</td>';
+                      echo '<td>'.$doc['categoria'].'</td>';
+                      echo '<td>'.$doc['target_derroga'] . $doc['target_enmienda'].'</td>';
+                      echo '<td><a href=".pdf">PDF</a></td>'; 
                       echo '</tr>';
-                  }
-                  
-                  echo '</tbody>
-                        </table>';
-
-
+                    }
+                    ?>
+                    </tbody>
+                  </table>
 
                  <div class="table-aditional">
                    <p>Mostrando 1 a 10 de 126 récords</p>
@@ -176,34 +170,6 @@ doc();
                      <a href="#">&raquo;</a>
                    </div>
                  </div>
-                 ';
-          ?>
-       
-
-            <?php
-             if (count($_SESSION['documentos']) > 0) {
-              foreach ($_SESSION['documentos'] as $doc) {
-                  echo "<tr>";
-                  echo "<td>{$doc['title']}</td>";
-                  echo "<td>{$doc['cuerpo']}</td>";
-                  echo "<td>{$doc['categoria']}</td>";
-                  echo "<td>{$doc['certi']}</td>";
-                  echo "<td>{$doc['fiscal']}</td>";
-                  echo "<td>{$doc['target_derroga']} . {$doc['target_enmienda']}</td>";
-                  echo "<td>PDF</td>";
-                  echo "</tr>";
-              }
-          }
-          
-
-          
-
-
-            ?>
-
-
-
-                
           </div>
         </div>
       </section>
