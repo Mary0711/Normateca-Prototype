@@ -33,17 +33,17 @@ doc();
             <form class="search" action="search.php" method="POST">
 
               <label for="certification_number">Numero de Certificación</label>
-              <input type="text" id="certification_number" name="certification_number" placeholder="Buscar documento..." />
+              <input type="search" id="certification_number" name="certification_number" placeholder="Buscar documento..." />
               
           
               <label for="Fiscal_year">Año Academico</label>
-              <input type="text" id="Fiscal_year" name="Fiscal_year" placeholder="Buscar documento..." />
+              <input type="search" id="Fiscal_year" name="Fiscal_year" placeholder="Buscar documento..." />
 
               <label for="Keywordnames">Palabra Clave</label>
-              <input type="text" id="Keywordnames" name="Keywordnames" placeholder="Buscar documento..." />
+              <input type="search" id="Keywordnames" name="Keywordnames" placeholder="Buscar documento..." />
               
               <label for="Document_title">Titulo</label>
-              <input type="text" id="Document_title" name="Document_title" placeholder="Buscar documento..." />
+              <input type="search" id="Document_title" name="Document_title" placeholder="Buscar documento..." />
 
               <label>Cuerpo</label>
               <div class="filters">
@@ -92,7 +92,7 @@ doc();
                 <br /><label for="hasta">Hasta</label>
                 <input type="date" id="hasta" name="hasta" placeholder="Buscar documento..." />
               </div>
-            <button type="submit">Limpiar</button>
+            <button type="submitt">Limpiar</button>
             <button type="submit">Buscar</button>
             </form>
           </div>
@@ -138,7 +138,11 @@ doc();
                     </thead>
                     <tbody>
                     <?php
-                    foreach ($_SESSION['documentos'] as $doc) {
+                    if (empty($_SESSION['documentos'])) {
+                      echo '<tr><td colspan="7">No documents available</td></tr>';
+                  }else{
+
+                      foreach ($_SESSION['documentos'] as $doc) {
                       echo '<tr>';
                       echo '<td>'.$doc['cuerpo'].'</td>'; 
                       echo '<td>'.$doc['certi'].'</td>';
@@ -149,6 +153,9 @@ doc();
                       echo '<td><a href="'.$doc['path'] .'">PDF</a></td>'; 
                       echo '</tr>';
                     }
+
+                      }
+                   
                     ?>
                     </tbody>
                   </table>
