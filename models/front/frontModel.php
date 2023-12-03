@@ -13,6 +13,7 @@ class frontModel extends DB
         documentos.Category_abbr AS Category_abbr, 
         documentos.Certification_number AS Certification_number, 
         documentos.Fiscal_year AS Fiscal_year,  
+        documentos.Document_path AS Doc_Path,
         derroga.target_id AS Derroga_target_id, 
         enmienda.target_id AS Enmienda_target_id
         FROM documentos
@@ -42,6 +43,14 @@ class frontModel extends DB
             $query .= " AND Document_title = '$documentTitle'";
         }
     
+        return $this->run_query($query);
+    }
+
+    public function recientes(){
+        $query = "SELECT Document_title, Fiscal_year, Certification_number, Cuerpo_abbr
+        FROM documentos
+        ORDER BY documentos.Document_id DESC
+        LIMIT 4";
         return $this->run_query($query);
     }
 

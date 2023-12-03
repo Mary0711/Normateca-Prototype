@@ -103,18 +103,14 @@ doc();
                  <hr />
                  <div class="recents">
                    <div class="JA">
-                     <h3>Junta Administrativa</h3>
-                     <li>numero-año, fecha</li>
-                     <li>numero-año, fecha</li>
-                     <li>numero-año, fecha</li>
-                     <li>numero-año, fecha</li>
-                   </div>
-                   <div class="SA">
-                     <h3>Senado Academico</h3>
-                     <li>numero-año, fecha</li>
-                     <li>numero-año, fecha</li>
-                     <li>numero-año, fecha</li>
-                     <li>numero-año, fecha</li>
+                    <?php
+                      foreach ($_SESSION['recientes'] as $rec) {
+                        echo '<tr>';
+                        echo '<li><a href="#">'.$rec['cuerpo'].'-'.$rec['fiscal'].'-'.$rec['number'].'</a> - '.$rec['title'].'</li>';
+                        echo '</tr>';
+                        
+                      }
+                    ?>
                    </div>
                  </div>
                </div>
@@ -150,7 +146,7 @@ doc();
                       echo '<td>'.$doc['title'].'</td>';
                       echo '<td>'.$doc['categoria'].'</td>';
                       echo '<td>'.$doc['target_derroga'] . $doc['target_enmienda'].'</td>';
-                      echo '<td><a href=".pdf">PDF</a></td>'; 
+                      echo '<td><a href="'.$doc['path'] .'">PDF</a></td>'; 
                       echo '</tr>';
                     }
                     ?>

@@ -196,7 +196,7 @@ input[type="checkbox"] {
 }
 
 .JA {
-  flex-basis: 50%;
+  width: 100%;
 }
 
 .JA li,
@@ -205,9 +205,9 @@ input[type="checkbox"] {
   margin-left: 125px;
 }
 
-.SA {
-  flex-basis: 50%;
-}
+/* .SA {
+  
+} */
 
 .results {
   text-align: start;
