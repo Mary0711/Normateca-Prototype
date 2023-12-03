@@ -1,6 +1,6 @@
 <?php
 include_once("../db/db_info.php");
-class AdminModel extends DB
+class frontModel extends DB
 {
     public function getCategorias()
     {
@@ -23,8 +23,8 @@ class AdminModel extends DB
         documentos.Category_abbr AS Category_abbr, 
         documentos.Certification_number AS Certification_number, 
         documentos.Fiscal_year AS Fiscal_year,  
-        derroga.target_id AS derroga_target_id, 
-        enmienda.target_id AS enmienda_target_id
+        derroga.target_id AS Derroga_target_id, 
+        enmienda.target_id AS Enmienda_target_id
         FROM documentos
         LEFT JOIN derroga ON documentos.Document_id = derroga.Document_id
         LEFT JOIN enmienda ON documentos.Document_id = enmienda.Document_id";

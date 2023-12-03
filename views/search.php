@@ -1,6 +1,8 @@
 <?php
 include_once("../controllers/backend/adminController.php");
+include_once("../controllers/frontend/frontController.php");
 setData();
+doc();
 ?>
 
 <!DOCTYPE html>
@@ -95,99 +97,113 @@ setData();
             </form>
           </div>
         </div>
-        <div class="lastBox">
-          <div>
-            <h2>Certificaciones Recientes</h2>
-            <hr />
-            <div class="recents">
-              <div class="JA">
-                <h3>Junta Administrativa</h3>
-                <li>numero-año, fecha</li>
-                <li>numero-año, fecha</li>
-                <li>numero-año, fecha</li>
-                <li>numero-año, fecha</li>
-              </div>
-              <div class="SA">
-                <h3>Senado Academico</h3>
-                <li>numero-año, fecha</li>
-                <li>numero-año, fecha</li>
-                <li>numero-año, fecha</li>
-                <li>numero-año, fecha</li>
-              </div>
-            </div>
-          </div>
 
-          <div class="results">
-            <label for="records">Records:</label>
-            <select id="records" name="records">
-              <option value="option1">10</option>
-              <option value="option2">25</option>
-              <option value="option3">50</option>
-              <option value="option4">100</option>
-            </select>
+          <?php
+             echo '
+             <div class="lastBox">
+               <div>
+                 <h2>Certificaciones Recientes</h2>
+                 <hr />
+                 <div class="recents">
+                   <div class="JA">
+                     <h3>Junta Administrativa</h3>
+                     <li>numero-año, fecha</li>
+                     <li>numero-año, fecha</li>
+                     <li>numero-año, fecha</li>
+                     <li>numero-año, fecha</li>
+                   </div>
+                   <div class="SA">
+                     <h3>Senado Academico</h3>
+                     <li>numero-año, fecha</li>
+                     <li>numero-año, fecha</li>
+                     <li>numero-año, fecha</li>
+                     <li>numero-año, fecha</li>
+                   </div>
+                 </div>
+               </div>
+     
+               <div class="results">
+                 <label for="records">Records:</label>
+                 <select id="records" name="records">
+                   <option value="option1">10</option>
+                   <option value="option2">25</option>
+                   <option value="option3">50</option>
+                   <option value="option4">100</option>
+                 </select>
+     
+                
+                 <table>
+                          <thead>
+                            <tr>
+                              <th>Cuerpo</th>
+                              <th>Numero</th>
+                              <th>Año Academico</th>
+                              <th>Titulo</th>
+                              <th>Categoria</th>
+                              <th>Relaciones</th>
+                              <th>Descargar</th>
+                            </tr>
+                          </thead>
+                          <tbody>;
+                  
+                  foreach ($documentos as $doc) {
+                      echo '<tr>';
+                      echo "<td>$doc['cuerpo']</td>"; 
+                      echo "<td>{$doc['certi']}</td>";
+                      echo "<td>{$doc['fiscal']}</td>";
+                      echo "<td>{$doc['title']}</td>";
+                      echo "<td>{$doc['categoria']}</td>";
+                      echo "<td>{$doc['target_derroga']} . {$doc['target_enmienda']}</td>";
+                      echo '<td><a href=".pdf">PDF</a></td>'; // aqui se reemplazaria con el url del documento 
+                      echo '</tr>';
+                  }
+                  
+                  echo '</tbody>
+                        </table>';
 
-            <table>
-              <thead>
-                <th>Cuerpo</th>
-                <th>Numero</th>
-                <th>Año Academico</th>
-                <th>Titulo</th>
-                <th>Categoria</th>
-                <th>Relaciones</th>
-                <th>Descargar</th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>JA</td>
-                  <td>1</td>
-                  <td>2023</td>
-                  <td>El misterio de pepito pelon</td>
-                  <td>solicitud</td>
-                  <td>-</td>
-                  <td>PDF</td>
-                </tr>
-                <tr>
-                  <td>JA</td>
-                  <td>1</td>
-                  <td>2023</td>
-                  <td>El misterio de pepito pelon</td>
-                  <td>solicitud</td>
-                  <td>-</td>
-                  <td>PDF</td>
-                </tr>
-                <tr>
-                  <td>JA</td>
-                  <td>1</td>
-                  <td>2023</td>
-                  <td>El misterio de pepito pelon</td>
-                  <td>solicitud</td>
-                  <td>-</td>
-                  <td>PDF</td>
-                </tr>
-                <tr>
-                  <td>JA</td>
-                  <td>1</td>
-                  <td>2023</td>
-                  <td>Elsdvgdfgbhghbdh misterio de pepito pelon</td>
-                  <td>solicitud</td>
-                  <td>-</td>
-                  <td>PDF</td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="table-aditional">
-              <p>Mostrando 1 a 10 de 126 récords</p>
-              <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#">1</a>
-                <a class="active" href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">&raquo;</a>
-              </div>
-            </div>
+
+
+                 <div class="table-aditional">
+                   <p>Mostrando 1 a 10 de 126 récords</p>
+                   <div class="pagination">
+                     <a href="#">&laquo;</a>
+                     <a href="#">1</a>
+                     <a class="active" href="#">2</a>
+                     <a href="#">3</a>
+                     <a href="#">4</a>
+                     <a href="#">5</a>
+                     <a href="#">6</a>
+                     <a href="#">&raquo;</a>
+                   </div>
+                 </div>
+                 ';
+          ?>
+       
+
+            <?php
+             if (count($_SESSION['documentos']) > 0) {
+              foreach ($_SESSION['documentos'] as $doc) {
+                  echo "<tr>";
+                  echo "<td>{$doc['title']}</td>";
+                  echo "<td>{$doc['cuerpo']}</td>";
+                  echo "<td>{$doc['categoria']}</td>";
+                  echo "<td>{$doc['certi']}</td>";
+                  echo "<td>{$doc['fiscal']}</td>";
+                  echo "<td>{$doc['target_derroga']} . {$doc['target_enmienda']}</td>";
+                  echo "<td>PDF</td>";
+                  echo "</tr>";
+              }
+          }
+          
+
+          
+
+
+            ?>
+
+
+
+                
           </div>
         </div>
       </section>
