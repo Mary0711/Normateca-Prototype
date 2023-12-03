@@ -68,4 +68,5 @@ function setData()
 
     $_SESSION['corps'] = $cuerpos;
     $_SESSION['cats'] = $categorias;
+    $_SESSION['documentos'] = $documentos;
 }
