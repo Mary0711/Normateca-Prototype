@@ -1,3 +1,7 @@
+<?php
+include_once("../controllers/backend/adminController.php");
+setData();
+?>
 
 <!DOCTYPE html>
 <html>
@@ -30,79 +34,65 @@
               <input type="text" id="certification_number" name="certification_number" placeholder="Buscar documento..." />
               
           
-              <label>Año Academico</label>
+              <label for="Fiscal_year">Año Academico</label>
               <input type="text" id="Fiscal_year" name="Fiscal_year" placeholder="Buscar documento..." />
 
-              <label>Palabra Clave</label>
+              <label for="Keywordnames">Palabra Clave</label>
               <input type="text" id="Keywordnames" name="Keywordnames" placeholder="Buscar documento..." />
               
-              <label>Titulo</label>
+              <label for="Document_title">Titulo</label>
               <input type="text" id="Document_title" name="Document_title" placeholder="Buscar documento..." />
 
               <label>Cuerpo</label>
               <div class="filters">
-                <input type="checkbox" id="JA" name="JA" />
-                <label>JA - Junta Academica</label><br />
-                <input type="checkbox" id="SA" name="SA" />
-                <label>SA - Senado Academico</label><br />
-                <input type="checkbox" id="JG" name="JG" />
-                <label>JG - Junta de Gobierno</label><br />
-                <input type="checkbox" id="FIN" name="FIN" />
-                <label>FI - Finanzas</label><br />
-                <input type="checkbox" id="OPEI" name="OPEI" />
-                <label>OPEI - Oficina de Planificaciones</label><br />
+                <?php
+                  if (count($_SESSION['corps']) > 0) {
+                    foreach ($_SESSION['corps'] as $corp) {
+                      echo'<input type="checkbox" id="'. $corp['corp_abbr'] .'" name="'. $corp['corp_abbr'] .'" />';
+                      echo'<label for="'. $corp['corp_abbr'] .'"> '. $corp['corp_abbr'].' - ' . $corp['corp_name'] . ' </label><br />';
+                    }
+                  }
+                  ?>
               </div>
               
 
               <label>Categoria</label>
               <div class="filters">
-                <input type="checkbox" id="SOL"  name="SOL" />
-                <label>SOL - Solicitudes</label><br />
-
-                <input type="checkbox" id="ACU" name="ACU" />
-                <label>ACU - Acuerdos</label><br />
-
-                <input type="checkbox" id="APR" name="APR" />
-                <label>APR - Aprobaciones</label><br />
-
-                <input type="checkbox" id="CA" name="CA" />
-                <label>CA - Calendario Academico</label><br />
-
-                <input type="checkbox" id="CON" name="CON" />
-                <label>CON - Consideraciones</label><br />
-
-                <input type="checkbox" id="POL" name="POL" />
-                <label>POL - Politicas</label><br />
-
-                <input type="checkbox" id="CC" name="CC" />
-                <label>CC - Cartas Circulares</label><br />
+                <?php
+                  if (count($_SESSION['cats']) > 0) {
+                    foreach ($_SESSION['cats'] as $cat) {
+                      echo '<input type="checkbox" id="'. $cat['cat_abbr'] .'" name="'. $cat['cat_abbr'] .'" />';
+                      echo '<label for="'. $cat['cat_abbr'] .'"> '. $cat['cat_abbr'].' - '. $cat['cat_name'] .'</label><br />';
+                    }
+                  }
+                ?>
               </div>
 
               <label>Relacion</label>
               <div class="filters">
                 <input type="checkbox" id="enmendadopor" name="enmendadopor" />
-                <label>Enmendado por</label><br />
+                <label for="enmendadopor">Enmendado por</label><br />
                 <input type="checkbox" id="derogadopor" name="derogadopor" />
-                <label>Derrogado por</label><br />
+                <label for="derogadopor">Derrogado por</label><br />
                 <input type="checkbox" id="enmiendaa" name="enmiendaa" />
-                <label>Enmienda a</label><br />
+                <label for="enmiendaa">Enmienda a</label><br />
                 <input type="checkbox" id="derogaa" name="derogaa" />
-                <label>Derroga a</label><br />
+                <label for="derogaa">Derroga a</label><br />
               </div>
 
-              <label>Fecha</label>
+              <label for="Date_created">Fecha</label>
               <input type="date" id="Date_created" name="Date_created" placeholder="Buscar documento..." />
 
               <label>Rango de Fecha</label>
               <div class="dates">
-                <label>Desde</label>
+                <label for="desde">Desde</label>
                 <input type="date" id="desde" name="desde" placeholder="Buscar documento..." />
-                <br /><label>Hasta</label>
+                <br /><label for="hasta">Hasta</label>
                 <input type="date" id="hasta" name="hasta" placeholder="Buscar documento..." />
               </div>
-            </form>
             <button type="submit">Limpiar</button>
             <button type="submit">Buscar</button>
+            </form>
           </div>
         </div>
         <div class="lastBox">
@@ -204,58 +194,3 @@
     </main>
   </body>
 </html>
-
-<?php
-
-$certification_number = $_POST['certification_number'];
-$Fiscal_year = $_POST['Fiscal_year'];
-$Keywordnames = $_POST['Keywordnames'];
-$JA = $_POST['JA'];
-$SA = $_POST['SA'];
-$JG = $_POST['JG'];
-$FIN = $_POST['FIN'];
-$OPEI = $_POST['OPEI'];
-$SOL = $_POST['SOL'];
-$ACU = $_POST['ACU'];
-$APR = $_POST['APR'];
-$CA = $_POST['CA'];
-$CON = $_POST['CON'];
-$POL = $_POST['POL'];
-$CC = $_POST['CC'];
-
-$enmendadopor = $_POST['enmendadopor'];
-$derogadopor = $_POST['derogadopor'];
-$enmiendaa = $_POST['enmiendaa'];
-$derogaa = $_POST['derogaa'];
-
-$Date_created = $_POST['Date_created'];
-$desde = $_POST['desde'];
-$hasta = $_POST['hasta'];
-
-$query = "SELECT * FROM your_table WHERE 
-         certification_number LIKE '%$certificationNumber%' 
-         AND academic_year LIKE '%$academicYear%'
-         AND (keyword_column1 LIKE '%$keyword%' OR keyword_column2 LIKE '%$keyword%')
-         AND title LIKE '%$title%'";
-
-
-$result = mysqli_query($your_db_connection, $query);
-
-
-$output = '';
-while ($row = mysqli_fetch_assoc($result)) {
-    $output .= "<tr>";
-   
-    $output .= "<td>{$row['cuerpo']}</td>";
-    $output .= "<td>{$row['numero']}</td>";
-    $output .= "<td>{$row['ano_academico']}</td>";
-    $output .= "<td>{$row['titulo']}</td>";
-    $output .= "<td>{$row['categoria']}</td>";
-    $output .= "<td>{$row['relaciones']}</td>";
-    $output .= "<td>PDF</td>"; 
-    $output .= "</tr>";
-}
-
-
-echo $output;
-?>

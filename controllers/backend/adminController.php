@@ -12,9 +12,9 @@ function setData()
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             $values = array(
-                "cat_abbr" => $row['Category_abbreviation'],
+                "cat_abbr" => $row['Category_abbr'],
                 "cat_name" => $row['Category_name'],
-                "cat_corp" => $row['cuerpo_abbr']
+                "cat_corp" => $row['Cuerpo_abbr']
             );
 
             array_push($categorias, $values);
@@ -28,7 +28,7 @@ function setData()
         while ($row = $result->fetch_assoc()) {
             $values = array(
                 "corp_abbr" => $row['Cuerpo_abbr'],
-                "corp_name" => $row['cuerpo_name']
+                "corp_name" => $row['Cuerpo_name']
             );
 
             array_push($cuerpos, $values);
