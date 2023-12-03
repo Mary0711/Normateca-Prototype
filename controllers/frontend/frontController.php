@@ -14,8 +14,11 @@ function doc()
         $fiscalYear = isset($_POST['Fiscal_year']) ? $_POST['Fiscal_year'] : '';
         $keyword = isset($_POST['Keywordnames']) ? $_POST['Keywordnames'] : '';
         $documentTitle = isset($_POST['Document_title']) ? $_POST['Document_title'] : '';
-    
-        $result = $model->filtrarDocs($certificationNumber, $fiscalYear, $keyword, $documentTitle);
+
+        $categoria = isset($_POST['categoria']) ? $_POST['categoria'] : '';
+        $cuerpo = isset($_POST['cuerpo']) ? $_POST['cuerpo'] : '';
+        
+        $result = $model->filtrarDocs($certificationNumber, $fiscalYear, $keyword, $documentTitle,$cuerpo,$categoria);
     
         if ($result) {
             if ($result->num_rows > 0) {

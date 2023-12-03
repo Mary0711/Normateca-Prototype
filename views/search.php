@@ -50,8 +50,8 @@ doc();
                 <?php
                   if (count($_SESSION['corps']) > 0) {
                     foreach ($_SESSION['corps'] as $corp) {
-                      echo'<input type="checkbox" id="'. $corp['corp_abbr'] .'" name="'. $corp['corp_abbr'] .'" />';
-                      echo'<label for="'. $corp['corp_abbr'] .'"> '. $corp['corp_abbr'].' - ' . $corp['corp_name'] . ' </label><br />';
+                        echo '<input type="checkbox" id="' . $corp['corp_abbr'] . '" name="cuerpo[]" value="' . $corp['corp_abbr'] . '" />';
+                        echo '<label for="' . $corp['corp_abbr'] . '"> ' . $corp['corp_abbr'] . ' - ' . $corp['corp_name'] . ' </label><br />';
                     }
                   }
                   ?>
@@ -60,14 +60,14 @@ doc();
 
               <label>Categoria</label>
               <div class="filters">
-                <?php
+                  <?php
                   if (count($_SESSION['cats']) > 0) {
-                    foreach ($_SESSION['cats'] as $cat) {
-                      echo '<input type="checkbox" id="'. $cat['cat_abbr'] .'" name="'. $cat['cat_abbr'] .'" />';
-                      echo '<label for="'. $cat['cat_abbr'] .'"> '. $cat['cat_abbr'].' - '. $cat['cat_name'] .'</label><br />';
-                    }
+                      foreach ($_SESSION['cats'] as $cat) {
+                          echo '<input type="checkbox" id="' . $cat['cat_abbr'] . '" name="categoria[]" value="' . $cat['cat_abbr'] . '" />';
+                          echo '<label for="' . $cat['cat_abbr'] . '"> ' . $cat['cat_abbr'] . ' - ' . $cat['cat_name'] . '</label><br />';
+                      }
                   }
-                ?>
+                  ?>
               </div>
 
               <label>Relacion</label>

@@ -3,7 +3,7 @@ include_once("../db/db_info.php");
 class frontModel extends DB
 {
    
-    public function filtrarDocs($certificationNumber, $fiscalYear, $keyword, $documentTitle)
+    public function filtrarDocs($certificationNumber, $fiscalYear, $keyword, $documentTitle,$cuerpo,$categoria)
 {
     $query = "SELECT 
                 documentos.Document_id AS Document_id, 
@@ -36,6 +36,35 @@ class frontModel extends DB
     if ($documentTitle != '') {
         $query .= " AND documentos.Document_title LIKE '%$documentTitle%'";
     }
+
+
+    if (!empty($cuerpo)) {
+        $cuerpoConditions = [];
+    
+        foreach ($cuerpo as $cuerpov) {
+
+            $cuerpoConditions[] = "documentos.Cuerpo_abbr LIKE '%$cuerpov%'";
+        }
+    
+        $cuerpoQuery = implode(" OR ", $cuerpoConditions);
+    
+        $query .= " AND (" . $cuerpoQuery . ")";
+    }
+
+    
+    if (!empty($categoria)) {
+        $categoriaConditions = [];
+    
+        foreach ($categoria as $cate) {
+            $categoriaConditions[] = "documentos.Category_abbr LIKE '%$cate%'";
+        }
+    
+        $cateQuery = implode(" OR ", $categoriaConditions);
+    
+        $query .= " AND (" . $cateQuery . ")";
+    }
+
+
 
     return $this->run_query($query);
 }
