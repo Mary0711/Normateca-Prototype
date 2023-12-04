@@ -6,20 +6,27 @@ class frontModel extends DB
     public function filtrarDocs($certificationNumber, $fiscalYear, $keyword, $documentTitle,$cuerpo,$categoria,$date_created,$desde,$hasta)
 {
     $query = "SELECT 
-                documentos.Document_id AS Document_id, 
-                documentos.Document_title AS Document_title, 
-                documentos.Cuerpo_abbr AS Cuerpo_abbr, 
-                documentos.Category_abbr AS Category_abbr, 
-                documentos.Certification_number AS Certification_number, 
-                documentos.Fiscal_year AS Fiscal_year,
-                documentos.Document_path AS Doc_Path,
-  
-                derroga.target_id AS Derroga_target_id, 
-                enmienda.target_id AS Enmienda_target_id
-            FROM documentos
-            LEFT JOIN derroga ON documentos.Document_id = derroga.Document_id
-            LEFT JOIN enmienda ON documentos.Document_id = enmienda.Document_id
-            WHERE 1=1"; 
+    documentos.Document_id AS Document_id, 
+    documentos.Document_title AS Document_title, 
+    documentos.Cuerpo_abbr AS Cuerpo_abbr, 
+    documentos.Category_abbr AS Category_abbr, 
+    documentos.Certification_number AS Certification_number, 
+    documentos.Fiscal_year AS Fiscal_year,
+    documentos.Document_path AS Doc_Path,
+    derroga.Derroga_target_id AS derroga,
+    enmienda.Enmienda_target_id AS enmienda
+FROM documentos
+LEFT JOIN (
+    SELECT Document_id, GROUP_CONCAT(DISTINCT target_id SEPARATOR ',') AS Derroga_target_id
+    FROM derroga
+    GROUP BY Document_id
+) derroga ON documentos.Document_id = derroga.Document_id
+LEFT JOIN (
+    SELECT Document_id, GROUP_CONCAT(DISTINCT target_id SEPARATOR ',') AS Enmienda_target_id
+    FROM enmienda
+    GROUP BY Document_id
+) enmienda ON documentos.Document_id = enmienda.Document_id
+WHERE 1=1"; 
 
     if ($certificationNumber != '') {
         $query .= " AND documentos.Certification_number LIKE '%$certificationNumber%'";
@@ -82,6 +89,14 @@ public function recientes(){
     FROM documentos
     ORDER BY documentos.Document_id DESC
     LIMIT 4";
+    return $this->run_query($query);
+}
+
+public function derroga($target){
+    $query ="SELECT distinct documentos.Certification_number AS Certification_number, 
+    documentos.Fiscal_year AS Fiscal_year,documentos.Document_path AS Doc_Path
+    FROM documentos
+    WHERE documentos.Document_id = '$target'";
     return $this->run_query($query);
 }
 
