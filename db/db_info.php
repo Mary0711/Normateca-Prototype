@@ -7,17 +7,20 @@ class DB
     private $password;
     public $connection;
 
-    public function __construct($servername, $dbname, $username, $password)
+    private $port;
+
+    public function __construct($servername, $dbname, $username, $password, $port)
     {
         $this->servername = $servername;
         $this->dbname = $dbname;
         $this->username = $username;
         $this->password = $password;
+        $this->port = $port;
     }
 
     public function start_connection()
     {
-        $this->connection = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        $this->connection = new mysqli($this->servername, $this->username, $this->password, $this->dbname, $this->port);
 
         if ($this->connection->connect_error) {
             print "Coneccion fallida: " . $this->connection->connect_error . "";
