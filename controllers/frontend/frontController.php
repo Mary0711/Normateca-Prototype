@@ -35,7 +35,11 @@ function doc()
                         "fiscal" => $row['Fiscal_year'],
                         "target_derroga" => $row['derroga'],
                         "target_enmienda" => $row['enmienda'],
-                        "path" => $row['Doc_Path']
+                        "path" => $row['Doc_Path'],
+                        "certi_derr" => $row['certificacion_number'],
+                        "fiscal_derr" => $row['fiscal_year'],
+                        "doc_path" => $row['doc_path']
+                        
                     );
 
                     array_push($documentos, $values);

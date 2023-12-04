@@ -14,9 +14,26 @@ class frontModel extends DB
     documentos.Fiscal_year AS Fiscal_year,
     documentos.Document_path AS Doc_Path,
     derroga.Derroga_target_id AS derroga,
-    enmienda.Enmienda_target_id AS enmienda
+    enmienda.Enmienda_target_id AS enmienda,
+    (
+        SELECT Certification_number
+        FROM documentos 
+        WHERE documentos.Document_id = derroga.Derroga_target_id
+        LIMIT 1
+    ) AS certificacion_number,
+    (
+        SELECT Fiscal_year
+        FROM documentos 
+        WHERE documentos.Document_id = derroga.Derroga_target_id
+        LIMIT 1
+    ) AS fiscal_year,
+    (
+        SELECT Document_path
+        FROM documentos 
+        WHERE documentos.Document_id = derroga.Derroga_target_id
+        LIMIT 1
+    ) AS doc_path
 
-    
 FROM documentos
 LEFT JOIN (
     SELECT Document_id, GROUP_CONCAT(DISTINCT target_id SEPARATOR ',') AS Derroga_target_id
@@ -28,7 +45,9 @@ LEFT JOIN (
     FROM enmienda
     GROUP BY Document_id
 ) enmienda ON documentos.Document_id = enmienda.Document_id
-WHERE 1=1"; 
+WHERE 1=1";
+
+    
 
     if ($certificationNumber != '') {
         $query .= " AND documentos.Certification_number LIKE '%$certificationNumber%'";
