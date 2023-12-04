@@ -3,7 +3,7 @@ include_once("../db/db_info.php");
 class frontModel extends DB
 {
    
-    public function filtrarDocs($certificationNumber, $fiscalYear, $keyword, $documentTitle,$cuerpo,$categoria)
+    public function filtrarDocs($certificationNumber, $fiscalYear, $keyword, $documentTitle,$cuerpo,$categoria,$date_created,$desde,$hasta)
 {
     $query = "SELECT 
                 documentos.Document_id AS Document_id, 
@@ -35,6 +35,14 @@ class frontModel extends DB
 
     if ($documentTitle != '') {
         $query .= " AND documentos.Document_title LIKE '%$documentTitle%'";
+    }
+
+    if ($date_created != '') {
+        $query .= " AND documentos.Date_created LIKE '$date_created'";
+    }
+
+    if ($desde != '' AND $hasta != '') {
+        $query .= " AND documentos.Date_created BETWEEN '$desde' AND '$hasta'";
     }
 
 
@@ -76,8 +84,5 @@ public function recientes(){
     LIMIT 4";
     return $this->run_query($query);
 }
-
-
-
 
 }

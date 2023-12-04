@@ -106,7 +106,7 @@ doc();
                     <?php
                       foreach ($_SESSION['recientes'] as $rec) {
                         echo '<tr>';
-                        echo '<li><a href="#">'.$rec['cuerpo'].'-'.$rec['fiscal'].'-'.$rec['number'].'</a> - '.$rec['title'].'</li>';
+                        echo '<li><a href="'.$rec['path'].'">'.$rec['cuerpo'].'-'.$rec['fiscal'].'-'.$rec['number'].'</a> - '.$rec['title'].'</li>';
                         echo '</tr>';
                         
                       }

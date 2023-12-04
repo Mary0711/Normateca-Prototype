@@ -17,8 +17,12 @@ function doc()
 
         $categoria = isset($_POST['categoria']) ? $_POST['categoria'] : '';
         $cuerpo = isset($_POST['cuerpo']) ? $_POST['cuerpo'] : '';
-        
-        $result = $model->filtrarDocs($certificationNumber, $fiscalYear, $keyword, $documentTitle,$cuerpo,$categoria);
+        $date_created = isset($_POST['Date_created']) ? $_POST['Date_created'] : '';
+        $date_created = isset($_POST['Date_created']) ? $_POST['Date_created'] : '';
+        $desde = isset($_POST['desde']) ? $_POST['desde'] : '';
+        $hasta = isset($_POST['hasta']) ? $_POST['hasta'] : '';
+
+        $result = $model->filtrarDocs($certificationNumber, $fiscalYear, $keyword, $documentTitle,$cuerpo,$categoria,$date_created,$desde,$hasta);
     
         if ($result) {
             if ($result->num_rows > 0) {
@@ -53,6 +57,7 @@ function doc()
                 "cuerpo" => $row['Cuerpo_abbr'],
                 "number" => $row['Certification_number'],
                 "fiscal" => $row['Fiscal_year'],
+                "path" => $row['Document_path']
             );
             array_push($recientes, $values);
         }
