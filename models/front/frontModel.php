@@ -32,7 +32,26 @@ class frontModel extends DB
         FROM documentos 
         WHERE documentos.Document_id = derroga.Derroga_target_id
         LIMIT 1
-    ) AS doc_path
+    ) AS doc_path,
+
+    (
+        SELECT Certification_number
+        FROM documentos 
+        WHERE documentos.Document_id = enmienda.Enmienda_target_id
+        LIMIT 1
+    ) AS enm_cert,
+    (
+        SELECT Fiscal_year
+        FROM documentos 
+        WHERE documentos.Document_id = enmienda.Enmienda_target_id
+        LIMIT 1
+    ) AS enm_fisc,
+    (
+        SELECT Document_path
+        FROM documentos 
+        WHERE documentos.Document_id = enmienda.Enmienda_target_id
+        LIMIT 1
+    ) AS enm_doc_path
 
 FROM documentos
 LEFT JOIN (

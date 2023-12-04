@@ -150,12 +150,29 @@ doc();
                       echo '<td>'.$doc['title'].'</td>';
                       echo '<td>'.$doc['categoria'].'</td>';
                       // echo '<td>'.$doc['certificacion_fiscal'].'</td>';
-                      if ($doc['certi_derr'] == '') {
-                        echo '<td></td>'; // Print "(no derr)" in the table cell when certi_derr is empty
-                    } else {
-                      echo '<td><p>Derrogados</p>' . ' <a href="' . $doc['doc_path'] . '">' . $doc['certi_derr'] . ' - ' . $doc['fiscal_derr'] . '</a></td>';
-                    }
+                    //   if ($doc['certi_derr'] == '') {
+                    //     echo '<td></td>'; // Print "(no derr)" in the table cell when certi_derr is empty
+                    // } else {
+                    //   echo '<td><p>Derrogados</p>' . ' <a href="' . $doc['doc_path'] . '">' . $doc['certi_derr'] . ' - ' . $doc['fiscal_derr'] . '</a></td>';
+                    // }
                     
+                    if ($doc['certi_derr'] == '' && $doc['certi_enm'] == '') {
+                      echo '<td></td>';
+                  } elseif ($doc['certi_derr'] != '' && $doc['certi_enm'] != '') {
+                      echo '<td>';
+                      echo '<p>Derrogado por</p>' . ' <a href="' . $doc['doc_path'] . '">' . $doc['certi_derr'] . ' - ' . $doc['fiscal_derr'] . '</a><br>';
+                      echo '<p>Enmendado por</p>' . ' <a href="' . $doc['doc_path_enm'] . '">' . $doc['certi_enm'] . ' - ' . $doc['fiscal_enm'] . '</a>';
+                      echo '</td>';
+                  } elseif ($doc['certi_derr'] != '') {
+                      echo '<td>';
+                      echo '<p>Derrogado por</p>' . ' <a href="' . $doc['doc_path'] . '">' . $doc['certi_derr'] . ' - ' . $doc['fiscal_derr'] . '</a>';
+                      echo '</td>';
+                  } elseif ($doc['certi_enm'] != '') {
+                      echo '<td>';
+                      echo '<p>Enmendado por</p>' . ' <a href="' . $doc['doc_path_enm'] . '">' . $doc['certi_enm'] . ' - ' . $doc['fiscal_enm'] . '</a>';
+                      echo '</td>';
+                  }
+                  
                       
                       echo '<td>'  .'<a href="' . $doc['doc_path'] . '">PDF</a></td>';
                       echo '</tr>';

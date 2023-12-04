@@ -36,9 +36,14 @@ function doc()
                         "target_derroga" => $row['derroga'],
                         "target_enmienda" => $row['enmienda'],
                         "path" => $row['Doc_Path'],
+                        
                         "certi_derr" => $row['certificacion_number'],
                         "fiscal_derr" => $row['fiscal_year'],
-                        "doc_path" => $row['doc_path']
+                        "doc_path" => $row['doc_path'],
+
+                        "certi_enm" => $row['enm_cert'],
+                        "fiscal_enm" => $row['enm_fisc'],
+                        "doc_path_enm" => $row['enm_doc_path']
                         
                     );
 
