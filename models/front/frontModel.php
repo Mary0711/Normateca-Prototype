@@ -15,6 +15,8 @@ class frontModel extends DB
     documentos.Document_path AS Doc_Path,
     derroga.Derroga_target_id AS derroga,
     enmienda.Enmienda_target_id AS enmienda
+
+    
 FROM documentos
 LEFT JOIN (
     SELECT Document_id, GROUP_CONCAT(DISTINCT target_id SEPARATOR ',') AS Derroga_target_id

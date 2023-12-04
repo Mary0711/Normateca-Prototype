@@ -14,7 +14,6 @@ function doc()
         $fiscalYear = isset($_POST['Fiscal_year']) ? $_POST['Fiscal_year'] : '';
         $keyword = isset($_POST['Keywordnames']) ? $_POST['Keywordnames'] : '';
         $documentTitle = isset($_POST['Document_title']) ? $_POST['Document_title'] : '';
-
         $categoria = isset($_POST['categoria']) ? $_POST['categoria'] : '';
         $cuerpo = isset($_POST['cuerpo']) ? $_POST['cuerpo'] : '';
         $date_created = isset($_POST['Date_created']) ? $_POST['Date_created'] : '';
@@ -34,8 +33,8 @@ function doc()
                         "categoria" => $row['Category_abbr'],
                         "certi" => $row['Certification_number'],
                         "fiscal" => $row['Fiscal_year'],
-                        "target_derroga" => $row['Derroga_target_id'],
-                        "target_enmienda" => $row['Enmienda_target_id'],
+                        "target_derroga" => $row['derroga'],
+                        "target_enmienda" => $row['enmienda'],
                         "path" => $row['Doc_Path']
                     );
 
