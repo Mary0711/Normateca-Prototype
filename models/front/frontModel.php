@@ -3,8 +3,9 @@ include_once("../db/db_info.php");
 class frontModel extends DB
 {
    
-    public function filtrarDocs($certificationNumber, $fiscalYear, $keyword, $documentTitle,$cuerpo,$categoria,$date_created,$desde,$hasta)
+    public function filtrarDocs($certificationNumber, $fiscalYear, $keyword, $documentTitle,$cuerpo,$categoria,$date_created,$desde,$hasta,$paginaActual,$registros,$inicio)
 {
+    
     $query = "SELECT 
     documentos.Document_id AS Document_id, 
     documentos.Document_title AS Document_title, 
@@ -15,18 +16,19 @@ class frontModel extends DB
     documentos.Document_path AS Doc_Path,
     derroga.Derroga_target_id AS derroga,
     enmienda.Enmienda_target_id AS enmienda
-FROM documentos
-LEFT JOIN (
-    SELECT Document_id, GROUP_CONCAT(DISTINCT target_id SEPARATOR ',') AS Derroga_target_id
-    FROM derroga
-    GROUP BY Document_id
-) derroga ON documentos.Document_id = derroga.Document_id
-LEFT JOIN (
-    SELECT Document_id, GROUP_CONCAT(DISTINCT target_id SEPARATOR ',') AS Enmienda_target_id
-    FROM enmienda
-    GROUP BY Document_id
-) enmienda ON documentos.Document_id = enmienda.Document_id
-WHERE 1=1"; 
+    FROM documentos
+    LEFT JOIN (
+        SELECT Document_id, GROUP_CONCAT(DISTINCT target_id SEPARATOR ',') AS Derroga_target_id
+        FROM derroga
+        GROUP BY Document_id
+    ) derroga ON documentos.Document_id = derroga.Document_id
+    LEFT JOIN (
+        SELECT Document_id, GROUP_CONCAT(DISTINCT target_id SEPARATOR ',') AS Enmienda_target_id
+        FROM enmienda
+        GROUP BY Document_id
+    ) enmienda ON documentos.Document_id = enmienda.Document_id
+    WHERE 1=1";
+    
 
     if ($certificationNumber != '') {
         $query .= " AND documentos.Certification_number LIKE '%$certificationNumber%'";
@@ -50,6 +52,10 @@ WHERE 1=1";
 
     if ($desde != '' AND $hasta != '') {
         $query .= " AND documentos.Date_created BETWEEN '$desde' AND '$hasta'";
+    }
+
+    if ($inicio != '' AND $registros != '') {
+        $query .= " LIMIT $inicio, $registros";
     }
 
 
@@ -91,6 +97,12 @@ public function recientes(){
     LIMIT 4";
     return $this->run_query($query);
 }
+
+public function numPages(){
+    $query = "SELECT COUNT(*) as total FROM documentos";
+    return $this->run_query($query);
+}
+
 
 public function derroga($target){
     $query ="SELECT distinct documentos.Certification_number AS Certification_number, 

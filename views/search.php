@@ -149,7 +149,7 @@ doc();
                       echo '<td>'.$doc['fiscal'].'</td>';
                       echo '<td>'.$doc['title'].'</td>';
                       echo '<td>'.$doc['categoria'].'</td>';
-                      echo '<td>'.$doc['target_derroga'] . $doc['target_enmienda'].'</td>';
+                      // echo '<td>'.$doc['target_derroga'] . $doc['target_enmienda'].'</td>';
                       echo '<td><a href="'.$doc['path'] .'">PDF</a></td>'; 
                       echo '</tr>';
                     }
@@ -160,19 +160,38 @@ doc();
                     </tbody>
                   </table>
 
-                 <div class="table-aditional">
-                   <p>Mostrando 1 a 10 de 126 récords</p>
-                   <div class="pagination">
-                     <a href="#">&laquo;</a>
-                     <a href="#">1</a>
-                     <a class="active" href="#">2</a>
-                     <a href="#">3</a>
-                     <a href="#">4</a>
-                     <a href="#">5</a>
-                     <a href="#">6</a>
-                     <a href="#">&raquo;</a>
-                   </div>
-                 </div>
+                  <?php
+                    if (isset($_SESSION['paginas'])) {
+                        $paginas = $_SESSION['paginas'];
+                        foreach ($paginas as $pagina) {
+                            $totalPaginas = $pagina['pag'];
+                            $registros = $pagina['registros'];
+                            $total = $pagina['total'];
+                            $current_page = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+                            $first = ($current_page - 1) * $registros + 1;
+                            $last = min($current_page * $registros, $total);
+
+                            ?>
+                            <div class="table-aditional">
+                                <p>Mostrando <?php echo $first; ?> a <?php echo $last; ?> de <?php echo $total; ?> récords</p>
+                                <div class="pagination">
+                                    <a href="?pagina=1">&laquo;</a>
+
+                                    <?php
+                                    for ($i = 1; $i <= $totalPaginas; $i++) {
+                                        $class = ($i == $current_page) ? 'active' : '';
+                                        echo "<a href='?pagina=$i' class='$class'>$i</a> ";
+                                    }
+
+                                    echo "<a href='?pagina=$totalPaginas'>&raquo;</a>";
+                                    ?>
+
+                                </div>
+                            </div>
+                            <?php
+                        }
+                    }
+                    ?>
           </div>
         </div>
       </section>
