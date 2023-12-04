@@ -126,7 +126,13 @@ setData();
               </thead>
               <tbody>
                 <?php
-                print '<tr><td colspan="3" style="text-align:center">Archivos no disponibles</td></tr>';
+                if ($_SESSION['files'] != null) {
+                  foreach ($_SESSION['files'] as $file) {
+                    print '<tr><td>' . $file['file_name'] . '</td><td>' . $file['file_date'] . '</td><td><button>Seleccionar</button></td></tr>';
+                  }
+                } else {
+                  print '<tr><td colspan="3" style="text-align:center">Archivos no disponibles</td></tr>';
+                }
                 ?>
               </tbody>
             </table>
@@ -159,7 +165,13 @@ setData();
               </thead>
               <tbody>
                 <?php
-                print '<tr><td colspan="3" style="text-align:center">Archivos no disponibles</td></tr>'
+                if ($_SESSION['files'] != null) {
+                  foreach ($_SESSION['files'] as $file) {
+                    print '<tr><td>' . $file['file_name'] . '</td><td>' . $file['file_date'] . '</td><td><button>Editar</button></td></tr>';
+                  }
+                } else {
+                  print '<tr><td colspan="3" style="text-align:center">Archivos no disponibles</td></tr>';
+                }
                 ?>
               </tbody>
             </table>
@@ -267,7 +279,7 @@ setData();
             </thead>
             <tbody id="categorias">
               <?php
-              if (count($_SESSION['cats']) > 0) {
+              if ($_SESSION['cats'] != null) {
                 foreach ($_SESSION['cats'] as $cat) {
                   echo '<tr><td>' . $cat['cat_name'] . '</td><td>' . $cat['cat_abbr'] . '</td><td>' . $cat['cat_corp'] . '</td></tr>';
                 }
@@ -300,7 +312,7 @@ setData();
             </thead>
             <tbody>
               <?php
-              if (count($_SESSION['corps']) > 0) {
+              if ($_SESSION['corps'] != null) {
                 foreach ($_SESSION['corps'] as $corp) {
                   echo '<tr><td>' . $corp['corp_name'] . '</td><td>' . $corp['corp_abbr'] . '</td></tr>';
                 }

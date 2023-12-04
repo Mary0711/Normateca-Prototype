@@ -13,4 +13,10 @@ class AdminModel extends DB
         $query = "SELECT * FROM cuerpos";
         return $this->run_query($query);
     }
+
+    public function getAllFiles($limit, $off)
+    {
+        $query = "SELECT * FROM documentos LIMIT $limit OFFSET $off";
+        return $this->run_query($query);
+    }
 }
