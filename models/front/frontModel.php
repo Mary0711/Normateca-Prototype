@@ -3,8 +3,9 @@ include_once("../db/db_info.php");
 class frontModel extends DB
 {
    
-    public function filtrarDocs($certificationNumber, $fiscalYear, $keyword, $documentTitle,$cuerpo,$categoria,$date_created,$desde,$hasta)
+    public function filtrarDocs($certificationNumber, $fiscalYear, $keyword, $documentTitle,$cuerpo,$categoria,$date_created,$desde,$hasta,$paginaActual,$registros,$inicio)
 {
+    
     $query = "SELECT 
     documentos.Document_id AS Document_id, 
     documentos.Document_title AS Document_title, 
@@ -125,7 +126,6 @@ class frontModel extends DB
         $query .= " AND documentos.Date_created BETWEEN '$desde' AND '$hasta'";
     }
 
-
     if (!empty($cuerpo)) {
         $cuerpoConditions = [];
     
@@ -152,6 +152,10 @@ class frontModel extends DB
         $query .= " AND (" . $cateQuery . ")";
     }
 
+    if ($inicio != '' AND $registros != '') {
+        $query .= " LIMIT $inicio, $registros";
+    }
+
 
 
     return $this->run_query($query);
@@ -164,6 +168,12 @@ public function recientes(){
     LIMIT 4";
     return $this->run_query($query);
 }
+
+public function numPages(){
+    $query = "SELECT COUNT(*) as total FROM documentos";
+    return $this->run_query($query);
+}
+
 
 public function derroga($target){
     $query ="SELECT distinct documentos.Certification_number AS Certification_number, 

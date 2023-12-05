@@ -10,6 +10,7 @@ function doc()
 
     $documentos = [];
     $recientes = [];
+    $paginas =[];
         $certificationNumber = isset($_POST['certification_number']) ? $_POST['certification_number'] : '';
         $fiscalYear = isset($_POST['Fiscal_year']) ? $_POST['Fiscal_year'] : '';
         $keyword = isset($_POST['Keywordnames']) ? $_POST['Keywordnames'] : '';
@@ -20,8 +21,11 @@ function doc()
         $date_created = isset($_POST['Date_created']) ? $_POST['Date_created'] : '';
         $desde = isset($_POST['desde']) ? $_POST['desde'] : '';
         $hasta = isset($_POST['hasta']) ? $_POST['hasta'] : '';
+        $paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+        $registros = isset($_POST['selectedRecords']) ? (int)$_POST['selectedRecords'] : 10;
+        $inicio = ($paginaActual - 1) * $registros;
 
-        $result = $model->filtrarDocs($certificationNumber, $fiscalYear, $keyword, $documentTitle,$cuerpo,$categoria,$date_created,$desde,$hasta);
+        $result = $model->filtrarDocs($certificationNumber, $fiscalYear, $keyword, $documentTitle,$cuerpo,$categoria,$date_created,$desde,$hasta,$paginaActual,$registros,$inicio);
     
         if ($result) {
             if ($result->num_rows > 0) {
@@ -76,6 +80,19 @@ function doc()
         $recientes = null;
     }
 
+    $result = $model->numPages();
+    if($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $totalPaginas = ceil($row['total'] / $registros);
+            $values = array(
+                "pag" => $totalPaginas,
+                "registros" => $registros,
+                "total" => $row['total']
+            );
+            array_push($paginas, $values);
+        }
+    }
+    $_SESSION['paginas'] = $paginas;
     $_SESSION['documentos'] = $documentos;
     $_SESSION['recientes'] = $recientes;
 }

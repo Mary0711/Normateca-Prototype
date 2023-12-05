@@ -106,7 +106,7 @@ doc();
                     <?php
                       foreach ($_SESSION['recientes'] as $rec) {
                         echo '<tr>';
-                        echo '<li><a href="'.$rec['path'].'">'.$rec['cuerpo'].'-'.$rec['fiscal'].'-'.$rec['number'].'</a> - '.$rec['title'].'</li>';
+                        echo '<li><a href="'.$rec['path'].'" target="_blank">'.$rec['cuerpo'].' - '.$rec['number'].' - '.$rec['fiscal'].'</a> - '.$rec['title'].'</li>';
                         echo '</tr>';
                         
                       }
@@ -117,12 +117,28 @@ doc();
      
                <div class="results">
                  <label for="records">Records:</label>
-                 <select id="records" name="records">
-                   <option value="option1">10</option>
-                   <option value="option2">25</option>
-                   <option value="option3">50</option>
-                   <option value="option4">100</option>
-                 </select>
+                 <form id="myForm" method="post" action="search.php">
+                    <select id="records" name="records" onchange="updateRecords()">
+                        <option value=""></option>
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
+                    <input type="hidden" id="selectedRecords" name="selectedRecords" value="10">
+                  </form>
+
+                  <script>
+                    function updateRecords() {
+                        // Obtén el valor seleccionado
+                        var selectedValue = document.getElementById("records").value;
+
+                        // Actualiza el valor del campo oculto
+                        document.getElementById("selectedRecords").value = selectedValue;
+
+                        // Envía el formulario automáticamente
+                        document.getElementById("myForm").submit();
+                    }
+                    </script>
      
                   <table>
                     <thead>
@@ -160,25 +176,25 @@ doc();
                       echo '<td></td>';
                   } elseif ($doc['certi_derr'] != '' && $doc['certi_enm'] != '' && $doc['derrogadopor_cert'] != '') {
                       echo '<td>';
-                      echo '<p>Derroga a</p> <a href="' . $doc['doc_path'] . '">' . $doc['certi_derr'] . ' - ' . $doc['fiscal_derr'] . '</a><br>';
-                      echo '<p>Enmienda a</p> <a href="' . $doc['doc_path_enm'] . '">' . $doc['certi_enm'] . ' - ' . $doc['fiscal_enm'] . '</a>';
-                      echo '<p>Enmendado por</p> <a href="' . $doc['derrogadopor_path'] . '">' . $doc['derrogadopor_cert'] . ' - ' . $doc['derrogadopor_fiscal'] . '</a>';
+                      echo '<p>Derroga a</p> <a href="' . $doc['doc_path'] . '"target="_blank">' . $doc['certi_derr'] . ' - ' . $doc['fiscal_derr'] . '</a><br>';
+                      echo '<p>Enmienda a</p> <a href="' . $doc['doc_path_enm'] . '"target="_blank">' . $doc['certi_enm'] . ' - ' . $doc['fiscal_enm'] . '</a>';
+                      echo '<p>Enmendado por</p> <a href="' . $doc['derrogadopor_path'] . '"target="_blank">' . $doc['derrogadopor_cert'] . ' - ' . $doc['derrogadopor_fiscal'] . '</a>';
                       echo '</td>';
                   } elseif ($doc['certi_derr'] != '') {
                       echo '<td>';
-                      echo '<p>Derroga a</p> <a href="' . $doc['doc_path'] . '">' . $doc['certi_derr'] . ' - ' . $doc['fiscal_derr'] . '</a>';
+                      echo '<p>Derroga a</p> <a href="' . $doc['doc_path'] . '"target="_blank">' . $doc['certi_derr'] . ' - ' . $doc['fiscal_derr'] . '</a>';
                       echo '</td>';
                   } elseif ($doc['certi_enm'] != '') {
                       echo '<td>';
-                      echo '<p>Enmienda a</p> <a href="' . $doc['doc_path_enm'] . '">' . $doc['certi_enm'] . ' - ' . $doc['fiscal_enm'] . '</a>';
+                      echo '<p>Enmienda a</p> <a href="' . $doc['doc_path_enm'] . '"target="_blank">' . $doc['certi_enm'] . ' - ' . $doc['fiscal_enm'] . '</a>';
                       echo '</td>';
                   } elseif ($doc['derrogadopor_cert'] != '') {
                       echo '<td>';
-                      echo '<p>Enmendado por</p> <a href="' . $doc['derrogadopor_path'] . '">' . $doc['derrogadopor_cert'] . ' - ' . $doc['derrogadopor_fiscal'] . '</a>';
+                      echo '<p>Enmendado por</p> <a href="' . $doc['derrogadopor_path'] . '"target="_blank">' . $doc['derrogadopor_cert'] . ' - ' . $doc['derrogadopor_fiscal'] . '</a>';
                       echo '</td>';
                   }
                   
-                  echo '<td> <a href="' . $doc['doc_path'] . '">PDF</a></td>';
+                  echo '<td> <a href="' . $doc['doc_path'] . '"target="_blank">PDF</a></td>';
                   echo '</tr>';
                   
                     }
@@ -189,19 +205,38 @@ doc();
                     </tbody>
                   </table>
 
-                 <div class="table-aditional">
-                   <p>Mostrando 1 a 10 de 126 récords</p>
-                   <div class="pagination">
-                     <a href="#">&laquo;</a>
-                     <a href="#">1</a>
-                     <a class="active" href="#">2</a>
-                     <a href="#">3</a>
-                     <a href="#">4</a>
-                     <a href="#">5</a>
-                     <a href="#">6</a>
-                     <a href="#">&raquo;</a>
-                   </div>
-                 </div>
+                  <?php
+                    if (isset($_SESSION['paginas'])) {
+                        $paginas = $_SESSION['paginas'];
+                        foreach ($paginas as $pagina) {
+                            $totalPaginas = $pagina['pag'];
+                            $registros = $pagina['registros'];
+                            $total = $pagina['total'];
+                            $current_page = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+                            $first = ($current_page - 1) * $registros + 1;
+                            $last = min($current_page * $registros, $total);
+
+                            ?>
+                            <div class="table-aditional">
+                                <p>Mostrando <?php echo $first; ?> a <?php echo $last; ?> de <?php echo $total; ?> récords</p>
+                                <div class="pagination">
+                                    <a href="?pagina=1">&laquo;</a>
+
+                                    <?php
+                                    for ($i = 1; $i <= $totalPaginas; $i++) {
+                                        $class = ($i == $current_page) ? 'active' : '';
+                                        echo "<a href='?pagina=$i' class='$class'>$i</a> ";
+                                    }
+
+                                    echo "<a href='?pagina=$totalPaginas'>&raquo;</a>";
+                                    ?>
+
+                                </div>
+                            </div>
+                            <?php
+                        }
+                    }
+                    ?>
           </div>
         </div>
       </section>
