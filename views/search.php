@@ -69,7 +69,7 @@ doc();
                   }
                   ?>
               </div>
-
+<!-- 
               <label>Relacion</label>
               <div class="filters">
                 <input type="checkbox" id="enmendadopor" name="enmendadopor" />
@@ -80,7 +80,7 @@ doc();
                 <label for="enmiendaa">Enmienda a</label><br />
                 <input type="checkbox" id="derogaa" name="derogaa" />
                 <label for="derogaa">Derroga a</label><br />
-              </div>
+              </div> -->
 
               <label for="Date_created">Fecha</label>
               <input type="date" id="Date_created" name="Date_created" placeholder="Buscar documento..." />
@@ -119,10 +119,9 @@ doc();
                  <label for="records">Records:</label>
                  <form id="myForm" method="post" action="search.php">
                     <select id="records" name="records" onchange="updateRecords()">
-                    <option value=""></option>
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
+                      <option value="10" <?php if ($_SESSION['registros'] == 10) echo 'selected'; ?>>10</option>
+                      <option value="25" <?php if ($_SESSION['registros'] == 25) echo 'selected'; ?>>25</option>
+                      <option value="50" <?php if ($_SESSION['registros'] == 50) echo 'selected'; ?>>50</option>
                         
                     </select>
                     <input type="hidden" id="selectedRecords" name="selectedRecords" value="10">
@@ -200,7 +199,7 @@ doc();
                   echo '<p>Enmendado por</p> <a href="' . $doc['enmiendapor_path'] . '"target="_blank">' . $doc['enmiendapor_cert'] . ' - ' . $doc['enmiendapor_fiscal'] . '</a>';
                   echo '</td>';
               } 
-                  echo '<td> <a href="' . $doc['doc_path'] . '"target="_blank">PDF</a></td>';
+                  echo '<td> <a href="' . $doc['path'] . '"target="_blank">PDF</a></td>';
                   echo '</tr>';
                   
                     }

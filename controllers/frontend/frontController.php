@@ -1,5 +1,39 @@
 <?php
 // session_start();
+// inicializar las variables
+if (!isset($_SESSION['certificationNumber'])) {
+    $_SESSION['certificationNumber'] = '';
+}
+if (!isset($_SESSION['fiscalYear'])) {
+    $_SESSION['fiscalYear'] = '';
+}
+if (!isset($_SESSION['keyword'])) {
+    $_SESSION['keyword'] = '';
+}
+if (!isset($_SESSION['documentTitle'])) {
+    $_SESSION['documentTitle'] = '';
+}
+if (!isset($_SESSION['categoria'])) {
+    $_SESSION['categoria'] = '';
+}
+if (!isset($_SESSION['cuerpo'])) {
+    $_SESSION['cuerpo'] = '';
+}
+if (!isset($_SESSION['dateCreated'])) {
+    $_SESSION['dateCreated'] = '';
+}
+if (!isset($_SESSION['desde'])) {
+    $_SESSION['desde'] = '';
+}
+if (!isset($_SESSION['hasta'])) {
+    $_SESSION['hasta'] = '';
+}
+if (!isset($_SESSION['paginaActual'])) {
+    $_SESSION['paginaActual'] = '1';
+}
+if (!isset($_SESSION['registros'])) {
+    $_SESSION['registros'] = '10';
+}
 
 include_once("../models/front/frontModel.php");
 
@@ -11,21 +45,8 @@ function doc()
     $documentos = [];
     $recientes = [];
     $paginas =[];
-    $_SESSION['certificationNumber'] = '';
-    $_SESSION['fiscalYear'] = '';
-    $_SESSION['keyword'] = '';
-    $_SESSION['documentTitle'] = '';
-    $_SESSION['categoria'] = '';
-    $_SESSION['cuerpo'] = '';
-    $_SESSION['dateCreated'] = '';
-    $_SESSION['desde'] = '';
-    $_SESSION['hasta'] = '';
-    $_SESSION['paginaActual'] = '1';
-    $_SESSION['registros'] = '10';
-
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['limpiar'])) {
-        // Borra las variables de sesión
         $_SESSION['certificationNumber'] = '';
         $_SESSION['fiscalYear'] = '';
         $_SESSION['keyword'] = '';
@@ -42,43 +63,33 @@ function doc()
     if (isset($_POST['certification_number']) && $_POST['certification_number'] !== '') {
     $_SESSION['certificationNumber'] = $_POST['certification_number'];
     }
-
     if (isset($_POST['Fiscal_year']) && $_POST['Fiscal_year'] !== '') {
         $_SESSION['fiscalYear'] = $_POST['Fiscal_year'];
     }
-
     if (isset($_POST['Keywordnames']) && $_POST['Keywordnames'] !== '') {
         $_SESSION['keyword'] = $_POST['Keywordnames'];
     }
-
     if (isset($_POST['Document_title']) && $_POST['Document_title'] !== '') {
         $_SESSION['documentTitle'] = $_POST['Document_title'];
     }
-
     if (isset($_POST['categoria']) && $_POST['categoria'] !== '') {
         $_SESSION['categoria'] = $_POST['categoria'];
     }
-
     if (isset($_POST['cuerpo']) && $_POST['cuerpo'] !== '') {
         $_SESSION['cuerpo'] = $_POST['cuerpo'];
     }
-
     if (isset($_POST['Date_created']) && $_POST['Date_created'] !== '') {
         $_SESSION['dateCreated'] = $_POST['Date_created'];
     }
-
     if (isset($_POST['desde']) && $_POST['desde'] !== '') {
         $_SESSION['desde'] = $_POST['desde'];
     }
-
     if (isset($_POST['hasta']) && $_POST['hasta'] !== '') {
         $_SESSION['hasta'] = $_POST['hasta'];
     }
-
     if (isset($_GET['pagina'])) {
         $_SESSION['paginaActual'] = (int)$_GET['pagina'];
     }
-
     if (isset($_POST['selectedRecords'])) {
         $_SESSION['registros'] = (int)$_POST['selectedRecords'];
     }
@@ -168,6 +179,7 @@ function doc()
             array_push($paginas, $values);
         }
     }
+    $_SESSION['registros'] = $registros;
     $_SESSION['paginas'] = $paginas;
     $_SESSION['documentos'] = $documentos;
     $_SESSION['recientes'] = $recientes;

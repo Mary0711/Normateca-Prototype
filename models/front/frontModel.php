@@ -59,8 +59,6 @@ class frontModel extends DB
     WHERE enmienda.Target_id = documentos.Document_id
     LIMIT 1
     ) AS enmp_id,
-  
-        
         (
         SELECT Certification_number
         FROM derroga NATURAL JOIN documentos 
@@ -103,8 +101,6 @@ class frontModel extends DB
         LIMIT 1
         )AS enmiendapor_fiscal
 
-        
-
         FROM documentos
         LEFT JOIN (
             SELECT Document_id, GROUP_CONCAT(DISTINCT target_id SEPARATOR ',') AS Derroga_target_id
@@ -117,6 +113,7 @@ class frontModel extends DB
             GROUP BY Document_id
         ) enmienda ON documentos.Document_id = enmienda.Document_id
         WHERE 1=1";
+        //  ORDER BY documentos.Document_title DESC";
 
     
 
@@ -186,15 +183,6 @@ public function recientes(){
 
 public function numPages(){
     $query = "SELECT COUNT(*) as total FROM documentos";
-    return $this->run_query($query);
-}
-
-
-public function derroga($target){
-    $query ="SELECT distinct documentos.Certification_number AS Certification_number, 
-    documentos.Fiscal_year AS Fiscal_year,documentos.Document_path AS Doc_Path
-    FROM documentos
-    WHERE documentos.Document_id = '$target'";
     return $this->run_query($query);
 }
 
