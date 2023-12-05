@@ -21,11 +21,8 @@ function doc()
         $date_created = isset($_POST['Date_created']) ? $_POST['Date_created'] : '';
         $desde = isset($_POST['desde']) ? $_POST['desde'] : '';
         $hasta = isset($_POST['hasta']) ? $_POST['hasta'] : '';
-        // $paginaActual = isset($_POST['paginaActual']) ? $_POST['paginaActual'] : '';
-        // $registrosPorPagina = isset($_POST['registrosPorPagina']) ? $_POST['registrosPorPagina'] : '';
         $paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-        // $paginaActual = 1;
-        $registros = 10;
+        $registros = isset($_POST['selectedRecords']) ? (int)$_POST['selectedRecords'] : 10;
         $inicio = ($paginaActual - 1) * $registros;
 
         $result = $model->filtrarDocs($certificationNumber, $fiscalYear, $keyword, $documentTitle,$cuerpo,$categoria,$date_created,$desde,$hasta,$paginaActual,$registros,$inicio);

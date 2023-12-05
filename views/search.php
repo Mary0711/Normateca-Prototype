@@ -117,12 +117,28 @@ doc();
      
                <div class="results">
                  <label for="records">Records:</label>
-                 <select id="records" name="records">
-                   <option value="option1">10</option>
-                   <option value="option2">25</option>
-                   <option value="option3">50</option>
-                   <option value="option4">100</option>
-                 </select>
+                 <form id="myForm" method="post" action="search.php">
+                    <select id="records" name="records" onchange="updateRecords()">
+                        <option value=""></option>
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
+                    <input type="hidden" id="selectedRecords" name="selectedRecords" value="10">
+                  </form>
+
+                  <script>
+                    function updateRecords() {
+                        // Obtén el valor seleccionado
+                        var selectedValue = document.getElementById("records").value;
+
+                        // Actualiza el valor del campo oculto
+                        document.getElementById("selectedRecords").value = selectedValue;
+
+                        // Envía el formulario automáticamente
+                        document.getElementById("myForm").submit();
+                    }
+                    </script>
      
                   <table>
                     <thead>
