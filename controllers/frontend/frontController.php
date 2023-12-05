@@ -43,8 +43,11 @@ function doc()
 
                         "certi_enm" => $row['enm_cert'],
                         "fiscal_enm" => $row['enm_fisc'],
-                        "doc_path_enm" => $row['enm_doc_path']
+                        "doc_path_enm" => $row['enm_doc_path'],
                         
+                        "derrogadopor_cert" => $row['derrogadopor_cert'],
+                        "derrogadopor_path" => $row['derrogadopor_path'],
+                        "derrogadopor_fiscal" => $row['derrogadopor_fiscal']
                     );
 
                     array_push($documentos, $values);
