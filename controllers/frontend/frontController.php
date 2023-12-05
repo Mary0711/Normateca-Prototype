@@ -11,18 +11,78 @@ function doc()
     $documentos = [];
     $recientes = [];
     $paginas =[];
-        $certificationNumber = isset($_POST['certification_number']) ? $_POST['certification_number'] : '';
-        $fiscalYear = isset($_POST['Fiscal_year']) ? $_POST['Fiscal_year'] : '';
-        $keyword = isset($_POST['Keywordnames']) ? $_POST['Keywordnames'] : '';
-        $documentTitle = isset($_POST['Document_title']) ? $_POST['Document_title'] : '';
-        $categoria = isset($_POST['categoria']) ? $_POST['categoria'] : '';
-        $cuerpo = isset($_POST['cuerpo']) ? $_POST['cuerpo'] : '';
-        $date_created = isset($_POST['Date_created']) ? $_POST['Date_created'] : '';
-        $date_created = isset($_POST['Date_created']) ? $_POST['Date_created'] : '';
-        $desde = isset($_POST['desde']) ? $_POST['desde'] : '';
-        $hasta = isset($_POST['hasta']) ? $_POST['hasta'] : '';
-        $paginaActual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-        $registros = isset($_POST['selectedRecords']) ? (int)$_POST['selectedRecords'] : 10;
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['limpiar'])) {
+        // Borra las variables de sesión
+        $_SESSION['certificationNumber'] = '';
+        $_SESSION['fiscalYear'] = '';
+        $_SESSION['keyword'] = '';
+        $_SESSION['documentTitle'] = '';
+        $_SESSION['categoria'] = '';
+        $_SESSION['cuerpo'] = '';
+        $_SESSION['dateCreated'] = '';
+        $_SESSION['desde'] = '';
+        $_SESSION['hasta'] = '';
+        $_SESSION['paginaActual'] = '1';
+        $_SESSION['registros'] = '10';
+    }
+
+    if (isset($_POST['certification_number']) && $_POST['certification_number'] !== '') {
+    $_SESSION['certificationNumber'] = $_POST['certification_number'];
+    }
+
+    if (isset($_POST['Fiscal_year']) && $_POST['Fiscal_year'] !== '') {
+        $_SESSION['fiscalYear'] = $_POST['Fiscal_year'];
+    }
+
+    if (isset($_POST['Keywordnames']) && $_POST['Keywordnames'] !== '') {
+        $_SESSION['keyword'] = $_POST['Keywordnames'];
+    }
+
+    if (isset($_POST['Document_title']) && $_POST['Document_title'] !== '') {
+        $_SESSION['documentTitle'] = $_POST['Document_title'];
+    }
+
+    if (isset($_POST['categoria']) && $_POST['categoria'] !== '') {
+        $_SESSION['categoria'] = $_POST['categoria'];
+    }
+
+    if (isset($_POST['cuerpo']) && $_POST['cuerpo'] !== '') {
+        $_SESSION['cuerpo'] = $_POST['cuerpo'];
+    }
+
+    if (isset($_POST['Date_created']) && $_POST['Date_created'] !== '') {
+        $_SESSION['dateCreated'] = $_POST['Date_created'];
+    }
+
+    if (isset($_POST['desde']) && $_POST['desde'] !== '') {
+        $_SESSION['desde'] = $_POST['desde'];
+    }
+
+    if (isset($_POST['hasta']) && $_POST['hasta'] !== '') {
+        $_SESSION['hasta'] = $_POST['hasta'];
+    }
+
+    if (isset($_GET['pagina'])) {
+        $_SESSION['paginaActual'] = (int)$_GET['pagina'];
+    }
+
+    if (isset($_POST['selectedRecords'])) {
+        $_SESSION['registros'] = (int)$_POST['selectedRecords'];
+    }
+        
+        // Opcional: puedes también definir variables adicionales para simplificar el código
+        $certificationNumber = $_SESSION['certificationNumber'];
+        $fiscalYear = $_SESSION['fiscalYear'];
+        $keyword = $_SESSION['keyword'];
+        $documentTitle = $_SESSION['documentTitle'];
+        $categoria = $_SESSION['categoria'];
+        $cuerpo = $_SESSION['cuerpo'];
+        $date_created = $_SESSION['dateCreated'];
+        $desde = $_SESSION['desde'];
+        $hasta = $_SESSION['hasta'];
+        $paginaActual = $_SESSION['paginaActual'];
+        $registros = $_SESSION['registros'];
         $inicio = ($paginaActual - 1) * $registros;
 
         $result = $model->filtrarDocs($certificationNumber, $fiscalYear, $keyword, $documentTitle,$cuerpo,$categoria,$date_created,$desde,$hasta,$paginaActual,$registros,$inicio);
