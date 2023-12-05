@@ -2,6 +2,8 @@
 include_once("../controllers/backend/adminController.php");
 setData();
 
+
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,9 +23,19 @@ setData();
             <h3><i> Universidad de Puerto Rico en Arecibo </i></h3>
         </div>
 
-        <div class="user">
-            <h3>Nombre de usuario</h3><button class="btn">Log Out</button>
-        </div>
+        <?php
+        if(isset($_SESSION["id"]) && isset($_SESSION["Email"])) {
+            echo '<div class="user">
+                      <h3>' . $_SESSION['Name'] . ' ' . $_SESSION['Last_name'] . '</h3><button class="btn"> ' 
+                      /*<a href="../controllers/backend/loginController.php?logout">Log Out</a>*/ .' Log Out </button>
+                  </div>';
+        }else{
+          header('Location: login.php');
+          exit();
+        }
+        ?>
+
+
     </header>
 
     <main>
