@@ -11,6 +11,18 @@ function doc()
     $documentos = [];
     $recientes = [];
     $paginas =[];
+    $_SESSION['certificationNumber'] = '';
+    $_SESSION['fiscalYear'] = '';
+    $_SESSION['keyword'] = '';
+    $_SESSION['documentTitle'] = '';
+    $_SESSION['categoria'] = '';
+    $_SESSION['cuerpo'] = '';
+    $_SESSION['dateCreated'] = '';
+    $_SESSION['desde'] = '';
+    $_SESSION['hasta'] = '';
+    $_SESSION['paginaActual'] = '1';
+    $_SESSION['registros'] = '10';
+
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['limpiar'])) {
         // Borra las variables de sesión
@@ -113,12 +125,9 @@ function doc()
                         "derrogadopor_path" => $row['derrogadopor_path'],
                         "derrogadopor_fiscal" => $row['derrogadopor_fiscal'],
 
-                        // "enmiendapor_cert" => $row['enmiendapor_cert'],
-                        // "enmiendapor_path" => $row['enmiendapor_path'],
-                        // "enmiendapor_fiscal" => $row['enmiendapor_fiscal']
-
-
-
+                        "enmiendapor_cert" => $row['enmiendapor_cert'],
+                        "enmiendapor_path" => $row['enmiendapor_path'],
+                        "enmiendapor_fiscal" => $row['enmiendapor_fiscal']
                     );
 
                     array_push($documentos, $values);

@@ -58,9 +58,9 @@ class frontModel extends DB
     FROM enmienda
     WHERE enmienda.Target_id = documentos.Document_id
     LIMIT 1
-) AS enmp_id,
+    ) AS enmp_id,
   
-        --derrogado por 
+        
         (
         SELECT Certification_number
         FROM derroga NATURAL JOIN documentos 
@@ -80,14 +80,30 @@ class frontModel extends DB
         FROM derroga NATURAL JOIN documentos 
         WHERE derroga.Derroga_target_id = documentos.Document_id
         LIMIT 1
-        )AS derrogadopor_fiscal
+        )AS derrogadopor_fiscal,
+
+        (
+        SELECT Certification_number
+        FROM enmienda NATURAL JOIN documentos 
+        WHERE enmienda.enmienda_target_id = documentos.Document_id
+        LIMIT 1
+        )AS enmiendapor_cert,
+
+        (
+        SELECT Document_path
+        FROM enmienda NATURAL JOIN documentos 
+        WHERE enmienda.enmienda_target_id = documentos.Document_id
+        LIMIT 1
+        )AS enmiendapor_path,
+
+        (
+        SELECT Fiscal_year
+        FROM enmienda NATURAL JOIN documentos 
+        WHERE enmienda.enmienda_target_id = documentos.Document_id
+        LIMIT 1
+        )AS enmiendapor_fiscal
 
         
-
-
-
-
-
 
         FROM documentos
         LEFT JOIN (
@@ -141,7 +157,6 @@ class frontModel extends DB
         $query .= " AND (" . $cuerpoQuery . ")";
     }
 
-    
     if (!empty($categoria)) {
         $categoriaConditions = [];
     
@@ -157,8 +172,6 @@ class frontModel extends DB
     if ($inicio != '' AND $registros != '') {
         $query .= " LIMIT $inicio, $registros";
     }
-
-
 
     return $this->run_query($query);
 }
