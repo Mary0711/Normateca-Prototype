@@ -93,11 +93,6 @@ WHERE 1=1";
         $query .= " AND documentos.Date_created BETWEEN '$desde' AND '$hasta'";
     }
 
-    if ($inicio != '' AND $registros != '') {
-        $query .= " LIMIT $inicio, $registros";
-    }
-
-
     if (!empty($cuerpo)) {
         $cuerpoConditions = [];
     
@@ -122,6 +117,10 @@ WHERE 1=1";
         $cateQuery = implode(" OR ", $categoriaConditions);
     
         $query .= " AND (" . $cateQuery . ")";
+    }
+
+    if ($inicio != '' AND $registros != '') {
+        $query .= " LIMIT $inicio, $registros";
     }
 
 

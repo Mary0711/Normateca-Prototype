@@ -14,7 +14,7 @@ function setData()
             $values = array(
                 "cat_abbr" => $row['Category_abbr'],
                 "cat_name" => $row['Category_name'],
-                "cat_corp" => $row['Cuerpo_abbr']
+                "cat_corp" => $row['Category_abbr']
             );
 
             array_push($categorias, $values);

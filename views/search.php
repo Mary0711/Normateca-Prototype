@@ -106,7 +106,7 @@ doc();
                     <?php
                       foreach ($_SESSION['recientes'] as $rec) {
                         echo '<tr>';
-                        echo '<li><a href="'.$rec['path'].'">'.$rec['cuerpo'].'-'.$rec['fiscal'].'-'.$rec['number'].'</a> - '.$rec['title'].'</li>';
+                        echo '<li><a href="'.$rec['path'].'" target="_blank">'.$rec['cuerpo'].' - '.$rec['number'].' - '.$rec['fiscal'].'</a> - '.$rec['title'].'</li>';
                         echo '</tr>';
                         
                       }
@@ -165,16 +165,17 @@ doc();
                       echo '</td>';
                   } elseif ($doc['certi_derr'] != '') {
                       echo '<td>';
-                      echo '<p>Derrogado por</p>' . ' <a href="' . $doc['doc_path'] . '">' . $doc['certi_derr'] . ' - ' . $doc['fiscal_derr'] . '</a>';
+                      echo '<p>Derrogado por</p>' . ' <a href="' . $doc['doc_path'] . '" target="_blank">' . $doc['certi_derr'] . ' - ' . $doc['fiscal_derr'] . '</a>';
                       echo '</td>';
                   } elseif ($doc['certi_enm'] != '') {
                       echo '<td>';
-                      echo '<p>Enmendado por</p>' . ' <a href="' . $doc['doc_path_enm'] . '">' . $doc['certi_enm'] . ' - ' . $doc['fiscal_enm'] . '</a>';
+                      echo '<p>Enmendado por</p>' . ' <a href="' . $doc['doc_path_enm'] . '" target="_blank">' . $doc['certi_enm'] . ' - ' . $doc['fiscal_enm'] . '</a>';
+
                       echo '</td>';
                   }
                   
                       
-                      echo '<td>'  .'<a href="' . $doc['doc_path'] . '">PDF</a></td>';
+                      echo '<td>'  .'<a href="' . $doc['path'] . '"target="_blank">PDF</a></td>';
                       echo '</tr>';
                     }
 
