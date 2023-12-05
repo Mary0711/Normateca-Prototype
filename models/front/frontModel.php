@@ -52,20 +52,53 @@ class frontModel extends DB
         FROM documentos 
         WHERE documentos.Document_id = enmienda.Enmienda_target_id
         LIMIT 1
-    ) AS enm_doc_path
-
-FROM documentos
-LEFT JOIN (
-    SELECT Document_id, GROUP_CONCAT(DISTINCT target_id SEPARATOR ',') AS Derroga_target_id
-    FROM derroga
-    GROUP BY Document_id
-) derroga ON documentos.Document_id = derroga.Document_id
-LEFT JOIN (
-    SELECT Document_id, GROUP_CONCAT(DISTINCT target_id SEPARATOR ',') AS Enmienda_target_id
+    ) AS enm_doc_path,
+    (
+    SELECT Document_id
     FROM enmienda
-    GROUP BY Document_id
-) enmienda ON documentos.Document_id = enmienda.Document_id
-WHERE 1=1";
+    WHERE enmienda.Target_id = documentos.Document_id
+    LIMIT 1
+) AS enmp_id,
+  
+    --     --derrogado por 
+        (
+        SELECT Certification_number
+        FROM derroga NATURAL JOIN documentos 
+        WHERE derroga.Derroga_target_id = documentos.Document_id
+        LIMIT 1
+        )AS derrogadopor_cert,
+
+        (
+        SELECT Document_path
+        FROM derroga NATURAL JOIN documentos 
+        WHERE derroga.Derroga_target_id = documentos.Document_id
+        LIMIT 1
+        )AS derrogadopor_path,
+
+        (
+        SELECT Fiscal_year
+        FROM derroga NATURAL JOIN documentos 
+        WHERE derroga.Derroga_target_id = documentos.Document_id
+        LIMIT 1
+        )AS derrogadopor_fiscal
+
+
+
+
+
+
+        FROM documentos
+        LEFT JOIN (
+            SELECT Document_id, GROUP_CONCAT(DISTINCT target_id SEPARATOR ',') AS Derroga_target_id
+            FROM derroga
+            GROUP BY Document_id
+        ) derroga ON documentos.Document_id = derroga.Document_id
+        LEFT JOIN (
+            SELECT Document_id, GROUP_CONCAT(DISTINCT target_id SEPARATOR ',') AS Enmienda_target_id
+            FROM enmienda
+            GROUP BY Document_id
+        ) enmienda ON documentos.Document_id = enmienda.Document_id
+        WHERE 1=1";
 
     
 

@@ -173,27 +173,31 @@ doc();
                     //   echo '<td><p>Derrogados</p>' . ' <a href="' . $doc['doc_path'] . '">' . $doc['certi_derr'] . ' - ' . $doc['fiscal_derr'] . '</a></td>';
                     // }
                     
-                    if ($doc['certi_derr'] == '' && $doc['certi_enm'] == '') {
+                    if ($doc['certi_derr'] == '' && $doc['certi_enm'] == '' && $doc['derrogadopor_cert'] == '') {
                       echo '<td></td>';
-                  } elseif ($doc['certi_derr'] != '' && $doc['certi_enm'] != '') {
+                  } elseif ($doc['certi_derr'] != '' && $doc['certi_enm'] != '' && $doc['derrogadopor_cert'] != '') {
                       echo '<td>';
-                      echo '<p>Derrogado por</p>' . ' <a href="' . $doc['doc_path'] . '">' . $doc['certi_derr'] . ' - ' . $doc['fiscal_derr'] . '</a><br>';
-                      echo '<p>Enmendado por</p>' . ' <a href="' . $doc['doc_path_enm'] . '">' . $doc['certi_enm'] . ' - ' . $doc['fiscal_enm'] . '</a>';
+                      echo '<p>Derroga a</p> <a href="' . $doc['doc_path'] . '"target="_blank">' . $doc['certi_derr'] . ' - ' . $doc['fiscal_derr'] . '</a><br>';
+                      echo '<p>Enmienda a</p> <a href="' . $doc['doc_path_enm'] . '"target="_blank">' . $doc['certi_enm'] . ' - ' . $doc['fiscal_enm'] . '</a>';
+                      echo '<p>Enmendado por</p> <a href="' . $doc['derrogadopor_path'] . '"target="_blank">' . $doc['derrogadopor_cert'] . ' - ' . $doc['derrogadopor_fiscal'] . '</a>';
                       echo '</td>';
                   } elseif ($doc['certi_derr'] != '') {
                       echo '<td>';
-                      echo '<p>Derrogado por</p>' . ' <a href="' . $doc['doc_path'] . '" target="_blank">' . $doc['certi_derr'] . ' - ' . $doc['fiscal_derr'] . '</a>';
+                      echo '<p>Derroga a</p> <a href="' . $doc['doc_path'] . '"target="_blank">' . $doc['certi_derr'] . ' - ' . $doc['fiscal_derr'] . '</a>';
                       echo '</td>';
                   } elseif ($doc['certi_enm'] != '') {
                       echo '<td>';
-                      echo '<p>Enmendado por</p>' . ' <a href="' . $doc['doc_path_enm'] . '" target="_blank">' . $doc['certi_enm'] . ' - ' . $doc['fiscal_enm'] . '</a>';
-
+                      echo '<p>Enmienda a</p> <a href="' . $doc['doc_path_enm'] . '"target="_blank">' . $doc['certi_enm'] . ' - ' . $doc['fiscal_enm'] . '</a>';
+                      echo '</td>';
+                  } elseif ($doc['derrogadopor_cert'] != '') {
+                      echo '<td>';
+                      echo '<p>Enmendado por</p> <a href="' . $doc['derrogadopor_path'] . '"target="_blank">' . $doc['derrogadopor_cert'] . ' - ' . $doc['derrogadopor_fiscal'] . '</a>';
                       echo '</td>';
                   }
                   
-                      
-                      echo '<td>'  .'<a href="' . $doc['path'] . '"target="_blank">PDF</a></td>';
-                      echo '</tr>';
+                  echo '<td> <a href="' . $doc['doc_path'] . '"target="_blank">PDF</a></td>';
+                  echo '</tr>';
+                  
                     }
 
                       }
