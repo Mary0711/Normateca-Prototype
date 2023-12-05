@@ -92,7 +92,7 @@ doc();
                 <br /><label for="hasta">Hasta</label>
                 <input type="date" id="hasta" name="hasta" placeholder="Buscar documento..." />
               </div>
-            <button type="submitt">Limpiar</button>
+            <button type="submitt" name="limpiar">Limpiar</button>
             <button type="submit">Buscar</button>
             </form>
           </div>
@@ -119,10 +119,11 @@ doc();
                  <label for="records">Records:</label>
                  <form id="myForm" method="post" action="search.php">
                     <select id="records" name="records" onchange="updateRecords()">
-                        <option value=""></option>
+                    <option value=""></option>
                         <option value="10">10</option>
                         <option value="25">25</option>
                         <option value="50">50</option>
+                        
                     </select>
                     <input type="hidden" id="selectedRecords" name="selectedRecords" value="10">
                   </form>
