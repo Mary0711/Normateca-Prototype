@@ -60,7 +60,7 @@ class frontModel extends DB
     LIMIT 1
 ) AS enmp_id,
   
-    --     --derrogado por 
+        --derrogado por 
         (
         SELECT Certification_number
         FROM derroga NATURAL JOIN documentos 
@@ -81,6 +81,8 @@ class frontModel extends DB
         WHERE derroga.Derroga_target_id = documentos.Document_id
         LIMIT 1
         )AS derrogadopor_fiscal
+
+        
 
 
 

@@ -51,7 +51,14 @@ function doc()
                         
                         "derrogadopor_cert" => $row['derrogadopor_cert'],
                         "derrogadopor_path" => $row['derrogadopor_path'],
-                        "derrogadopor_fiscal" => $row['derrogadopor_fiscal']
+                        "derrogadopor_fiscal" => $row['derrogadopor_fiscal'],
+
+                        // "enmiendapor_cert" => $row['enmiendapor_cert'],
+                        // "enmiendapor_path" => $row['enmiendapor_path'],
+                        // "enmiendapor_fiscal" => $row['enmiendapor_fiscal']
+
+
+
                     );
 
                     array_push($documentos, $values);
