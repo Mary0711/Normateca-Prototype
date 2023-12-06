@@ -50,7 +50,7 @@ if (!isset($_SESSION["id"])) {
         <div id="subir" class="subir">
           <form method="POST" action="admin.php" enctype="multipart/form-data">
             <div class="file">
-              <label for="pdf"> Subir Archivo: </label><input type="file" id="pdf" name="file" value="" required accept=".pdf" />
+              <label for="pdf"> Subir Archivo: </label><input type="file" id="pdf" name="pdf" value="" required />
             </div>
             <div class="box">
               <div class="innerBox">
@@ -351,7 +351,9 @@ if (!isset($_SESSION["id"])) {
   </main>
 
   <footer>
-    <h4>Visita nuestro sitio web:<a href="#"> upra.edu</a></h4>
+
+    <h4><a href="../index.html" target="_blank">Volver a la pagina principal</a></h4>
+
   </footer>
 
   <script src="../assets/js/main.js"></script>
