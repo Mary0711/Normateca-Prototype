@@ -66,14 +66,14 @@ function setData()
     header("Location: ../../views/admin.php");
 }
 
-if (!isset($_SESSION['adminSet'])) {
+if (!isset($_SESSION['adminSet']) || isset($_GET['reload'])) {
     setData();
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (isset($_GET['type'])) {
-        if ($_GET['type'] == "upload" and isset($_POST['name'])) {
-            $target_dir = "documents/";
+    if (isset($_POST['type'])) {
+        if ($_POST['type'] == "upload" and isset($_POST['filename'])) {
+            $target_dir = '../../documents/';
             $target_file = $target_dir . basename($_FILES['file']['name']);
             $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             if ($file_type == "pdf") {
                 $values = array(
-                    "file_name" => $_POST['name'],
+                    "file_name" => $_POST['filename'],
                     "file_date" => $_POST['filedate'],
                     "file_desc" => $_POST['desc'],
                     "file_number" =>  $_POST['number'],
@@ -91,15 +91,38 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     "file_cat" => $_POST['cat'],
                     "file_lang" => $_POST['lang'],
                     "file_year" => $_POST['fiscalYear'],
-                    "file_corp" => $_POST['ccorp'],
+                    "file_corp" => $_POST['corp'],
                     "file_signature" => $_POST['signature'],
                     "file_path" => $target_file
                 );
+
+                $model = new AdminModel("localhost", "normateca", "root", "", "3306");
+                $model->start_connection();
+
+                $result = $model->checkFile($values['file_name']);
+
+                if ($result->num_rows == 0) {
+                    $model->InsertFile($values);
+                    $model->connection->close();
+
+                    if (move_uploaded_file($_FILES['file']['tmp_name'], $target_file)) {
+                        setData();
+                        header("Location: ../../views/admin.php?succes");
+                    } else {
+                        header("Location: ../../views/admin.php?error=path");
+                    }
+                } else {
+                    header("Location: ../../views/admin.php?error=file-exist");
+                }
             } else {
                 header("Location: ../../views/admin.php?error=type");
             }
         } else {
-            header("Location: ../../views/admin.php");
+            header("Location: ../../views/admin.php?");
         }
+    } else {
+        header("Location: ../../views/admin.php?");
     }
+} else {
+    header("Location: ../../views/admin.php?");
 }

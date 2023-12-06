@@ -5,6 +5,10 @@ if (!isset($_SESSION['adminSet'])) {
   header("Location: ../controllers/backend/adminController.php");
 }
 
+if (isset($_GET['succes']) || isset($_GET['reload'])) {
+  header("Location: ../controllers/backend/adminController.php?reload");
+}
+
 if (!isset($_SESSION["id"])) {
   header("Location: login.php?error= from admin");
 }
@@ -48,32 +52,33 @@ if (!isset($_SESSION["id"])) {
 
       <div class="tabs">
         <div id="subir" class="subir">
-          <form method="POST" action="admin.php" enctype="multipart/form-data">
+          <form method="POST" action="../controllers/backend/adminController.php" enctype="multipart/form-data">
+            <input type="hidden" value="upload" name="type">
             <div class="file">
-              <label for="pdf"> Subir Archivo: </label><input type="file" id="pdf" name="pdf" value="" required />
+              <label for="pdf"> Subir Archivo: </label><input type="file" id="pdf" name="file" value="" required accept=".pdf" />
             </div>
             <div class="box">
               <div class="innerBox">
                 <label for="filename"> Nombre: </label>
                 <input type="text" name="filename" id="filename" placeholder="nombre del archivo" />
 
-                <label for="fecha"> Fecha: </label><input type="date" id="fecha" />
+                <label for="fecha"> Fecha: </label><input type="date" name="filedate" id="fecha" />
 
                 <label for="decripcion"> Descripcion: </label>
-                <textarea type="text" id="descripcion" rows="5" maxlength="150" placeholder="decripcion del archivo. Breve oracion del tema."></textarea>
+                <textarea type="text" name="desc" id="descripcion" rows="5" maxlength="150" placeholder="decripcion del archivo. Breve oracion del tema."></textarea>
 
                 <label for="Numero_certificacion"> Numero_certificacion: </label>
-                <input type="text" id="Numero_certificacion" placeholder="Numero_certificacion" />
+                <input type="text" name="number" id="Numero_certificacion" placeholder="Numero_certificacion" />
 
                 <label for="estado"> Estado del Documento: </label>
-                <select id="estado" name="estado">
+                <select id="estado" name="state">
                   <option value="">Select</option>
                   <option value="activo">Activo</option>
                   <option value="inactivo">Inactivo</option>
                 </select>
 
                 <label for="categorias">Categoria del Documento:</label>
-                <select id="categorias" name="categorias">
+                <select id="categorias" name="cat">
                   <option disabled selected>Categorias</option>
                   <?php
                   if (count($_SESSION['cats']) > 0) {
@@ -89,7 +94,7 @@ if (!isset($_SESSION["id"])) {
 
               <div class="innerBox">
                 <label for="filename"> Lenguaje de Documento: </label>
-                <select id="lenguaje" name="lenguaje">
+                <select id="lenguaje" name="lang">
                   <option value="">Select</option>
                   <option value="esp">Español</option>
                   <option value="eng">Ingles</option>
@@ -97,7 +102,7 @@ if (!isset($_SESSION["id"])) {
                 </select>
 
                 <label for="filename"> Año Fiscal : </label>
-                <select id="añofiscal" name="añofiscal">
+                <select id="añofiscal" name="fiscalYear">
                   <option value="">Select</option>
                   <option value="2022-2023">2022-2023</option>
                   <option value="2023-2024">2023-2024</option>
@@ -105,7 +110,7 @@ if (!isset($_SESSION["id"])) {
                   <option value="2025-2026">2025-2026</option>
                 </select>
                 <label for="subcategorias">Cuerpo: </label>
-                <select id="subcategorias" name="subcategorias">
+                <select id="subcategorias" name="corp">
                   <option selected disabled>Select</option>
                   <?php
                   if (count($_SESSION['corps']) > 0) {
@@ -118,7 +123,7 @@ if (!isset($_SESSION["id"])) {
 
 
 
-                <label for="firma"> Firmado por: </label><input type="text" id="firma" />
+                <label for="firma"> Firmado por: </label><input type="text" name="signature" id="firma" />
               </div>
             </div>
 
@@ -137,17 +142,18 @@ if (!isset($_SESSION["id"])) {
                 <tr>
                   <th>Nombre</th>
                   <th>Fecha</th>
-                  <th>Enlazar</th>
+                  <th>Deroga</th>
+                  <th>Enmienda</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
                 if ($_SESSION['files'] != null) {
                   foreach ($_SESSION['files'] as $file) {
-                    print '<tr><td>' . $file['file_name'] . '</td><td>' . $file['file_date'] . '</td><td><button>Seleccionar</button></td></tr>';
+                    print '<tr><td>' . $file['file_name'] . '</td><td>' . $file['file_date'] . '</td><td id="deroga" name="' . $file['file_id'] . '"><button>Seleccionar</button></td><td><button id="enmienda" name="' . $file['file_id'] . '">Seleccionar</button></td></tr>';
                   }
                 } else {
-                  print '<tr><td colspan="3" style="text-align:center">Archivos no disponibles</td></tr>';
+                  print '<tr><td colspan="4" style="text-align:center">Archivos no disponibles</td></tr>';
                 }
                 ?>
               </tbody>
