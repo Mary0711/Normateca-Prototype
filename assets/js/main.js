@@ -6,6 +6,11 @@ function changeVisibility(tab, lastTab, btn, lastBtn) {
   lastBtn.classList.toggle("active");
 }
 
+function addId(id) {
+  document.getElementById("deroga").innerHTML += `,${id}`;
+  console.log(document.getElementById("deroga").innerHTML);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const elements = {
     tabs: {
@@ -85,5 +90,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       elements.subcatStatus = true;
     }
+  });
+
+  document.getElementById("derogaBtn").addEventListener("click", (e) => {
+    addId(e.target.name);
   });
 });

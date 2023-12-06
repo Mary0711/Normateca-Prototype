@@ -126,7 +126,7 @@ if (!isset($_SESSION["id"])) {
                 <label for="firma"> Firmado por: </label><input type="text" name="signature" id="firma" />
               </div>
             </div>
-
+            <input type="hidden" value="" id="deroga" name="deroga">
             <input type="submit" name="submit" value="Guardar" />
           </form>
           <div class="backline">
@@ -150,7 +150,7 @@ if (!isset($_SESSION["id"])) {
                 <?php
                 if ($_SESSION['files'] != null) {
                   foreach ($_SESSION['files'] as $file) {
-                    print '<tr><td>' . $file['file_name'] . '</td><td>' . $file['file_date'] . '</td><td id="deroga" name="' . $file['file_id'] . '"><button>Seleccionar</button></td><td><button id="enmienda" name="' . $file['file_id'] . '">Seleccionar</button></td></tr>';
+                    print '<tr><td>' . $file['file_name'] . '</td><td>' . $file['file_date'] . '</td><td><button id="derogaBtn" name="' . $file['file_id'] . '">Seleccionar</button></td><td><button id="enmienda" name="' . $file['file_id'] . '">Seleccionar</button></td></tr>';
                   }
                 } else {
                   print '<tr><td colspan="4" style="text-align:center">Archivos no disponibles</td></tr>';
