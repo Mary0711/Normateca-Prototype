@@ -233,6 +233,13 @@ tbody tr:nth-child(odd) {
   border: none;
 }
 
+a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
 footer {
   background-color: #161515;
   border-top: 5px solid var(--accent);
