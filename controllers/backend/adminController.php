@@ -3,7 +3,7 @@ session_start();
 include_once("../../models/backend/adminModel.php");
 function setData()
 {
-    $model = new AdminModel("localhost", "normateca", "root", "");
+    $model = new AdminModel("localhost", "normateca", "root", "", "3305");
     $model->start_connection();
     $categorias = [];
     $cuerpos = [];
