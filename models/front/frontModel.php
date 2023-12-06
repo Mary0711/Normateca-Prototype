@@ -112,9 +112,10 @@ class frontModel extends DB
             FROM enmienda
             GROUP BY Document_id
         ) enmienda ON documentos.Document_id = enmienda.Document_id
+        
+        LEFT JOIN contains ON documentos.Document_id = contains.Document_id
+        LEFT JOIN keywords ON contains.Keyword_id = keywords.keywords_id
         WHERE 1=1";
-        //  ORDER BY documentos.Document_title DESC";
-
     
 
     if ($certificationNumber != '') {
@@ -126,7 +127,7 @@ class frontModel extends DB
     }
 
     if ($keyword != '') {
-        $query .= " AND documentos.Keyword_id LIKE '%$keyword%'";
+        $query .= " AND keywords.Keywords_name LIKE '%$keyword%'";
     }
 
     if ($documentTitle != '') {
