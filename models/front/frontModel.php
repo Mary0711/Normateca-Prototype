@@ -178,7 +178,7 @@ public function recientes(){
     $query = "SELECT Document_title, Fiscal_year, Certification_number, Cuerpo_abbr, Document_path
     FROM documentos
     ORDER BY documentos.Document_id DESC
-    LIMIT 4";
+    LIMIT 6";
     return $this->run_query($query);
 }
 
