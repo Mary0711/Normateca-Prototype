@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("../models/backend/adminModel.php");
+include_once("../../models/backend/adminModel.php");
 function setData()
 {
     $model = new AdminModel("localhost", "normateca", "root", "");
@@ -60,9 +60,44 @@ function setData()
     $_SESSION['files'] = $files;
     $_SESSION['corps'] = $cuerpos;
     $_SESSION['cats'] = $categorias;
+    $_SESSION['adminSet'] = true;
+
+    header("Location: ../../views/admin.php");
+}
+
+if (!isset($_SESSION['adminSet'])) {
+    setData();
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    if (isset($_POST['type'])) {
+    if (isset($_GET['type'])) {
+        if ($_GET['type'] == "upload" and isset($_POST['name'])) {
+            $target_dir = "documents/";
+            $target_file = $target_dir . basename($_FILES['file']['name']);
+            $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+            if (file_exists($target_file)) {
+                header("Location: ../../views/admin.php?error=exists");
+            }
+
+            if ($file_type == "pdf") {
+                $values = array(
+                    "file_name" => $_POST['name'],
+                    "file_date" => $_POST['filedate'],
+                    "file_desc" => $_POST['desc'],
+                    "file_number" =>  $_POST['number'],
+                    "file_state" => $_POST['state'],
+                    "file_cat" => $_POST['cat'],
+                    "file_lang" => $_POST['lang'],
+                    "file_year" => $_POST['fiscalYear'],
+                    "file_corp" => $_POST['ccorp'],
+                    "file_signature" => $_POST['signature']
+                );
+            } else {
+                header("Location: ../../views/admin.php?error=type");
+            }
+        } else {
+            header("Location: ../../views/admin.php");
+        }
     }
 }

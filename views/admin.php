@@ -1,7 +1,9 @@
 <?php
-include_once("../controllers/backend/adminController.php");
-setData();
+session_start();
 
+if (!isset($_SESSION['adminSet'])) {
+  header("Location: ../controllers/backend/adminController.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,33 +34,33 @@ setData();
 
       <div class="tabs">
         <div id="subir" class="subir">
-          <form method="POST" action="admin.php" enctype="multipart/form-data">
+          <form method="POST" action="../controllers/backend/adminController.php?type=input" enctype="multipart/form-data">
             <div class="file">
-              <label for="pdf"> Subir Archivo: </label><input type="file" id="pdf" name="pdf" value="" required />
+              <label for="pdf"> Subir Archivo: </label><input type="file" id="pdf" name="file" value="" accept=".pdf" required />
             </div>
             <div class="box">
               <div class="innerBox">
                 <label for="filename"> Nombre: </label>
-                <input type="text" name="filename" id="filename" placeholder="nombre del archivo" />
+                <input type="text" name="filename" id="filename" placeholder="nombre del archivo" required />
 
-                <label for="fecha"> Fecha: </label><input type="date" id="fecha" />
+                <label for="fecha"> Fecha: </label><input type="date" name="filedate" id="fecha" required />
 
                 <label for="decripcion"> Descripcion: </label>
-                <textarea type="text" id="descripcion" rows="5" maxlength="150" placeholder="decripcion del archivo. Breve oracion del tema."></textarea>
+                <textarea type="text" id="descripcion" name="desc" rows="5" maxlength="150" placeholder="decripcion del archivo. Breve oracion del tema."></textarea>
 
                 <label for="Numero_certificacion"> Numero_certificacion: </label>
-                <input type="text" id="Numero_certificacion" placeholder="Numero_certificacion" />
+                <input type="text" name="number" id="Numero_certificacion" placeholder="Numero_certificacion" requiered />
 
                 <label for="estado"> Estado del Documento: </label>
-                <select id="estado" name="estado">
-                  <option value="">Select</option>
+                <select id="estado" name="state">
+                  <option disabled selected>Select</option>
                   <option value="activo">Activo</option>
                   <option value="inactivo">Inactivo</option>
                 </select>
 
                 <label for="categorias">Categoria del Documento:</label>
-                <select id="categorias" name="categorias">
-                  <option disabled selected>Categorias</option>
+                <select id="categorias" name="cat" requiered>
+                  <option disabled selected>Select</option>
                   <?php
                   if (count($_SESSION['cats']) > 0) {
                     foreach ($_SESSION['cats'] as $cat) {
@@ -73,23 +75,23 @@ setData();
 
               <div class="innerBox">
                 <label for="filename"> Lenguaje de Documento: </label>
-                <select id="lenguaje" name="lenguaje">
-                  <option value="">Select</option>
+                <select id="lenguaje" name="lang" requiered>
+                  <option disabled selected>Select</option>
                   <option value="esp">Español</option>
                   <option value="eng">Ingles</option>
 
                 </select>
 
                 <label for="filename"> Año Fiscal : </label>
-                <select id="añofiscal" name="añofiscal">
-                  <option value="">Select</option>
+                <select id="añofiscal" name="fiscalYear" requiered>
+                  <option disabled selected>Select</option>
                   <option value="2022-2023">2022-2023</option>
                   <option value="2023-2024">2023-2024</option>
                   <option value="2024-2025">2024-2025</option>
                   <option value="2025-2026">2025-2026</option>
                 </select>
                 <label for="subcategorias">Cuerpo: </label>
-                <select id="subcategorias" name="subcategorias">
+                <select id="subcategorias" name="corp" requiered>
                   <option selected disabled>Select</option>
                   <?php
                   if (count($_SESSION['corps']) > 0) {
@@ -102,7 +104,7 @@ setData();
 
 
 
-                <label for="firma"> Firmado por: </label><input type="text" id="firma" />
+                <label for="firma"> Firmado por: </label><input type="text" id="firma" name="signature" required />
               </div>
             </div>
 

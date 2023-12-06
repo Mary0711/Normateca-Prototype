@@ -1,5 +1,5 @@
 <?php
-include_once("../db/db_info.php");
+include_once("../../db/db_info.php");
 class AdminModel extends DB
 {
     public function getCategorias()
@@ -18,5 +18,20 @@ class AdminModel extends DB
     {
         $query = "SELECT * FROM documentos LIMIT $limit OFFSET $off";
         return $this->run_query($query);
+    }
+
+    public function InsertFile($values)
+    {
+        $stm = $this->connection->prepare("INSERT INTO documentos (
+            Document_title, 
+            Cuerpo_abbr, 
+            Category_abbr,
+            Certification_number,
+            Fiscal_year,
+            Document_leguaje,
+            Document_path,
+            Date_created,
+            Document_state,
+            Amended) VALUES ()");
     }
 }
