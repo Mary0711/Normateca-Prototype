@@ -45,8 +45,8 @@ if (!isset($_SESSION["id"])) {
   <main>
     <section>
       <div class="buttons">
-        <button type="button" name="tab" id="subirBtn" class="active">Subir Archivo</button>
-        <button type="button" name="tab" id="editarBtn">Editar Archivo</button>
+        <button type="button" name="tab" id="subirBtn" class="active">Subir Documento</button>
+        <button type="button" name="tab" id="editarBtn">Editar Documento</button>
         <button type="button" name="tab" id="crearBtn">Crear Categorias</button>
       </div>
 
@@ -60,7 +60,7 @@ if (!isset($_SESSION["id"])) {
             <div class="box">
               <div class="innerBox">
                 <label for="filename"> Nombre: </label>
-                <input type="text" name="filename" id="filename" placeholder="nombre del archivo" />
+                <input type="text" name="filename" id="filename" placeholder="nombre del documento" />
 
                 <label for="fecha"> Fecha: </label><input type="date" name="filedate" id="fecha" />
 
@@ -130,7 +130,7 @@ if (!isset($_SESSION["id"])) {
             <input type="submit" name="submit" value="Guardar" />
           </form>
           <div class="backline">
-            <h3>Añadir enlace a otro archivo</h3>
+            <h3>Añadir enlace a otro documento</h3>
 
             <div class="search-bar">
               <input type="text" placeholder="Buscar por nombre" />
@@ -170,7 +170,7 @@ if (!isset($_SESSION["id"])) {
 
         <div id="editar" class="editar" style="display: none">
           <div class="backline">
-            <h3>Editar archivo</h3>
+            <h3>Editar Documento</h3>
 
             <div class="search-bar">
               <input type="text" placeholder="Buscar por nombre" />
@@ -192,7 +192,7 @@ if (!isset($_SESSION["id"])) {
                     print '<tr><td>' . $file['file_name'] . '</td><td>' . $file['file_date'] . '</td><td><button>Editar</button></td></tr>';
                   }
                 } else {
-                  print '<tr><td colspan="3" style="text-align:center">Archivos no disponibles</td></tr>';
+                  print '<tr><td colspan="3" style="text-align:center">Documentos no disponibles</td></tr>';
                 }
                 ?>
               </tbody>
@@ -213,12 +213,12 @@ if (!isset($_SESSION["id"])) {
           <div class="box">
             <div class="innerBox">
               <label for="filename"> Nombre: </label>
-              <input type="text" name="filename" id="filename" placeholder="nombre del archivo" />
+              <input type="text" name="filename" id="filename" placeholder="nombre del documento" />
 
               <label for="fecha"> Fecha: </label><input type="date" id="fecha" />
 
               <label for="decripcion"> Descripcion: </label>
-              <textarea type="text" id="descripcion" rows="5" maxlength="150" placeholder="decripcion del archivo. Breve oracion del tema."></textarea>
+              <textarea type="text" id="descripcion" rows="5" maxlength="150" placeholder="decripcion del documento . Breve oracion del tema."></textarea>
 
               <label for="Numero_certificacion"> Numero_certificacion: </label>
               <input type="text" id="Numero_certificacion" placeholder="Numero_certificacion" />
@@ -325,11 +325,11 @@ if (!isset($_SESSION["id"])) {
             </tbody>
           </table>
 
-          <h3>Sub-Categorias disponibles</h3>
+          <h3>Cuerpos disponibles</h3>
           <table>
             <thead>
               <tr>
-                <th>Sub-Categoria</th>
+                <th>Cuerpos</th>
                 <th>Abreviacion</th>
               </tr>
             </thead>
