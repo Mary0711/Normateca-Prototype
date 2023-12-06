@@ -36,7 +36,7 @@ doc();
               <input type="search" id="certification_number" name="certification_number" placeholder="Buscar documento..." />
               
           
-              <label for="Fiscal_year">Año Academico</label>
+              <label for="Fiscal_year">Año Fiscal</label>
               <input type="search" id="Fiscal_year" name="Fiscal_year" placeholder="Buscar documento..." />
 
               <label for="Keywordnames">Palabra Clave</label>
@@ -145,7 +145,7 @@ doc();
                       <tr>
                         <th>Cuerpo</th>
                         <th>Numero</th>
-                        <th>Año Academico</th>
+                        <th>Año Fiscal</th>
                         <th>Titulo</th>
                         <th>Categoria</th>
                         <th>Relaciones</th>
