@@ -319,11 +319,11 @@ if (!isset($_SESSION["id"])) {
             </tbody>
           </table>
 
-          <h3>Sub-Categorias disponibles</h3>
+          <h3>Cuerpos disponibles</h3>
           <table>
             <thead>
               <tr>
-                <th>Sub-Categoria</th>
+                <th>Cuerpos</th>
                 <th>Abreviacion</th>
               </tr>
             </thead>
