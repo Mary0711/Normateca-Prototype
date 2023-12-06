@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //if principal al hacer submit desde
         if (empty($email) || empty($pwd)) {
             header("Location: ../../views/login.php?error=Something is missing.");
         } else {
-            $model = new LoginModel("localhost", "normateca", "root", "", "3306");
+            $model = new LoginModel("localhost", "normateca", "root", "", "3305");
             $model->start_connection();
             $result = $model->getUser($email, $pwd);
 
