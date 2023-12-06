@@ -1,9 +1,3 @@
-<?php
-include_once("../controllers/backend/LoginController.php");
-setData();
-if(!isset($_SESSION['id'])){header("location: loginController.php");}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +19,7 @@ if(!isset($_SESSION['id'])){header("location: loginController.php");}
 
 
     <section class="login">
-        <form class="loginForm" action="loginController.php" method="post">
+        <form class="loginForm" action="../controllers/backend/loginController.php" method="POST">
             <h1>Welcome to Normateca</h1>
 
             <h4>Fill out the following fields to log in:</h4>
@@ -33,8 +27,8 @@ if(!isset($_SESSION['id'])){header("location: loginController.php");}
             <label for="email">Email: </label>
             <input type="email" value="" name="email" id="email" placeholder="Enter your email" />
             <br />
-            <label for="ssn">Password: </label>
-            <input type="text" value="" name="ssn" id="ssn" placeholder="Enter your Password" />
+            <label for="password">Password: </label>
+            <input type="text" value="" name="password" id="password" placeholder="Enter your Password" />
             <br />
             <div>
                 <input type="checkbox" name="Remember" id="Remember" />
