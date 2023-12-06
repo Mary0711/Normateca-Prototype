@@ -3,7 +3,7 @@ session_start();
 include_once("../../models/backend/adminModel.php");
 function setData()
 {
-    $model = new AdminModel("localhost", "normateca", "root", "", "3305");
+    $model = new AdminModel("localhost", "normateca", "root", "", "3306");
     $model->start_connection();
     $categorias = [];
     $cuerpos = [];
@@ -62,6 +62,7 @@ function setData()
     $_SESSION['cats'] = $categorias;
     $_SESSION['adminSet'] = true;
 
+    $model->connection->close();
     header("Location: ../../views/admin.php");
 }
 
@@ -91,7 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     "file_lang" => $_POST['lang'],
                     "file_year" => $_POST['fiscalYear'],
                     "file_corp" => $_POST['ccorp'],
-                    "file_signature" => $_POST['signature']
+                    "file_signature" => $_POST['signature'],
+                    "file_path" => $target_file
                 );
             } else {
                 header("Location: ../../views/admin.php?error=type");

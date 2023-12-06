@@ -5,10 +5,9 @@ if (!isset($_SESSION['adminSet'])) {
   header("Location: ../controllers/backend/adminController.php");
 }
 
-/*     
-if(!isset($_SESSION["id"])){
+if (!isset($_SESSION["id"])) {
   header("Location: login.php?error= from admin");
-}*/
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,16 +28,9 @@ if(!isset($_SESSION["id"])){
     </div>
 
     <?php
-    /*  if(isset($_SESSION["id"]) && isset($_SESSION["Email"])) {
-            echo '<div class="user">
-                      <h3>' . $_SESSION['Name'] . ' ' . $_SESSION['Last_name'] . '</h3><button class="btn"> ' 
-                      /*<a href="../controllers/backend/loginController.php?logout">Log Out</a> .' Log Out </button>
-                  </div>';
-        }
-        */
     echo '<div class="user">
-        <h3>' . $_SESSION['Name'] . ' ' . $_SESSION['Last_name'] . '</h3><button class="btn"> '
-      /*<a href="../controllers/backend/loginController.php?logout" >Log Out</a> */ . ' Log Out </button>
+        <h3>' . $_SESSION['Name'] . ' ' . $_SESSION['Last_name'] . '</h3><button class="btn">
+      <a href="../controllers/backend/loginController.php?logout" >Log Out</a></button>
     </div>';
 
     ?>
@@ -58,7 +50,7 @@ if(!isset($_SESSION["id"])){
         <div id="subir" class="subir">
           <form method="POST" action="admin.php" enctype="multipart/form-data">
             <div class="file">
-              <label for="pdf"> Subir Archivo: </label><input type="file" id="pdf" name="pdf" value="" required />
+              <label for="pdf"> Subir Archivo: </label><input type="file" id="pdf" name="file" value="" required accept=".pdf" />
             </div>
             <div class="box">
               <div class="innerBox">
