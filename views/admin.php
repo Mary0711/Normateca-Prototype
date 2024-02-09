@@ -281,6 +281,8 @@ setData();
                 <form action="#" method="get">
                   <td><input type="text" name="name"></td>
                   <td><input type="text" maxlength="2" name="abbv"></td>
+                  <td><input type="text" maxlength="2" name="cuerpo"></td>
+                  
                 </form>
               </tr>
 
@@ -311,9 +313,10 @@ setData();
 
               <tr id="subcatForm" style="display:none">
                 <form action="#" method="get">
-                  <td><input type="text" name="name"></td>
+                  <td><input type="text" name="cate"></td>
                   <td><input type="text" maxlength="2" name="abbv"></td>
-                  <td><input type="text" maxlength="2" name="cat"></td>
+                  <!-- <td><input type="text" maxlength="2" name="cat"></td> -->
+                  
                 </form>
               </tr>
 
@@ -341,7 +344,14 @@ setData();
 
 </html>
 <?php
+if (isset($_POST['submit'])){
+$categoria = isset($_POST['cate']) ? $_POST['cate'] : '';
+$abbv = isset($_POST['abbv']) ? $_POST['abbv'] : '';
 
+
+
+
+}
 /*if (isset($_POST['submit'])) {
 
   $fecha = isset($_POST['fecha']) ? $_POST['fecha'] : '';
